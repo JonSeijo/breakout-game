@@ -14,7 +14,7 @@ public class Platform extends ActorJashanoid {
 		this.setPosition(300, 40);
 		
 		speed = 300;
-		glue = true;
+		glue = true;  //If ball must be "glued" to this platform
 	}
 
 	/**
@@ -23,28 +23,22 @@ public class Platform extends ActorJashanoid {
 	 * Assumming ball size = 16px;
 	 */
 	public Vector2 getBounceDirection(Vector2 point) {
-	
-		float collisionPoint = point.x + 8 - getX();
 		
-		float minPos = 0;
-		float maxPos = getWidth();
+		//Point is a global position.
+		//Collision point is relative to the platform
+		float collisionPoint = point.x + 8 - getX();  
 		
 		float minAngle = 160;
 		float maxAngle = 20;
 		
-		float posSpan = maxPos - minPos;
 		float angleSpan = maxAngle - minAngle;
 		
-		float scaledValue = (collisionPoint - minPos) / posSpan;		
-		float translatedValue = minAngle + (scaledValue * angleSpan);
+		float scaledValue = collisionPoint / getWidth();		
+		float angle = minAngle + (scaledValue * angleSpan);
 		
-		float angle = translatedValue;
-	
-		Vector2 bounceDirection = new Vector2(0, -0.5f);
+		Vector2 bounceDirection = new Vector2(1, 1);
 		bounceDirection.setAngle(angle);
 		bounceDirection.nor();
-		
-		System.out.println(bounceDirection.angle());
 		
 		return bounceDirection;
 	}

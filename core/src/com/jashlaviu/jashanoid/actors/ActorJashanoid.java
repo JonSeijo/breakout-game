@@ -35,6 +35,12 @@ public class ActorJashanoid extends Actor{
 		updateCollisionBounds();
 	}	
 	
+	@Override
+	protected void positionChanged() {
+		super.positionChanged();
+		updateCollisionBounds();
+	}
+	
 	public void updateCollisionBounds(){
 		collisionBounds.setPosition(getX(), getY());
 	}
