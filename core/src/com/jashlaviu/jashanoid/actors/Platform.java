@@ -53,9 +53,6 @@ public class Platform extends ActorJashanoid {
 	
 	public boolean hasGlue(){
 		return glue;
-	}
-	
-	
-	
+	}	
 	
 }

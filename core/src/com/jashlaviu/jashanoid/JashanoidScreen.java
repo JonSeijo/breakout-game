@@ -27,6 +27,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	private ArrayList<Ball> balls;
 	private ArrayList<Brick> bricks;
 	private InputHandler inputHandler;
+	private LevelCreator levelCreator;
 	private Controller controller;
 	
 	private Vector2 takeOffPoint;
@@ -38,6 +39,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		bounds = new Bounds();
 		balls = new ArrayList<Ball>();
 		bricks = new ArrayList<Brick>();
+		levelCreator = new LevelCreator(bricks);
 		
 		platform = new Platform();		
 		takeOffPoint = new Vector2(platform.getCenterX() + 20, platform.getTop());
@@ -53,11 +55,12 @@ public class JashanoidScreen extends ScreenAdapter{
 		inputHandler = new InputHandler(controller);	
 		Gdx.input.setInputProcessor(inputHandler);		
 		
+		level = 1;
 		levelUp(level);
 	}
 	
 	private void levelUp(int level) {
-		LevelCreator.setLevel(bricks, level);
+		levelCreator.setLevel(level);
 		for(Brick brick : bricks)
 			stage.addActor(brick);
 		
@@ -93,6 +96,8 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	private void updateCollisionsBallBricks() {
 		for(Ball ball : balls){
+			
+			boolean alreadyCollided = false;			
 			Rectangle ballBounds = ball.getCollisionBounds();
 			
 			Iterator<Brick> brickIter = bricks.iterator();
@@ -100,24 +105,27 @@ public class JashanoidScreen extends ScreenAdapter{
 				Brick brick = brickIter.next();	
 				Rectangle brickBounds = brick.getCollisionBounds();
 				
-				if(ballBounds.overlaps(brickBounds)){
-					
+				if(ballBounds.overlaps(brickBounds)){					
+										
 					Rectangle intersection = new Rectangle();
 					Intersector.intersectRectangles(brickBounds, ballBounds, intersection);
 					
 					// Collision from top or bottom.
-					if(intersection.width > intersection.height){
+					if(intersection.width > intersection.height && !alreadyCollided){
 						ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
+						alreadyCollided = true;
 					}
 					
 					// Collision from left or right side.
-					else if(intersection.height > intersection.width){
+					else if(intersection.height > intersection.width && !alreadyCollided){
 						ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
+						alreadyCollided = true;
 					}
 					
 					// Collision from exact digonal. Mirror both directions.
-					else if(intersection.height == intersection.width){
+					else if(intersection.height == intersection.width && !alreadyCollided){
 						ball.setDirection(-ball.getDirection().x, -ball.getDirection().y);
+						alreadyCollided = true;
 					}
 					
 				
