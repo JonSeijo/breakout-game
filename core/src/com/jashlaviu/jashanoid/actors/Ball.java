@@ -30,7 +30,7 @@ public class Ball extends ActorJashanoid {
 	public void act(float delta) {
 		super.act(delta);
 		
-		speed += 0.05f;
+		speed += 0.04f;
 		
 		if(screen.getPlatform().hasGlue()){
 			setPosition(screen.getTakeOff().x, screen.getTakeOff().y);	

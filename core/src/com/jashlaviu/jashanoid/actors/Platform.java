@@ -13,7 +13,7 @@ public class Platform extends ActorJashanoid {
 		super(TextureLoader.platform);		
 		this.setPosition(300, 40);
 		
-		speed = 300;
+		speed = 400;
 		glue = true;  //If ball must be "glued" to this platform
 	}
 
@@ -41,6 +41,12 @@ public class Platform extends ActorJashanoid {
 		bounceDirection.nor();
 		
 		return bounceDirection;
+	}
+	
+	public void reset(){
+		this.setPosition(300, 40);		
+		speed = 400;
+		setGlue(true);
 	}
 	
 	public float getSpeed(){

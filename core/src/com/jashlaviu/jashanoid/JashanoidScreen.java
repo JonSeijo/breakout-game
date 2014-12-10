@@ -42,28 +42,18 @@ public class JashanoidScreen extends ScreenAdapter{
 		levelCreator = new LevelCreator(bricks);
 		
 		platform = new Platform();		
-		takeOffPoint = new Vector2(platform.getCenterX() + 20, platform.getTop());
-		balls.add(new Ball(this, takeOffPoint, platform.getBounceDirection(takeOffPoint)));				
+		takeOffPoint = new Vector2(platform.getCenterX() + 20, platform.getTop());			
 		
 		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), 
 				Gdx.graphics.getHeight()), game.getBatch());		
 		
 		stage.addActor(platform);
-		stage.addActor(balls.get(0));
 		
 		controller = new Controller(this);			
 		inputHandler = new InputHandler(controller);	
 		Gdx.input.setInputProcessor(inputHandler);		
 		
-		level = 1;
-		levelUp(level);
-	}
-	
-	private void levelUp(int level) {
-		levelCreator.setLevel(level);
-		for(Brick brick : bricks)
-			stage.addActor(brick);
-		
+		levelUp();
 	}
 
 	@Override
@@ -76,12 +66,35 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		controller.update(delta);
 		stage.act();
-		updateLogic();		
-		
-
+		updateLogic();
+		updateGameOver();
 	}
 	
-	public void updateLogic(){		
+	
+	private void levelUp() {
+		level++;
+		levelCreator.setLevel(level);
+		for(Brick brick : bricks)
+			stage.addActor(brick);		
+		
+		platform.reset();
+		
+		for(Ball ball : balls) ball.remove();	//Remove balls from stage 	
+		balls.clear();		//Deletes balls in array
+		
+		balls.add(new Ball(this, takeOffPoint, platform.getBounceDirection(getTakeOff())));	
+		stage.addActor(balls.get(0));
+		
+	}
+	
+	private void updateGameOver(){
+		if(bricks.isEmpty()){
+			levelUp();
+		}
+		
+	}
+	
+	private void updateLogic(){		
 		//Platform collisions with left and right bounds.
 		updateCollisionsPlatformBounds();
 		
