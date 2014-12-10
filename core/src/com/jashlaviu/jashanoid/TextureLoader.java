@@ -1,30 +1,34 @@
 package com.jashlaviu.jashanoid;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class TextureLoader {
+public class TextureLoader{
 	
-	public static Texture platform, ball, block1, block2, block3;
+	public TextureAtlas atlas;
+	public static TextureRegion platform, ball, block1, block2, block3;
 	
 	public TextureLoader(){
-		platform = load("palete.png");
-		ball = load("ball1.png");
-		block1 = load("block1.png");
-		block2 = load("block2.png");
-		block3 = load("block3.png");	
+		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
+		
+		platform = load("palete");
+		ball = load("ball1");
+		block1 = load("block1");
+		block2 = load("block2");
+		block3 = load("block3");	
 	}
 	
 	public void dispose(){
-		platform.dispose();
-		ball.dispose();
-		block1.dispose();
-		block2.dispose();
-		block3.dispose();
+		atlas.dispose();
 	}
 	
-	public Texture load(String path){
-		return new Texture(Gdx.files.internal(path));
+	private TextureRegion load(String name){
+		return atlas.findRegion(name);
+	}
+	
+	private TextureRegion load(String name, int index){
+		return atlas.findRegion(name, index);
 	}
 
 }

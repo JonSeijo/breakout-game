@@ -1,7 +1,6 @@
 package com.jashlaviu.jashanoid.actors;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,8 +12,8 @@ public class ActorJashanoid extends Actor{
 	protected TextureRegion region;
 	protected Rectangle collisionBounds;
 	
-	public ActorJashanoid(Texture loaderTexture) {
-		region = new TextureRegion(loaderTexture);
+	public ActorJashanoid(TextureRegion loaderTexture) {
+		region = loaderTexture;
 		setSize(region.getRegionWidth(), region.getRegionHeight());
 		collisionBounds = new Rectangle(getX(), getY(), getWidth(), getHeight());		
 	}

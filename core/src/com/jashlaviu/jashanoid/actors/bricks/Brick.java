@@ -1,13 +1,13 @@
 package com.jashlaviu.jashanoid.actors.bricks;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
 public class Brick extends ActorJashanoid {
 	
 	boolean vulnerable;
 	
-	public Brick(Texture loaderTexture, float posX, float posY) {
+	public Brick(TextureRegion loaderTexture, float posX, float posY) {
 		super(loaderTexture);
 		setPosition(posX, posY);
 	}

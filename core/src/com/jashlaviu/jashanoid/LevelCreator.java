@@ -13,6 +13,8 @@ public class LevelCreator {
 	private final int BRICK_HEIGHT = 20;
 	
 	private final char charNormal;
+	
+	@SuppressWarnings("unused")
 	private final char charSpace;
 	
 	private ArrayList<Brick> bricks;

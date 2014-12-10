@@ -1,0 +1,41 @@
+
+jashanoidAtlas.png
+size: 512,32
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ball1
+  rotate: false
+  xy: 239, 6
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+block1
+  rotate: false
+  xy: 114, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: -1
+block2
+  rotate: false
+  xy: 171, 6
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+block3
+  rotate: false
+  xy: 205, 6
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+palete
+  rotate: false
+  xy: 2, 2
+  size: 110, 20
+  orig: 110, 20
+  offset: 0, 0
+  index: -1
