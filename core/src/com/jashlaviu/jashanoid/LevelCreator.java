@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.jashlaviu.jashanoid.actors.bricks.*;
 
 public class LevelCreator {
@@ -13,6 +14,7 @@ public class LevelCreator {
 	
 	private final char charNormal;
 	private final char charHard;
+	private final char charRock;
 	
 	@SuppressWarnings("unused")
 	private final char charSpace;
@@ -25,6 +27,7 @@ public class LevelCreator {
 		charNormal = '0';
 		charSpace = '_';
 		charHard = '*';
+		charRock = '+';
 	}
 
 	public void setLevel(int level) {	
@@ -39,6 +42,7 @@ public class LevelCreator {
 			
 			if(thisChar == charNormal) addNormal(x ,y);	
 			if(thisChar == charHard) addHard(x, y);
+			if(thisChar == charRock) addRock(x, y);
 			
 			if(thisChar == '\n'){
 				x = Bounds.GAME_X_LEFT;
@@ -52,9 +56,12 @@ public class LevelCreator {
 		String levelString = Integer.toString(level);
 		System.out.println("level_" + levelString);
 		
-		FileHandle levelFile = Gdx.files.internal("levels/level_" + levelString);
-		if(levelFile == null)
+		FileHandle levelFile;
+		try{
+		levelFile = Gdx.files.internal("levels/level_" + levelString);
+		}catch(GdxRuntimeException gdxEx){
 			levelFile = Gdx.files.internal("levels/level_0");
+		}
 		
 		levelChars = levelFile.readString();
 	}
@@ -66,6 +73,10 @@ public class LevelCreator {
 	
 	private void addHard(float x, float y){
 		bricks.add(new BrickHard(x, y));
+	}
+	
+	private void addRock(float x, float y){
+		bricks.add(new BrickRock(x, y));
 	}
 
 }

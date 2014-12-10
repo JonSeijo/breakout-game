@@ -53,6 +53,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		inputHandler = new InputHandler(controller);	
 		Gdx.input.setInputProcessor(inputHandler);		
 		
+		level = 2;
 		levelUp();
 	}
 
@@ -88,10 +89,14 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private void updateGameOver(){
-		if(bricks.isEmpty()){
-			levelUp();
-		}
+		boolean noMoreBricks = true;
 		
+		for(Brick brick : bricks)
+			if(!brick.isIndestructible())
+				noMoreBricks = false;		
+		
+		if(noMoreBricks)
+			levelUp();			
 	}
 	
 	private void updateLogic(){		
@@ -108,18 +113,25 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 
 	private void updateCollisionsBallBricks() {
-		for(Ball ball : balls){
-			
+		for(Ball ball : balls){			
 			boolean alreadyCollided = false;			
 			Rectangle ballBounds = ball.getCollisionBounds();
 			
 			Iterator<Brick> brickIter = bricks.iterator();
-			while(brickIter.hasNext()){	
+			while(brickIter.hasNext() && !alreadyCollided){	
 				Brick brick = brickIter.next();	
 				Rectangle brickBounds = brick.getCollisionBounds();
 				
-				if(ballBounds.overlaps(brickBounds)){					
-										
+				if(ballBounds.overlaps(brickBounds)){	
+					ball.moreSpeed();
+					
+					if(brick.isVulnerable()){
+						brick.remove();
+						brickIter.remove();
+					}else{
+						brick.makeVulnerable(); //If is indestructible, it is handled inside
+					}
+					
 					Rectangle intersection = new Rectangle();
 					Intersector.intersectRectangles(brickBounds, ballBounds, intersection);
 					
@@ -139,15 +151,8 @@ public class JashanoidScreen extends ScreenAdapter{
 					else if(intersection.height == intersection.width && !alreadyCollided){
 						ball.setDirection(-ball.getDirection().x, -ball.getDirection().y);
 						alreadyCollided = true;
-					}
-					
-				
-					if(brick.isVulnerable()){
-						brick.remove();
-						brickIter.remove();
-					}else{
-						brick.setVulnerable(true);
-					}
+					}				
+
 				}				
 			}
 			
@@ -160,6 +165,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			Rectangle ballBounds = ball.getCollisionBounds();
 			if(ballBounds.overlaps(platform.getCollisionBounds())){					
 				ball.setDirection(platform.getBounceDirection(ball.getPosition()));
+				ball.moreSpeed();
 			}
 		}
 		
@@ -176,17 +182,20 @@ public class JashanoidScreen extends ScreenAdapter{
 			if(bounds.collideLeft(ball)){
 				ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 				ball.setPosition(Bounds.GAME_X_LEFT, ball.getY());
+				ball.moreSpeed();
 			}
 
 			if(bounds.collideRight(ball)){
 				ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 				ball.setPosition(Bounds.GAME_X_RIGHT - ball.getWidth(), ball.getY());
+				ball.moreSpeed();
 			}
 			
 			// Mirrors direction in y axis
 			if(bounds.collideUp(ball)){				
 				ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
 				ball.setPosition(ball.getX(), Bounds.GAME_Y_UP - ball.getHeight());
+				ball.moreSpeed();
 			}
 			
 			if(bounds.collideDown(ball)){

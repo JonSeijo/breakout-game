@@ -29,9 +29,7 @@ public class Ball extends ActorJashanoid {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		
-		speed += 0.04f;
-		
+
 		if(screen.getPlatform().hasGlue()){
 			setPosition(screen.getTakeOff().x, screen.getTakeOff().y);	
 		}
@@ -49,6 +47,10 @@ public class Ball extends ActorJashanoid {
 	
 	public void setDirection(Vector2 direction){
 		this.setDirection(direction.x, direction.y);
+	}
+	
+	public void moreSpeed(){
+		speed += 2;
 	}
 	
 	public Vector2 getDirection(){
