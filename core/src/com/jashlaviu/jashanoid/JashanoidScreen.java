@@ -7,10 +7,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.actors.Ball;
 import com.jashlaviu.jashanoid.actors.Platform;
@@ -53,7 +56,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		inputHandler = new InputHandler(controller);	
 		Gdx.input.setInputProcessor(inputHandler);		
 		
-		level = 1;
+		level = 0;
 		levelUp();
 	}
 
@@ -136,7 +139,7 @@ public class JashanoidScreen extends ScreenAdapter{
 				}
 				
 				// if brick collides with  middle Ball left
-				if(brickBounds.contains(ball.getX(), ball.getCenterY())){
+				else if(brickBounds.contains(ball.getX(), ball.getCenterY())){
 					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 					brickHit = true;
 				}
@@ -149,23 +152,33 @@ public class JashanoidScreen extends ScreenAdapter{
 				
 				
 				if(brickHit){
-					ball.moveInDirection(delta);
+					ball.moveInDirection(delta * 0.2f);
 					ball.moreSpeed();
 					
-					if(brick.isVulnerable()){
-						brick.remove();
-						brickIter.remove();
-					}else{
-						brick.makeVulnerable(); //If is indestructible, it is handled inside
-					}
-				}
-
-				
-				
-			}
+					if(brick.isVulnerable()){						
 			
-		}
+						brickIter.remove(); //Removes from the array (for logic updates).
+						removeBrickStage(brick);	//Removes from stage, with prior animation.
+						
+					}else brick.makeVulnerable(); //If is indestructible, it is handled inside
+					
+				}				
+			}			
+		}		
+	}
+	
+	private void removeBrickStage(Brick brick){
+		SequenceAction seq = new SequenceAction();
+		ParallelAction parallel = new ParallelAction();
 		
+		seq.addAction(Actions.fadeOut(0.5f));
+		seq.addAction(Actions.removeActor());
+		
+		parallel.addAction(seq);
+		parallel.addAction(Actions.moveBy(0, -50, 0.6f));
+		parallel.addAction(Actions.rotateTo(MathUtils.random(-40, 40), 0.5f));
+		
+		brick.addAction(parallel);
 	}
 
 	private void updateCollisionsBallPlatform(){
