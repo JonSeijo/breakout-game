@@ -6,7 +6,7 @@ filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 285, 6
+  xy: 456, 6
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -32,6 +32,27 @@ block3
   orig: 55, 20
   offset: 0, 0
   index: -1
+brick
+  rotate: false
+  xy: 285, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 1
+brick
+  rotate: false
+  xy: 342, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 2
+brick
+  rotate: false
+  xy: 399, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 3
 palete
   rotate: false
   xy: 2, 2
