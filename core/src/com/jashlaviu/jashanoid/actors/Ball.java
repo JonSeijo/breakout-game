@@ -34,10 +34,14 @@ public class Ball extends ActorJashanoid {
 			setPosition(screen.getTakeOff().x, screen.getTakeOff().y);	
 		}
 		else{
-			moveBy(direction.x * speed * delta, direction.y * speed * delta);
+			moveInDirection(delta);
 		}
 		
 		updateCollisionBounds();	
+	}
+	
+	public void moveInDirection(float delta){
+		moveBy(direction.x * speed * delta, direction.y * speed * delta);
 	}
 	
 	public void setDirection(float x, float y){

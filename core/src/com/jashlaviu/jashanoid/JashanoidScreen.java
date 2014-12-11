@@ -53,7 +53,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		inputHandler = new InputHandler(controller);	
 		Gdx.input.setInputProcessor(inputHandler);		
 		
-		level = 2;
+		level = 1;
 		levelUp();
 	}
 
@@ -67,7 +67,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		controller.update(delta);
 		stage.act();
-		updateLogic();
+		updateLogic(delta);
 		updateGameOver();
 	}
 	
@@ -99,7 +99,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			levelUp();			
 	}
 	
-	private void updateLogic(){		
+	private void updateLogic(float delta){		
 		//Platform collisions with left and right bounds.
 		updateCollisionsPlatformBounds();
 		
@@ -107,22 +107,49 @@ public class JashanoidScreen extends ScreenAdapter{
 		//If collide with down bounds, resets game.
 		updateCollisionsBallBounds();	
 		
-		updateCollisionsBallBricks();
+		updateCollisionsBallBricks(delta);
 		
 		updateCollisionsBallPlatform();
 	}
 
-	private void updateCollisionsBallBricks() {
+	private void updateCollisionsBallBricks(float delta) {
 		for(Ball ball : balls){			
 			boolean alreadyCollided = false;			
 			Rectangle ballBounds = ball.getCollisionBounds();
 			
 			Iterator<Brick> brickIter = bricks.iterator();
-			while(brickIter.hasNext() && !alreadyCollided){	
+			while(brickIter.hasNext()){	
+				boolean brickHit = false;
 				Brick brick = brickIter.next();	
 				Rectangle brickBounds = brick.getCollisionBounds();
 				
-				if(ballBounds.overlaps(brickBounds)){	
+				// if brick collides with  middle Ball top
+				if(brickBounds.contains(ball.getCenterX(), ball.getTop())){
+					ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
+					brickHit = true;
+				}
+				
+				// if brick collides with  middle Ball bottom
+				else if(brickBounds.contains(ball.getCenterX(), ball.getY())){
+					ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
+					brickHit = true;
+				}
+				
+				// if brick collides with  middle Ball left
+				if(brickBounds.contains(ball.getX(), ball.getCenterY())){
+					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
+					brickHit = true;
+				}
+				
+				// if brick collides with  middle Ball right
+				else if(brickBounds.contains(ball.getRight(), ball.getCenterY())){
+					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
+					brickHit = true;
+				}				
+				
+				
+				if(brickHit){
+					ball.moveInDirection(delta);
 					ball.moreSpeed();
 					
 					if(brick.isVulnerable()){
@@ -131,29 +158,10 @@ public class JashanoidScreen extends ScreenAdapter{
 					}else{
 						brick.makeVulnerable(); //If is indestructible, it is handled inside
 					}
-					
-					Rectangle intersection = new Rectangle();
-					Intersector.intersectRectangles(brickBounds, ballBounds, intersection);
-					
-					// Collision from top or bottom.
-					if(intersection.width > intersection.height && !alreadyCollided){
-						ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
-						alreadyCollided = true;
-					}
-					
-					// Collision from left or right side.
-					else if(intersection.height > intersection.width && !alreadyCollided){
-						ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
-						alreadyCollided = true;
-					}
-					
-					// Collision from exact digonal. Mirror both directions.
-					else if(intersection.height == intersection.width && !alreadyCollided){
-						ball.setDirection(-ball.getDirection().x, -ball.getDirection().y);
-						alreadyCollided = true;
-					}				
+				}
 
-				}				
+				
+				
 			}
 			
 		}
