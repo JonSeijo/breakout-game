@@ -26,6 +26,11 @@ public class InputHandler extends InputAdapter{
 			control.shootJustPressed(true);
 		}
 		
+		
+		if(keycode == Keys.N){
+			control.developJustPressed(true);
+		}
+		
 		return false;		
 	}
 	

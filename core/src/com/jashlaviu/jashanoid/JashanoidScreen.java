@@ -11,15 +11,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.jashlaviu.jashanoid.actors.Ball;
-import com.jashlaviu.jashanoid.actors.Platform;
+import com.jashlaviu.jashanoid.actors.*;
+import com.jashlaviu.jashanoid.actors.bonus.Bonus;
+import com.jashlaviu.jashanoid.actors.bonus.BonusLevel;
 import com.jashlaviu.jashanoid.actors.bricks.Brick;
-import com.jashlaviu.jashanoid.inputhandler.Controller;
-import com.jashlaviu.jashanoid.inputhandler.InputHandler;
+import com.jashlaviu.jashanoid.inputhandler.*;
 
 public class JashanoidScreen extends ScreenAdapter{	
 	private ShapeRenderer shaper;
@@ -29,19 +27,25 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Platform platform;
 	private ArrayList<Ball> balls;
 	private ArrayList<Brick> bricks;
+	private ArrayList<Bonus> bonuses;
+	
 	private InputHandler inputHandler;
 	private LevelCreator levelCreator;
 	private Controller controller;
 	
 	private Vector2 takeOffPoint;
 	
+	
 	private int level;
+	private boolean isBonus;
 	
 	public JashanoidScreen(Jashanoid game) {		
 		shaper = game.getShaper();
 		bounds = new Bounds();
 		balls = new ArrayList<Ball>();
 		bricks = new ArrayList<Brick>();
+		bonuses = new ArrayList<Bonus>();
+		
 		levelCreator = new LevelCreator(bricks);
 		
 		platform = new Platform();		
@@ -75,8 +79,13 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	
-	private void levelUp() {
+	public void levelUp() {
 		level++;
+		
+		for(Brick brick : bricks)
+			brick.remove();
+		bricks.clear();
+		
 		levelCreator.setLevel(level);
 		for(Brick brick : bricks)
 			stage.addActor(brick);		
@@ -113,13 +122,23 @@ public class JashanoidScreen extends ScreenAdapter{
 		updateCollisionsBallBricks(delta);
 		
 		updateCollisionsBallPlatform();
+		
+		updateBonus();
+	}
+	
+	private void updateBonus(){
+		if(!bonuses.isEmpty()){
+			Bonus bonus = bonuses.get(0);
+			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){			
+				bonus.apply();
+				bonus.remove();
+				bonuses.clear();
+			}
+		}
 	}
 
 	private void updateCollisionsBallBricks(float delta) {
-		for(Ball ball : balls){			
-			boolean alreadyCollided = false;			
-			Rectangle ballBounds = ball.getCollisionBounds();
-			
+		for(Ball ball : balls){							
 			Iterator<Brick> brickIter = bricks.iterator();
 			while(brickIter.hasNext()){	
 				boolean brickHit = false;
@@ -128,43 +147,57 @@ public class JashanoidScreen extends ScreenAdapter{
 				
 				// if brick collides with  middle Ball top
 				if(brickBounds.contains(ball.getCenterX(), ball.getTop())){
+					ball.setPosition(ball.getX(), brickBounds.getY() - brickBounds.getHeight());
 					ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
 					brickHit = true;
 				}
 				
 				// if brick collides with  middle Ball bottom
 				else if(brickBounds.contains(ball.getCenterX(), ball.getY())){
+					ball.setPosition(ball.getX(), brickBounds.getY() + brickBounds.getHeight());
 					ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
 					brickHit = true;
 				}
 				
+				
+				// if brick collides with  middle Ball right
+				if(brickBounds.contains(ball.getRight(), ball.getCenterY())){
+					ball.setPosition(brickBounds.getX() - ball.getWidth(), ball.getY());
+					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
+					brickHit = true;
+				}	
+				
 				// if brick collides with  middle Ball left
 				else if(brickBounds.contains(ball.getX(), ball.getCenterY())){
+					ball.setPosition(brickBounds.getX() + brickBounds.getWidth(), ball.getY());
 					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 					brickHit = true;
 				}
-				
-				// if brick collides with  middle Ball right
-				else if(brickBounds.contains(ball.getRight(), ball.getCenterY())){
-					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
-					brickHit = true;
-				}				
+			
 				
 				
 				if(brickHit){
-					ball.moveInDirection(delta * 0.2f);
 					ball.moreSpeed();
 					
-					if(brick.isVulnerable()){						
-			
+					if(brick.isVulnerable()){		
+						randomBonus(brick);
 						brickIter.remove(); //Removes from the array (for logic updates).
-						removeBrickStage(brick);	//Removes from stage, with prior animation.
-						
+						removeBrickStage(brick);	//Removes from stage, with prior animation.						
 					}else brick.makeVulnerable(); //If is indestructible, it is handled inside
 					
 				}				
 			}			
 		}		
+	}
+	
+	private void randomBonus(Brick brick){
+		if(bonuses.isEmpty()){
+			if(MathUtils.random(100) < 50){
+				Bonus nBonus = new BonusLevel(this, brick.getX(), brick.getY());
+				bonuses.add(nBonus);
+				stage.addActor(nBonus);
+			}
+		}
 	}
 	
 	private void removeBrickStage(Brick brick){
@@ -249,6 +282,10 @@ public class JashanoidScreen extends ScreenAdapter{
 		Ball ball = new Ball(this, position, direction);
 		balls.add(ball);
 		stage.addActor(ball);		
+	}
+	
+	public void isBonus(boolean bool){
+		isBonus = bool;
 	}
 	
 	@Override

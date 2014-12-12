@@ -8,21 +8,25 @@ import com.badlogic.gdx.math.MathUtils;
 public class TextureLoader{
 	
 	public TextureAtlas atlas;
-	public static TextureRegion platform, ball, block1, block2, block3;
-	public static TextureRegion brick_01, brick_02, brick_03;
+	public static TextureRegion platform, ball, block1, block2, block3, bonus_01;
+	public static TextureRegion brick_01, brick_02, brick_03, ball_02;
 	
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
 		
 		platform = load("palete");
 		ball = load("ball1");
+		ball_02 = load("ball2");
 		brick_01 = load("brick", 1);
 		brick_02 = load("brick", 2);
 		brick_03 = load("brick", 3);
+		
+		bonus_01 = load("bonus", 1);
 
 		block1 = load("block1");
 		block2 = load("block2");
 		block3 = load("block3");	
+		
 	}
 	
 	public static TextureRegion getRandomNormal(){
@@ -38,6 +42,10 @@ public class TextureLoader{
 		
 		
 		return null;
+	}
+	
+	public static TextureRegion getBall(){
+		return ball_02;
 	}
 	
 	public void dispose(){

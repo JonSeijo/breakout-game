@@ -12,7 +12,7 @@ public class Ball extends ActorJashanoid {
 	private Vector2 direction;
 	
 	public Ball(JashanoidScreen screen, float posX, float posY, float dirX, float dirY) {
-		super(TextureLoader.ball);
+		super(TextureLoader.getBall());
 		setPosition(posX, posY);
 		updateCollisionBounds();
 		

@@ -6,13 +6,16 @@ import com.jashlaviu.jashanoid.actors.Platform;
 
 public class Controller {
 	
+	private JashanoidScreen gameScreen;
 	private Platform platform;
 	
 	private boolean platformMovingRight;	
 	private boolean platformMovingLeft;
 	private boolean shootJustPressed;
+	private boolean developJustPressed;
 	
 	public Controller(JashanoidScreen gameScreen) {
+		this.gameScreen = gameScreen;
 		platform = gameScreen.getPlatform();
 	}
 	
@@ -28,6 +31,15 @@ public class Controller {
 			platform.setGlue(false);
 		}
 		
+		if(developJustPressed){
+			developJustPressed = false;
+			gameScreen.levelUp();
+		}
+		
+	}
+	
+	public void developJustPressed(boolean bool){
+		developJustPressed = bool;
 	}
 	
 	public void setPlatformMovingRight(boolean bool){
