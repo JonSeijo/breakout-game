@@ -1,75 +1,82 @@
 
 jashanoidAtlas.png
-size: 128,128
+size: 1024,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 59, 6
+  xy: 570, 6
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 77, 6
+  xy: 588, 6
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 2, 68
+  xy: 114, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 2, 46
+  xy: 171, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 2, 24
+  xy: 228, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus
   rotate: false
-  xy: 2, 2
+  xy: 285, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
-brick
+bonus
   rotate: false
-  xy: 59, 68
-  size: 55, 20
-  orig: 55, 20
-  offset: 0, 0
-  index: 1
-brick
-  rotate: false
-  xy: 59, 46
+  xy: 342, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 59, 24
+  xy: 399, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 1
+brick
+  rotate: false
+  xy: 456, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 2
+brick
+  rotate: false
+  xy: 513, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 palete
   rotate: false
-  xy: 2, 90
+  xy: 2, 2
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
