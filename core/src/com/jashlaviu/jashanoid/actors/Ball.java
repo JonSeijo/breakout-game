@@ -33,9 +33,9 @@ public class Ball extends ActorJashanoid {
 		if(screen.getPlatform().hasGlue()){
 			setPosition(screen.getTakeOff().x, screen.getTakeOff().y);	
 		}
-		else{
-			moveInDirection(delta);
-		}
+		
+		else moveInDirection(delta);
+		
 		
 		updateCollisionBounds();	
 	}
@@ -59,6 +59,14 @@ public class Ball extends ActorJashanoid {
 	
 	public Vector2 getDirection(){
 		return direction;
+	}
+	
+	public void setSpeed(float speed){
+		this.speed = speed;
+	}
+	
+	public float getSpeed(){
+		return speed;
 	}
 
 }

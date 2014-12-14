@@ -6,14 +6,14 @@ filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 570, 6
+  xy: 798, 6
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 588, 6
+  xy: 816, 6
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -53,23 +53,51 @@ bonus
   orig: 55, 20
   offset: 0, 0
   index: 2
-brick
+bonus
   rotate: false
   xy: 399, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 3
+bonus
+  rotate: false
+  xy: 456, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 4
+bonus
+  rotate: false
+  xy: 513, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 5
+bonus
+  rotate: false
+  xy: 570, 2
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 6
+brick
+  rotate: false
+  xy: 627, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 456, 2
+  xy: 684, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 513, 2
+  xy: 741, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0

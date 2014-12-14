@@ -8,7 +8,8 @@ import com.badlogic.gdx.math.MathUtils;
 public class TextureLoader{
 	
 	public TextureAtlas atlas;
-	public static TextureRegion platform, ball, block1, block2, block3, bonus_01, bonus_02;
+	public static TextureRegion platform, ball, block1, block2, block3;
+	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06;
 	public static TextureRegion brick_01, brick_02, brick_03, ball_02;
 	
 	public TextureLoader(){
@@ -23,6 +24,11 @@ public class TextureLoader{
 		
 		bonus_01 = load("bonus", 1);
 		bonus_02 = load("bonus", 2);
+		bonus_03 = load("bonus", 3);
+		bonus_04 = load("bonus", 4);
+		bonus_05 = load("bonus", 5);
+		bonus_06 = load("bonus", 6);
+		
 
 		block1 = load("block1");
 		block2 = load("block2");

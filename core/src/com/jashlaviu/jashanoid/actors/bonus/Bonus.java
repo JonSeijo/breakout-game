@@ -20,7 +20,7 @@ public class Bonus extends ActorJashanoid {
 	}
 	
 	public void apply(){
-		
+		System.out.println("activado");
 	}
 	
 	@Override

@@ -20,11 +20,16 @@ public class Controller {
 	}
 	
 	public void update(float delta){		
-		if(platformMovingRight)
+		if(platformMovingRight){
 			platform.addAction(Actions.moveBy(platform.getSpeed() * delta, 0));
+			gameScreen.getTakeOff().x += platform.getSpeed() * delta;
+			
+		}	
 		
-		if(platformMovingLeft)
+		if(platformMovingLeft){
 			platform.addAction(Actions.moveBy(-platform.getSpeed() * delta, 0));
+			gameScreen.getTakeOff().x -= platform.getSpeed() * delta;			
+		}
 		
 		if(shootJustPressed){
 			shootJustPressed = false;

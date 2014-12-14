@@ -17,9 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.actors.Ball;
 import com.jashlaviu.jashanoid.actors.Platform;
-import com.jashlaviu.jashanoid.actors.bonus.Bonus;
-import com.jashlaviu.jashanoid.actors.bonus.BonusLevel;
-import com.jashlaviu.jashanoid.actors.bonus.BonusLife;
+import com.jashlaviu.jashanoid.actors.bonus.*;
 import com.jashlaviu.jashanoid.actors.bricks.Brick;
 import com.jashlaviu.jashanoid.inputhandler.Controller;
 import com.jashlaviu.jashanoid.inputhandler.InputHandler;
@@ -42,7 +40,9 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private int lives;
 	private int level;
+	private float relativePos;
 	private boolean isBonus;
+	private boolean needsGlue;
 	
 	public JashanoidScreen(Jashanoid game) {		
 		shaper = game.getShaper();
@@ -54,7 +54,8 @@ public class JashanoidScreen extends ScreenAdapter{
 		levelCreator = new LevelCreator(bricks);
 		
 		platform = new Platform();		
-		takeOffPoint = new Vector2(platform.getCenterX() + 20, platform.getTop());			
+		takeOffPoint = getDefaultTakeOff();		
+		relativePos = takeOffPoint.x - platform.getX();
 		
 		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), 
 				Gdx.graphics.getHeight()), game.getBatch());		
@@ -101,7 +102,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		for(Ball ball : balls) ball.remove();	//Remove balls from stage 	
 		balls.clear();		//Deletes balls in array
 		
-		balls.add(new Ball(this, takeOffPoint, platform.getBounceDirection(getTakeOff())));	
+		balls.add(new Ball(this, takeOffPoint, platform.getBounceDirection(getDefaultTakeOff())));	
 		stage.addActor(balls.get(0));
 		
 	}
@@ -188,8 +189,10 @@ public class JashanoidScreen extends ScreenAdapter{
 				if(brickHit){
 					ball.moreSpeed();
 					
-					if(brick.isVulnerable()){		
-						randomBonus(brick);
+					if(brick.isVulnerable()){	
+						if(balls.size() < 2){   //Only create bonus when there is one ball.
+							randomBonus(brick);
+						}	
 						brickIter.remove(); //Removes from the array (for logic updates).
 						removeBrickStage(brick);	//Removes from stage, with prior animation.						
 					}else brick.makeVulnerable(); //If is indestructible, it is handled inside
@@ -201,27 +204,43 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 90){
-				Bonus nBonus = randomBonus(this, brick.getX(), brick.getY());
+			if(MathUtils.random(100) < 25){
+				disableBonuses();
+				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
 			}
 		}
 	}
 	
-	private Bonus randomBonus(JashanoidScreen screen, float x, float y){
-		int ran = MathUtils.random(1, 2);
+	private void disableBonuses(){
+		setNeedGlue(false);
+		
+	}
+	
+	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
+		int ran = MathUtils.random(1, 5);
 				
 		if(ran == 1)
 			return new BonusLevel(screen, x, y);
 		
-		if(ran == 2){
+		if(ran == 2)
 			return new BonusLife(screen, x, y);
-		}
+			
+		if(ran == 3)
+			return new BonusSlow(screen, x, y);
+		
+		if(ran == 4)
+			return new BonusThree(screen, x, y);
+		
+		if(ran == 5)
+			return new BonusGlue(screen, x, y);
+		
 		
 		return null;		
 	}
 	
+
 	private void removeBrickStage(Brick brick){
 		SequenceAction seq = new SequenceAction();
 		ParallelAction parallel = new ParallelAction();
@@ -239,9 +258,16 @@ public class JashanoidScreen extends ScreenAdapter{
 	private void updateCollisionsBallPlatform(){
 		for(Ball ball : balls){
 			Rectangle ballBounds = ball.getCollisionBounds();
-			if(ballBounds.overlaps(platform.getCollisionBounds())){					
-				ball.setDirection(platform.getBounceDirection(ball.getPosition()));
-				ball.moreSpeed();
+			if(ballBounds.overlaps(platform.getCollisionBounds())){	
+				if(needGlue()){
+					takeOffPoint.set(new Vector2(ball.getPosition()));
+					//relativePos = balls.get(0).getX() - platform.getX();
+					platform.setGlue(true);
+					//setNeedGlue(false);
+				}else{
+					ball.setDirection(platform.getBounceDirection(ball.getPosition()));
+					ball.moreSpeed();
+				}
 			}
 		}
 		
@@ -277,8 +303,10 @@ public class JashanoidScreen extends ScreenAdapter{
 			if(bounds.collideDown(ball)){
 				ballIter.remove();  //Removes from the array
 				ball.remove();		//Removes actor from the stage
-				lives--;
-				needReset = true;
+				if(balls.isEmpty()){
+					lives--;
+					needReset = true;
+				}
 			}
 		}		
 		if(needReset) resetGame();
@@ -297,12 +325,24 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	public void resetGame(){
+		disableBonuses();
 		platform.setGlue(true);
-		addBall(getTakeOff(), platform.getBounceDirection(getTakeOff()));		
+		addBall(getDefaultTakeOff(), platform.getBounceDirection(getDefaultTakeOff()));
+		takeOffPoint = getDefaultTakeOff();
+	}
+	
+	public float getRelativePos(){
+		return relativePos;
 	}
 	
 	private void gameOver(){
 		System.out.println("Game Over");
+	}
+	
+	public void slowBalls(){
+		for(Ball ball : balls){
+			ball.setSpeed(ball.getSpeed() * 0.5f);  //50% slow
+		}
 	}
 	
 	public void addBall(Vector2 position, Vector2 direction){
@@ -315,8 +355,20 @@ public class JashanoidScreen extends ScreenAdapter{
 		isBonus = bool;
 	}
 	
+	public void setNeedGlue(boolean bool){
+		needsGlue = bool;
+	}
+	
+	public boolean needGlue(){
+		return needsGlue;
+	}
+	
 	public void addLife(){
 		lives++;
+	}
+	
+	public Ball getBall(){
+		return balls.get(0);
 	}
 	
 	@Override
@@ -333,8 +385,11 @@ public class JashanoidScreen extends ScreenAdapter{
 		return platform;
 	}
 	
+	public Vector2 getDefaultTakeOff(){
+		return new Vector2(platform.getCenterX() + 20, platform.getTop());
+	}
+	
 	public Vector2 getTakeOff(){
-		takeOffPoint.x = platform.getCenterX() + 20;
 		return takeOffPoint;
 	}
 	
