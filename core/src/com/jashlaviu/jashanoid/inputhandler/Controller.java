@@ -1,6 +1,7 @@
 package com.jashlaviu.jashanoid.inputhandler;
 
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.jashlaviu.jashanoid.Bounds;
 import com.jashlaviu.jashanoid.JashanoidScreen;
 import com.jashlaviu.jashanoid.actors.Platform;
 
@@ -21,14 +22,22 @@ public class Controller {
 	
 	public void update(float delta){		
 		if(platformMovingRight){
-			platform.addAction(Actions.moveBy(platform.getSpeed() * delta, 0));
-			gameScreen.getTakeOff().x += platform.getSpeed() * delta;
+			if(platform.getRight() < Bounds.GAME_X_RIGHT){
+				platform.addAction(Actions.moveBy(platform.getSpeed() * delta, 0));
+				gameScreen.getTakeOff().x += platform.getSpeed() * delta;
+			}else{
+				platform.setPosition(Bounds.GAME_X_RIGHT - platform.getWidth(), platform.getY());
+			}
 			
 		}	
 		
 		if(platformMovingLeft){
-			platform.addAction(Actions.moveBy(-platform.getSpeed() * delta, 0));
-			gameScreen.getTakeOff().x -= platform.getSpeed() * delta;			
+			if(platform.getX() > Bounds.GAME_X_LEFT){
+				platform.addAction(Actions.moveBy(-platform.getSpeed() * delta, 0));
+				gameScreen.getTakeOff().x -= platform.getSpeed() * delta;
+			}else{
+				platform.setPosition(Bounds.GAME_X_LEFT, platform.getY());
+			}
 		}
 		
 		if(shootJustPressed){

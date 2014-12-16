@@ -5,13 +5,15 @@ import com.jashlaviu.jashanoid.TextureLoader;
 
 public class Platform extends ActorJashanoid {
 	
+	private final float DEFAULT_X = 300;
+	private final float DEFAULT_Y = 40;
 	
 	private float speed;
 	private boolean glue;
 	
 	public Platform() {
 		super(TextureLoader.platform);		
-		this.setPosition(300, 40);
+		this.setPosition(DEFAULT_X, DEFAULT_Y);
 		
 		speed = 400;
 		glue = true;  //If ball must be "glued" to this platform
@@ -44,7 +46,7 @@ public class Platform extends ActorJashanoid {
 	}
 	
 	public void reset(){
-		this.setPosition(300, 40);		
+		this.setPosition(DEFAULT_X, DEFAULT_Y);		
 		speed = 400;
 		setGlue(true);
 	}
@@ -59,6 +61,14 @@ public class Platform extends ActorJashanoid {
 	
 	public boolean hasGlue(){
 		return glue;
-	}	
+	}
+	
+	public float getDefaultX(){
+		return DEFAULT_X;
+	}
+	
+	public float getDefaultY(){
+		return DEFAULT_Y;
+	}
 	
 }
