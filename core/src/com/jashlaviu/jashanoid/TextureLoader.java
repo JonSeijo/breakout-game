@@ -10,7 +10,7 @@ public class TextureLoader{
 	public TextureAtlas atlas;
 	public static TextureRegion platform, ball, block1, block2, block3;
 	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06, bonus_07;
-	public static TextureRegion brick_01, brick_02, brick_03, ball_02;
+	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_21, ball_02;
 	
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
@@ -21,6 +21,11 @@ public class TextureLoader{
 		brick_01 = load("brick", 1);
 		brick_02 = load("brick", 2);
 		brick_03 = load("brick", 3);
+		
+		brick_11 = load("brick", 11);
+		
+		brick_21 = load("brick", 21);
+		
 		
 		bonus_01 = load("bonus", 1);
 		bonus_02 = load("bonus", 2);

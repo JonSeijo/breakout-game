@@ -5,7 +5,7 @@ import com.jashlaviu.jashanoid.TextureLoader;
 public class BrickHard extends Brick{
 
 	public BrickHard(float posX, float posY) {
-		super(TextureLoader.block2, posX, posY);
+		super(TextureLoader.brick_11, posX, posY);
 		vulnerable = false;
 	}
 
