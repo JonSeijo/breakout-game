@@ -20,6 +20,7 @@ public class Bonus extends ActorJashanoid {
 	}
 	
 	public void apply(){
+		gameScreen.disableBonuses();
 		System.out.println("activado");
 	}
 	

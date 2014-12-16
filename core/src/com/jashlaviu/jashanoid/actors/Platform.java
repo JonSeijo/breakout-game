@@ -46,9 +46,21 @@ public class Platform extends ActorJashanoid {
 	}
 	
 	public void reset(){
-		this.setPosition(DEFAULT_X, DEFAULT_Y);		
+		this.setPosition(DEFAULT_X, DEFAULT_Y);	
+		setBounds(getX(), getY(), getDefaultWidth(), getHeight());
+		collisionBounds.setWidth(defaultWidth);
 		speed = 400;
 		setGlue(true);
+	}
+	
+	public void expand(){
+		setBounds(getX()-getWidth()/2, getY(), getWidth() * 1.5f, getHeight());
+		collisionBounds.setWidth(getWidth());
+	}
+	
+	public void colapse(){
+		setBounds(getX(), getY(), getDefaultWidth(), getHeight());
+		collisionBounds.setWidth(getDefaultWidth());
 	}
 	
 	public float getSpeed(){

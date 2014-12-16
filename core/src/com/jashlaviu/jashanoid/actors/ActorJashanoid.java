@@ -11,10 +11,13 @@ public class ActorJashanoid extends Actor{
 	
 	protected TextureRegion region;
 	protected Rectangle collisionBounds;
+	protected int defaultWidth, defaultHeight;
 	
 	public ActorJashanoid(TextureRegion loaderTexture) {
 		region = loaderTexture;
-		setSize(region.getRegionWidth(), region.getRegionHeight());
+		defaultWidth = region.getRegionWidth();
+		defaultHeight = region.getRegionHeight();
+		setSize(defaultWidth, defaultHeight);
 		collisionBounds = new Rectangle(getX(), getY(), getWidth(), getHeight());		
 	}
 	
@@ -57,6 +60,11 @@ public class ActorJashanoid extends Actor{
 	public Vector2 getPosition(){
 		return new Vector2(getX(), getY());
 	}
+	
+	public int getDefaultWidth(){
+		return defaultWidth;
+	}
+	
 }
 
 

@@ -9,7 +9,7 @@ public class TextureLoader{
 	
 	public TextureAtlas atlas;
 	public static TextureRegion platform, ball, block1, block2, block3;
-	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06;
+	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06, bonus_07;
 	public static TextureRegion brick_01, brick_02, brick_03, ball_02;
 	
 	public TextureLoader(){
@@ -28,6 +28,7 @@ public class TextureLoader{
 		bonus_04 = load("bonus", 4);
 		bonus_05 = load("bonus", 5);
 		bonus_06 = load("bonus", 6);
+		bonus_07 = load("bonus", 7);
 		
 
 		block1 = load("block1");

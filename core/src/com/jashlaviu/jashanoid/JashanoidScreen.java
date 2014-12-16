@@ -200,8 +200,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 90){
-				disableBonuses();
+			if(MathUtils.random(100) < 25){			
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
@@ -209,13 +208,13 @@ public class JashanoidScreen extends ScreenAdapter{
 		}
 	}
 	
-	private void disableBonuses(){
+	public void disableBonuses(){
 		setNeedGlue(false);
-		
+		platform.colapse();		
 	}
 	
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
-		int ran = MathUtils.random(1, 1);
+		int ran = MathUtils.random(6, 6);
 				
 		if(ran == 1)
 			return new BonusLevel(screen, x, y);
@@ -231,6 +230,9 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		if(ran == 5)
 			return new BonusGlue(screen, x, y);
+		
+		if(ran == 6)
+			return new BonusExpand(screen, x, y);
 		
 		
 		return null;		
