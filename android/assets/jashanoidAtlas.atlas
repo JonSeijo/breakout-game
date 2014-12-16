@@ -1,131 +1,138 @@
 
 jashanoidAtlas.png
-size: 1024,32
+size: 256,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 969, 6
+  xy: 228, 94
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 987, 6
+  xy: 173, 16
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 114, 2
+  xy: 2, 68
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 171, 2
+  xy: 114, 90
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 228, 2
+  xy: 2, 46
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus
   rotate: false
-  xy: 285, 2
+  xy: 59, 68
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus
   rotate: false
-  xy: 342, 2
+  xy: 171, 90
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 bonus
   rotate: false
-  xy: 399, 2
+  xy: 2, 24
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 bonus
   rotate: false
-  xy: 456, 2
+  xy: 59, 46
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 4
 bonus
   rotate: false
-  xy: 513, 2
+  xy: 116, 68
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 5
 bonus
   rotate: false
-  xy: 570, 2
+  xy: 2, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 6
 bonus
   rotate: false
-  xy: 627, 2
+  xy: 59, 24
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 7
 brick
   rotate: false
-  xy: 684, 2
+  xy: 116, 46
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 741, 2
+  xy: 59, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 798, 2
+  xy: 116, 24
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 855, 2
+  xy: 116, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 912, 2
+  xy: 173, 68
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
+hearth
+  rotate: false
+  xy: 173, 34
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
 palete
   rotate: false
-  xy: 2, 2
+  xy: 2, 90
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
