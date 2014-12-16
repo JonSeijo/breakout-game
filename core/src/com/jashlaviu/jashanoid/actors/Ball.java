@@ -31,11 +31,9 @@ public class Ball extends ActorJashanoid {
 		super.act(delta);
 
 		if(screen.getPlatform().hasGlue()){
-			setPosition(screen.getTakeOff().x, screen.getTakeOff().y);	
-		}
-		
-		else moveInDirection(delta);
-		
+			setPosition(screen.getTakeOff().x, screen.getPlatform().getTop());	
+		}		
+		else moveInDirection(delta);		
 		
 		updateCollisionBounds();	
 	}

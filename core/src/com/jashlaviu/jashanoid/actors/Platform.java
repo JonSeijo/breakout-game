@@ -54,7 +54,7 @@ public class Platform extends ActorJashanoid {
 	}
 	
 	public void expand(){
-		setBounds(getX()-getWidth()/2, getY(), getWidth() * 1.5f, getHeight());
+		setBounds(getX()-getWidth()/4, getY(), getWidth() * 1.5f, getHeight());
 		collisionBounds.setWidth(getWidth());
 	}
 	

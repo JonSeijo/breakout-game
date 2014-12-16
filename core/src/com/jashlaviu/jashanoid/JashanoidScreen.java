@@ -73,7 +73,8 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+//		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		bounds.draw(shaper);		
@@ -200,7 +201,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 25){			
+			if(MathUtils.random(100) < 35){			
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
@@ -214,7 +215,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
-		int ran = MathUtils.random(6, 6);
+		int ran = MathUtils.random(1, 6);
 				
 		if(ran == 1)
 			return new BonusLevel(screen, x, y);
@@ -258,8 +259,8 @@ public class JashanoidScreen extends ScreenAdapter{
 			Rectangle ballBounds = ball.getCollisionBounds();
 			if(ballBounds.overlaps(platform.getCollisionBounds())){	
 				if(needGlue()){
-					takeOffPoint.set(new Vector2(ball.getPosition()));
-					//relativePos = balls.get(0).getX() - platform.getX();
+					takeOffPoint.set(new Vector2(ball.getPosition()));					
+					ball.setDirection(platform.getBounceDirection(ball.getPosition()));					
 					platform.setGlue(true);
 					//setNeedGlue(false);
 				}else{
