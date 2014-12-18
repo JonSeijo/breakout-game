@@ -11,7 +11,7 @@ public class TextureLoader{
 	public static TextureRegion platform, ball, block1, block2, block3;
 	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06, bonus_07;
 	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_21, ball_02;
-	public static TextureRegion hearth;
+	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
 	
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
@@ -35,6 +35,11 @@ public class TextureLoader{
 		bonus_05 = load("bonus", 5);
 		bonus_06 = load("bonus", 6);
 		bonus_07 = load("bonus", 7);
+		
+		platform_02 = load("platform", 2);
+		platform_03 = load("platform", 3);
+		platform_04 = load("platform", 4);
+		platform_05 = load("platform", 5);
 		
 		hearth = load("hearth");		
 
@@ -61,6 +66,14 @@ public class TextureLoader{
 	
 	public static TextureRegion getBall(){
 		return ball_02;
+	}
+	
+	public static TextureRegion getPlatform(){
+		return platform_04;
+	}
+	
+	public static TextureRegion getDownPlatform(){
+		return platform_05;
 	}
 	
 	public void dispose(){

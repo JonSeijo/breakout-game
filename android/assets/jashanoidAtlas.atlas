@@ -1,139 +1,167 @@
 
 jashanoidAtlas.png
-size: 256,128
+size: 1024,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 228, 94
+  xy: 2, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 173, 16
+  xy: 20, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 2, 68
+  xy: 214, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 114, 90
+  xy: 326, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 2, 46
+  xy: 271, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus
   rotate: false
-  xy: 59, 68
+  xy: 383, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus
   rotate: false
-  xy: 171, 90
+  xy: 328, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 bonus
   rotate: false
-  xy: 2, 24
+  xy: 440, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 bonus
   rotate: false
-  xy: 59, 46
+  xy: 385, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 4
 bonus
   rotate: false
-  xy: 116, 68
+  xy: 497, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 5
 bonus
   rotate: false
-  xy: 2, 2
+  xy: 442, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 6
 bonus
   rotate: false
-  xy: 59, 24
+  xy: 554, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 7
 brick
   rotate: false
-  xy: 116, 46
+  xy: 499, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 59, 2
+  xy: 611, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 116, 24
+  xy: 556, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 116, 2
+  xy: 668, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 173, 68
+  xy: 613, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
 hearth
   rotate: false
-  xy: 173, 34
+  xy: 725, 30
   size: 33, 32
   orig: 33, 32
   offset: 0, 0
   index: -1
 palete
   rotate: false
-  xy: 2, 90
+  xy: 2, 42
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
+platform
+  rotate: false
+  xy: 2, 20
+  size: 110, 20
+  orig: 110, 20
+  offset: 0, 0
+  index: 2
+platform
+  rotate: false
+  xy: 114, 42
+  size: 110, 20
+  orig: 110, 20
+  offset: 0, 0
+  index: 3
+platform
+  rotate: false
+  xy: 114, 20
+  size: 98, 20
+  orig: 98, 20
+  offset: 0, 0
+  index: 4
+platform
+  rotate: false
+  xy: 226, 42
+  size: 98, 20
+  orig: 98, 20
+  offset: 0, 0
+  index: 5

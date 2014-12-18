@@ -12,7 +12,7 @@ public class Platform extends ActorJashanoid {
 	private boolean glue;
 	
 	public Platform() {
-		super(TextureLoader.platform);		
+		super(TextureLoader.getPlatform());		
 		this.setPosition(DEFAULT_X, DEFAULT_Y);
 		
 		speed = 400;
