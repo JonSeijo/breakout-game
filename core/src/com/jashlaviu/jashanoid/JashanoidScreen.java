@@ -284,7 +284,11 @@ public class JashanoidScreen extends ScreenAdapter{
 	private void updateCollisionsBallPlatform(){
 		for(Ball ball : balls){
 			Rectangle ballBounds = ball.getCollisionBounds();
-			if(ballBounds.overlaps(platform.getCollisionBounds())){	
+			
+			if(ballBounds.overlaps(platform.getCollisionBounds())){
+
+				platform.setPlayAnimation(true);
+				
 				if(needGlue()){
 					takeOffPoint.set(new Vector2(ball.getPosition()));					
 					ball.setDirection(platform.getBounceDirection(ball.getPosition()));					

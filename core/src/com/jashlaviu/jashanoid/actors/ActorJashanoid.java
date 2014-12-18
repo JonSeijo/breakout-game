@@ -26,7 +26,7 @@ public class ActorJashanoid extends Actor{
 		Color col = getColor();		
 		batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
 		
-		batch.draw(region, getX(), getY(), 
+		batch.draw(getRegion(), getX(), getY(), 
 				getOriginX(), getOriginY(), getWidth(), getHeight(), 
 				getScaleX(), getScaleY(), getRotation());
 	}
@@ -48,6 +48,15 @@ public class ActorJashanoid extends Actor{
 		super.positionChanged();
 		updateCollisionBounds();
 	}
+	
+	public TextureRegion getRegion(){
+		return region;
+	}
+	
+	public void setRegion(TextureRegion newRegion){
+		region = newRegion;
+	}
+	
 	
 	public void updateCollisionBounds(){
 		collisionBounds.setPosition(getX(), getY());

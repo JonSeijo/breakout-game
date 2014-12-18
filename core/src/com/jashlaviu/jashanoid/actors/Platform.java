@@ -1,22 +1,50 @@
 package com.jashlaviu.jashanoid.actors;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.jashlaviu.jashanoid.TextureLoader;
 
 public class Platform extends ActorJashanoid {
 	
+	private TextureRegion regionNormal, regionDown;
+		
 	private final float DEFAULT_X = 300;
 	private final float DEFAULT_Y = 40;
 	
 	private float speed;
 	private boolean glue;
 	
+	private boolean playAnimation;
+	private float animationTime, animationCurrentTime;
+	
+	
 	public Platform() {
 		super(TextureLoader.getPlatform());		
 		this.setPosition(DEFAULT_X, DEFAULT_Y);
 		
+		regionNormal = this.region;
+		regionDown = TextureLoader.getDownPlatform();
+		
+		animationTime = 0.1f;
+		
 		speed = 400;
 		glue = true;  //If ball must be "glued" to this platform
+	}
+	
+	@Override
+	public void act(float delta) {
+		super.act(delta);
+		
+		if(playAnimation){		
+			animationCurrentTime += delta;
+			if(animationCurrentTime >= animationTime){
+				setPlayAnimation(false);
+				useRegionNormal();			
+			}
+		}
+		
+		
 	}
 
 	/**
@@ -63,6 +91,22 @@ public class Platform extends ActorJashanoid {
 		collisionBounds.setWidth(getDefaultWidth());
 	}
 	
+	public void toggleRegion(){
+		if(getRegion() == regionNormal)
+			setRegion(regionDown);
+		
+		else if(getRegion() == regionDown)
+			setRegion(regionNormal);		
+	}
+	
+	public void useRegionNormal(){
+		setRegion(regionNormal);
+	}
+	
+	public void useRegionDown(){
+		setRegion(regionDown);
+	}
+	
 	public float getSpeed(){
 		return speed;
 	}
@@ -81,6 +125,14 @@ public class Platform extends ActorJashanoid {
 	
 	public float getDefaultY(){
 		return DEFAULT_Y;
+	}
+
+	public void setPlayAnimation(boolean bool) {
+		playAnimation = bool;
+		animationCurrentTime = 0;
+		if(playAnimation == true)
+			useRegionDown();
+		
 	}
 	
 }
