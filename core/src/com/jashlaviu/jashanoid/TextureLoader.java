@@ -12,11 +12,11 @@ public class TextureLoader{
 	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06, bonus_07;
 	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
+	public static TextureRegion game_over;
 	
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
 		
-		platform = load("palete");
 		ball = load("ball1");
 		ball_02 = load("ball2");
 		brick_01 = load("brick", 1);
@@ -26,8 +26,7 @@ public class TextureLoader{
 		brick_11 = load("brick", 11);
 		brick_12 = load("brick", 12);
 		
-		brick_21 = load("brick", 21);
-		
+		brick_21 = load("brick", 21);		
 		
 		bonus_01 = load("bonus", 1);
 		bonus_02 = load("bonus", 2);
@@ -37,13 +36,11 @@ public class TextureLoader{
 		bonus_06 = load("bonus", 6);
 		bonus_07 = load("bonus", 7);
 		
-		platform_02 = load("platform", 2);
-		platform_03 = load("platform", 3);
 		platform_04 = load("platform", 4);
 		platform_05 = load("platform", 5);
 		
-		hearth = load("hearth");		
-
+		game_over = load("gameOver");
+		
 		block1 = load("block1");
 		block2 = load("block2");
 		block3 = load("block3");	

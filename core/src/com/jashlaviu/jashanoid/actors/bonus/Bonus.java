@@ -2,7 +2,6 @@ package com.jashlaviu.jashanoid.actors.bonus;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jashlaviu.jashanoid.JashanoidScreen;
-import com.jashlaviu.jashanoid.TextureLoader;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
 public class Bonus extends ActorJashanoid {

@@ -1,6 +1,5 @@
 package com.jashlaviu.jashanoid.actors;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.jashlaviu.jashanoid.TextureLoader;

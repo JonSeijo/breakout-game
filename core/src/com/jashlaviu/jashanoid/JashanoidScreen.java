@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -19,18 +18,14 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.actors.Ball;
 import com.jashlaviu.jashanoid.actors.Platform;
-import com.jashlaviu.jashanoid.actors.bonus.Bonus;
-import com.jashlaviu.jashanoid.actors.bonus.BonusExpand;
-import com.jashlaviu.jashanoid.actors.bonus.BonusGlue;
-import com.jashlaviu.jashanoid.actors.bonus.BonusLevel;
-import com.jashlaviu.jashanoid.actors.bonus.BonusLife;
-import com.jashlaviu.jashanoid.actors.bonus.BonusSlow;
+import com.jashlaviu.jashanoid.actors.bonus.*;
 import com.jashlaviu.jashanoid.actors.bonus.BonusThree;
 import com.jashlaviu.jashanoid.actors.bricks.Brick;
 import com.jashlaviu.jashanoid.inputhandler.Controller;
 import com.jashlaviu.jashanoid.inputhandler.InputHandler;
 
 public class JashanoidScreen extends ScreenAdapter{	
+	private Jashanoid game;
 	private SpriteBatch batch;
 	private ShapeRenderer shaper;
 	private Bounds bounds;
@@ -51,10 +46,12 @@ public class JashanoidScreen extends ScreenAdapter{
 	private int lives;
 	private int level;
 	private float relativePos;
+	
 	private boolean isBonus;
 	private boolean needsGlue;
 	
-	public JashanoidScreen(Jashanoid game) {		
+	public JashanoidScreen(Jashanoid game) {
+		this.game = game;
 		shaper = game.getShaper();
 		batch = game.getBatch();
 		bounds = new Bounds();
@@ -85,7 +82,6 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	@Override
 	public void render(float delta) {
-//		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -208,7 +204,6 @@ public class JashanoidScreen extends ScreenAdapter{
 						brickIter.remove(); //Removes from the array (for logic updates).
 						removeBrickStage(brick);	//Removes from stage, with prior animation.						
 					}else {
-						//hitFlash(brick);
 						brick.makeVulnerable(); //If is indestructible, it is handled inside
 					}
 					
@@ -216,15 +211,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			}			
 		}		
 	}
-	
-	private void hitFlash(Brick brick){
-		SequenceAction seq = new SequenceAction();
-		seq.addAction(Actions.color(Color.BLACK));
-		seq.addAction(Actions.color(Color.WHITE, 0.1f));
-		//seq.addAction(Actions.color(Color.WHITE));
-		
-		brick.addAction(seq);
-	}
+
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
@@ -373,7 +360,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private void gameOver(){
-		System.out.println("Game Over");
+		game.setScreen(new GameOverScreen(game));
 	}
 	
 	public void slowBalls(){

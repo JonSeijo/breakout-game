@@ -17,10 +17,10 @@ public class BonusThree extends Bonus{
 		Ball oldBall = gameScreen.getBall();
 		
 		Vector2 dir1 = new Vector2(oldBall.getDirection());
-		dir1.rotate(25);
+		dir1.rotate(10);
 		
 		Vector2 dir2 = new Vector2(oldBall.getDirection());
-		dir2.rotate(-25);
+		dir2.rotate(-10);
 		
 		gameScreen.addBall(new Vector2(oldBall.getPosition()), dir1);
 		gameScreen.addBall(new Vector2(oldBall.getPosition()), dir2);
