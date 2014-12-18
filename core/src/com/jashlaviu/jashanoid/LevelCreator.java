@@ -68,7 +68,7 @@ public class LevelCreator {
 	
 	
 	private void addNormal(float x, float y){
-		bricks.add(new BrickNormal(x, y));
+		bricks.add(new BrickNormal(TextureLoader.brick_01, x, y));
 	}
 	
 	private void addHard(float x, float y){

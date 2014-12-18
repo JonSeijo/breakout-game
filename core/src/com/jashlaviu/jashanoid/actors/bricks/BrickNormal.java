@@ -1,11 +1,11 @@
 package com.jashlaviu.jashanoid.actors.bricks;
 
-import com.jashlaviu.jashanoid.TextureLoader;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class BrickNormal extends Brick {
 
-	public BrickNormal(float posX, float posY) {
-		super(TextureLoader.getRandomNormal(), posX, posY);
+	public BrickNormal(TextureRegion region, float posX, float posY) {
+		super(region, posX, posY);
 		vulnerable = true;
 	}
 

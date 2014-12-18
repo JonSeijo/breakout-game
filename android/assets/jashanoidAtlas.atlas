@@ -122,6 +122,13 @@ brick
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
+  index: 12
+brick
+  rotate: false
+  xy: 613, 20
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
   index: 21
 palete
   rotate: false

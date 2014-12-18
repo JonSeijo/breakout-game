@@ -208,7 +208,7 @@ public class JashanoidScreen extends ScreenAdapter{
 						brickIter.remove(); //Removes from the array (for logic updates).
 						removeBrickStage(brick);	//Removes from stage, with prior animation.						
 					}else {
-						hitFlash(brick);
+						//hitFlash(brick);
 						brick.makeVulnerable(); //If is indestructible, it is handled inside
 					}
 					
@@ -228,7 +228,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 35){			
+			if(MathUtils.random(100) < 35){		// 35% chance of a new bonus	
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
@@ -287,17 +287,23 @@ public class JashanoidScreen extends ScreenAdapter{
 			
 			if(ballBounds.overlaps(platform.getCollisionBounds())){
 
-				platform.setPlayAnimation(true);
-				
-				if(needGlue()){
-					takeOffPoint.set(new Vector2(ball.getPosition()));					
-					ball.setDirection(platform.getBounceDirection(ball.getPosition()));					
-					platform.setGlue(true);
-					//setNeedGlue(false);
+				if(ballBounds.y >= platform.getCollisionBounds().y + platform.getHeight()/2){  //If hits from top
+					platform.setPlayAnimation(true);				
+					if(needGlue()){
+						takeOffPoint.set(new Vector2(ball.getPosition()));					
+						ball.setDirection(platform.getBounceDirection(ball.getPosition()));					
+						platform.setGlue(true);
+						//setNeedGlue(false);
+					}else{
+						ball.setDirection(platform.getBounceDirection(ball.getPosition()));
+						ball.moreSpeed();
+					}
+					
 				}else{
-					ball.setDirection(platform.getBounceDirection(ball.getPosition()));
-					ball.moreSpeed();
+					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 				}
+				
+				
 			}
 		}
 		

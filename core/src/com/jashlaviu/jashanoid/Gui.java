@@ -15,7 +15,7 @@ public class Gui {
 	}
 	
 	public void render(SpriteBatch batch){
-		for(int i = 0; i < gameScreen.getLives(); i++){
+		for(int i = 1; i < gameScreen.getLives(); i++){
 			batch.draw(livesRegion, Bounds.GAME_X_RIGHT + 45, 300 - i * 30);
 		}
 	}
