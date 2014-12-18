@@ -20,116 +20,109 @@ ball2
   index: -1
 block1
   rotate: false
-  xy: 214, 20
+  xy: 214, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 326, 42
+  xy: 214, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 271, 20
+  xy: 271, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus
   rotate: false
-  xy: 383, 42
+  xy: 271, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
+bonus
+  rotate: false
+  xy: 328, 42
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 2
 bonus
   rotate: false
   xy: 328, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 2
-bonus
-  rotate: false
-  xy: 440, 42
-  size: 55, 20
-  orig: 55, 20
-  offset: 0, 0
   index: 3
 bonus
   rotate: false
-  xy: 385, 20
+  xy: 385, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 4
 bonus
   rotate: false
-  xy: 497, 42
+  xy: 385, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 5
 bonus
   rotate: false
-  xy: 442, 20
+  xy: 442, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 6
 bonus
   rotate: false
-  xy: 554, 42
+  xy: 442, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 7
 brick
   rotate: false
-  xy: 499, 20
+  xy: 499, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 611, 42
+  xy: 499, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 556, 20
+  xy: 556, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 668, 42
+  xy: 556, 20
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 613, 20
+  xy: 613, 42
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
-hearth
-  rotate: false
-  xy: 725, 30
-  size: 33, 32
-  orig: 33, 32
-  offset: 0, 0
-  index: -1
 palete
   rotate: false
   xy: 2, 42
@@ -143,24 +136,17 @@ platform
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
-  index: 2
-platform
-  rotate: false
-  xy: 114, 42
-  size: 110, 20
-  orig: 110, 20
-  offset: 0, 0
   index: 3
 platform
   rotate: false
-  xy: 114, 20
+  xy: 114, 42
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 4
 platform
   rotate: false
-  xy: 226, 42
+  xy: 114, 20
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
