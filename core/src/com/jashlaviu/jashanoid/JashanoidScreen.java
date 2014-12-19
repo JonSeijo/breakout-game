@@ -374,7 +374,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	public void slowBalls(){
 		for(Ball ball : balls){
-			ball.setSpeed(ball.getSpeed() * 0.75f);  //25% slow
+			ball.setSpeed(ball.getSpeed() * 0.60f);  //40% slow
 		}
 	}
 	

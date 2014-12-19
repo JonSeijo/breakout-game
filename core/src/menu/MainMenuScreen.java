@@ -1,10 +1,14 @@
 package menu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.Jashanoid;
 import com.jashlaviu.jashanoid.TextureLoader;
@@ -23,9 +27,9 @@ public class MainMenuScreen extends ScreenAdapter{
 		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), 
 				Gdx.graphics.getHeight()), game.getBatch());
 		
-		playButton = new MenuButton(TextureLoader.button_play, 200, 350);
-		optionsButton = new MenuButton(TextureLoader.button_options, 200, 250);
-		quitButton = new MenuButton(TextureLoader.button_quit, 200, 150);
+		playButton = new MenuButton(TextureLoader.button_play, -200, 400);
+		optionsButton = new MenuButton(TextureLoader.button_options, -200, 300);
+		quitButton = new MenuButton(TextureLoader.button_quit, -200, 200);
 		
 		menuButtons = new MenuButton[] {playButton, optionsButton, quitButton};
 		
@@ -33,8 +37,23 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		stage.addActor(playButton);
 		stage.addActor(optionsButton);
-		stage.addActor(quitButton);	
-		stage.addActor(cursor);				
+		stage.addActor(quitButton);		
+		stage.addActor(cursor);	
+		
+		for(Actor actors : stage.getActors()){
+			SequenceAction seq = new SequenceAction();
+			seq.addAction(Actions.fadeOut(0));
+			seq.addAction(Actions.moveBy(550, 0, 0.4f));
+			seq.addAction(Actions.moveBy(-50, 0, 0.1f));
+			
+			ParallelAction par = new ParallelAction();
+			par.addAction(seq);
+			par.addAction(Actions.fadeIn(0.4f));
+
+			
+			actors.addAction(par);
+		}
+			
 	}
 	
 	@Override
