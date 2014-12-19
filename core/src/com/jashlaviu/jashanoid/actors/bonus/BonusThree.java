@@ -14,6 +14,7 @@ public class BonusThree extends Bonus{
 	@Override
 	public void apply() {
 		super.apply();
+
 		Ball oldBall = gameScreen.getBall();
 		
 		Vector2 dir1 = new Vector2(oldBall.getDirection());
@@ -25,7 +26,7 @@ public class BonusThree extends Bonus{
 		gameScreen.addBall(new Vector2(oldBall.getPosition()), dir1);
 		gameScreen.addBall(new Vector2(oldBall.getPosition()), dir2);
 		
-		float speed = gameScreen.getBall().getSpeed();
+		float speed = oldBall.getSpeed();
 		
 		for(Ball ball : gameScreen.getBalls()){
 			ball.setSpeed(speed);

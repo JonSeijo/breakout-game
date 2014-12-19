@@ -47,7 +47,6 @@ public class JashanoidScreen extends ScreenAdapter{
 	private int level;
 	private float relativePos;
 	
-	private boolean isBonus;
 	private boolean needsGlue;
 	
 	public JashanoidScreen(Jashanoid game) {
@@ -145,15 +144,24 @@ public class JashanoidScreen extends ScreenAdapter{
 		updateBonus();
 	}
 	
-	private void updateBonus(){
+	private void updateBonus(){		
 		if(!bonuses.isEmpty()){
 			Bonus bonus = bonuses.get(0);
-			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){			
+			
+			if(bonus.getY() <= 0){
+				bonuses.get(0).remove();
+				bonuses.clear();
+			}
+			
+			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){		
+				disableBonuses();
 				bonus.apply();
 				bonus.remove();
 				bonuses.clear();
 			}
-		}
+		}		
+		
+
 	}
 
 	private void updateCollisionsBallBricks(float delta) {
@@ -215,7 +223,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 35){		// 35% chance of a new bonus	
+			if(MathUtils.random(100) < 75){		// 35% chance of a new bonus	
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
@@ -326,6 +334,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			if(bounds.collideDown(ball)){
 				ballIter.remove();  //Removes from the array
 				ball.remove();		//Removes actor from the stage
+
 				if(balls.isEmpty()){
 					lives--;
 					needReset = true;
@@ -365,7 +374,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	public void slowBalls(){
 		for(Ball ball : balls){
-			ball.setSpeed(ball.getSpeed() * 0.5f);  //50% slow
+			ball.setSpeed(ball.getSpeed() * 0.75f);  //25% slow
 		}
 	}
 	
@@ -373,10 +382,6 @@ public class JashanoidScreen extends ScreenAdapter{
 		Ball ball = new Ball(this, position, direction);
 		balls.add(ball);
 		stage.addActor(ball);		
-	}
-	
-	public void isBonus(boolean bool){
-		isBonus = bool;
 	}
 	
 	public void setNeedGlue(boolean bool){
@@ -423,6 +428,10 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	public int getLives(){
 		return lives;
+	}
+
+	public ArrayList<Bonus> getBonuses() {
+		return bonuses;
 	}
 }
 

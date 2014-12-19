@@ -20,19 +20,12 @@ public class Bonus extends ActorJashanoid {
 	
 	public void apply(){
 		gameScreen.disableBonuses();
-		System.out.println("activado");
 	}
 	
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		moveBy(0, -1 * speed * delta);
-		
-		if(getY() <= 0){
-			gameScreen.isBonus(false);
-			this.remove();
-		}
-			
+		moveBy(0, -1 * speed * delta);			
 	}
 
 }
