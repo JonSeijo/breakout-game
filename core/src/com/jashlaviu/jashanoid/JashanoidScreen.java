@@ -410,6 +410,11 @@ public class JashanoidScreen extends ScreenAdapter{
 		stage.dispose();
 	}
 	
+	@Override
+	public void hide() {
+		
+	}
+	
 	public ArrayList<Ball> getBalls(){
 		return balls;
 	}

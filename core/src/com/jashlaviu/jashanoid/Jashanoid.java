@@ -1,5 +1,7 @@
 package com.jashlaviu.jashanoid;
 
+import menu.MainMenuScreen;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -7,7 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Jashanoid extends Game {
 	private SpriteBatch batch;
 	private ShapeRenderer shaper;
-	private JashanoidScreen mainScreen;
+	private JashanoidScreen gameScreen;
 	private TextureLoader textureLoader;
 	
 	@Override
@@ -15,8 +17,8 @@ public class Jashanoid extends Game {
 		batch = new SpriteBatch();
 		shaper = new ShapeRenderer();
 		textureLoader = new TextureLoader();		
-		mainScreen = new JashanoidScreen(this);		
-		this.setScreen(mainScreen);
+		gameScreen = new JashanoidScreen(this);		
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
@@ -30,6 +32,10 @@ public class Jashanoid extends Game {
 		textureLoader.dispose();
 		shaper.dispose();
 		batch.dispose();
+	}
+	
+	public JashanoidScreen getGameScreen(){
+		return gameScreen;
 	}
 	
 	public SpriteBatch getBatch(){

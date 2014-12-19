@@ -1,166 +1,194 @@
 
 jashanoidAtlas.png
-size: 1024,128
+size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 674, 17
+  xy: 204, 36
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 731, 39
+  xy: 729, 179
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 672, 79
+  xy: 316, 106
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 772, 101
+  xy: 560, 153
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 560, 35
+  xy: 672, 175
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus
   rotate: false
-  xy: 660, 57
+  xy: 762, 205
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus
   rotate: false
-  xy: 729, 79
+  xy: 862, 227
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 bonus
   rotate: false
-  xy: 829, 101
+  xy: 102, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 bonus
   rotate: false
-  xy: 560, 13
+  xy: 256, 84
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 4
 bonus
   rotate: false
-  xy: 617, 35
+  xy: 373, 106
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 5
 bonus
   rotate: false
-  xy: 717, 57
+  xy: 560, 131
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 6
 bonus
   rotate: false
-  xy: 786, 79
+  xy: 617, 153
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 7
 brick
   rotate: false
-  xy: 886, 101
+  xy: 819, 205
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 617, 13
+  xy: 919, 227
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 674, 35
+  xy: 256, 62
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 774, 57
+  xy: 313, 84
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 843, 79
+  xy: 430, 106
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 12
 brick
   rotate: false
-  xy: 943, 101
+  xy: 617, 131
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
+button_options
+  rotate: false
+  xy: 2, 76
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
+button_play
+  rotate: false
+  xy: 560, 197
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
+button_quit
+  rotate: false
+  xy: 2, 24
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
 gameOver
   rotate: false
-  xy: 2, 2
+  xy: 2, 128
   size: 556, 119
   orig: 556, 119
   offset: 0, 0
   index: -1
+menu_cursor
+  rotate: false
+  xy: 204, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
 palete
   rotate: false
-  xy: 560, 101
+  xy: 204, 106
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 platform
   rotate: false
-  xy: 560, 79
+  xy: 560, 175
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: 3
 platform
   rotate: false
-  xy: 672, 101
+  xy: 762, 227
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 4
 platform
   rotate: false
-  xy: 560, 57
+  xy: 2, 2
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
