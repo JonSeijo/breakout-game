@@ -43,6 +43,8 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private Vector2 takeOffPoint;
 	
+	private float soundVolume;
+	
 	private int lives;
 	private int level;
 	private float relativePos;
@@ -72,7 +74,9 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		controller = new Controller(game, this);			
 		inputHandler = new InputHandler(game, controller);	
-		Gdx.input.setInputProcessor(inputHandler);			
+		Gdx.input.setInputProcessor(inputHandler);		
+		
+		soundVolume = SoundLoader.soundVolume;
 		
 		lives = 3;
 		level = 0;
@@ -154,6 +158,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			}
 			
 			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){		
+				SoundLoader.platform_bonus.play(soundVolume);
 				disableBonuses();
 				bonus.apply();
 				bonus.remove();
@@ -204,6 +209,7 @@ public class JashanoidScreen extends ScreenAdapter{
 				
 				
 				if(brickHit){
+					SoundLoader.ball_brick_normal.play(soundVolume);
 					ball.moreSpeed();
 					if(brick.isVulnerable()){	
 						if(balls.size() < 2){   //Only create bonus when there is one ball.
@@ -281,6 +287,8 @@ public class JashanoidScreen extends ScreenAdapter{
 			Rectangle ballBounds = ball.getCollisionBounds();
 			
 			if(ballBounds.overlaps(platform.getCollisionBounds())){
+				
+	
 
 				if(ballBounds.y >= platform.getCollisionBounds().y + platform.getHeight()/2){  //If hits from top
 					platform.setPlayAnimation(true);				
@@ -290,6 +298,7 @@ public class JashanoidScreen extends ScreenAdapter{
 						platform.setGlue(true);
 						//setNeedGlue(false);
 					}else{
+						SoundLoader.platform_ball.play(soundVolume);
 						ball.setDirection(platform.getBounceDirection(ball.getPosition()));
 						ball.moreSpeed();
 					}
@@ -316,12 +325,14 @@ public class JashanoidScreen extends ScreenAdapter{
 				ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 				ball.setPosition(Bounds.GAME_X_LEFT, ball.getY());
 				ball.moreSpeed();
+				SoundLoader.ball_bounds.play(soundVolume);
 			}
 
 			if(bounds.collideRight(ball)){
 				ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 				ball.setPosition(Bounds.GAME_X_RIGHT - ball.getWidth(), ball.getY());
 				ball.moreSpeed();
+				SoundLoader.ball_bounds.play(soundVolume);
 			}
 			
 			// Mirrors direction in y axis
@@ -329,6 +340,7 @@ public class JashanoidScreen extends ScreenAdapter{
 				ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
 				ball.setPosition(ball.getX(), Bounds.GAME_Y_UP - ball.getHeight());
 				ball.moreSpeed();
+				SoundLoader.ball_bounds.play(soundVolume);
 			}
 			
 			if(bounds.collideDown(ball)){
