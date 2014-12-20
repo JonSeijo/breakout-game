@@ -70,9 +70,9 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		stage.addActor(platform);
 		
-		controller = new Controller(this);			
-		inputHandler = new InputHandler(controller);	
-		Gdx.input.setInputProcessor(inputHandler);		
+		controller = new Controller(game, this);			
+		inputHandler = new InputHandler(game, controller);	
+		Gdx.input.setInputProcessor(inputHandler);			
 		
 		lives = 3;
 		level = 0;

@@ -2,11 +2,13 @@ package com.jashlaviu.jashanoid.inputhandler;
 
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.jashlaviu.jashanoid.Bounds;
+import com.jashlaviu.jashanoid.Jashanoid;
 import com.jashlaviu.jashanoid.JashanoidScreen;
 import com.jashlaviu.jashanoid.actors.Platform;
 
 public class Controller {
-	
+		
+	private Jashanoid game;
 	private JashanoidScreen gameScreen;
 	private Platform platform;
 	
@@ -15,7 +17,8 @@ public class Controller {
 	private boolean shootJustPressed;
 	private boolean developJustPressed;
 	
-	public Controller(JashanoidScreen gameScreen) {
+	public Controller(Jashanoid game, JashanoidScreen gameScreen) {
+		this.game = game;
 		this.gameScreen = gameScreen;
 		platform = gameScreen.getPlatform();
 	}
@@ -38,7 +41,7 @@ public class Controller {
 			}else{
 				platform.setPosition(Bounds.GAME_X_LEFT, platform.getY());
 			}
-		}
+		}	
 		
 		if(shootJustPressed){
 			shootJustPressed = false;
@@ -49,6 +52,7 @@ public class Controller {
 			developJustPressed = false;
 			gameScreen.levelUp();
 		}
+		
 		
 	}
 	

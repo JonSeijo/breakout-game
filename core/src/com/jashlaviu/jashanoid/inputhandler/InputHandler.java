@@ -2,12 +2,15 @@ package com.jashlaviu.jashanoid.inputhandler;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
+import com.jashlaviu.jashanoid.Jashanoid;
 
 public class InputHandler extends InputAdapter{
 
+	private Jashanoid game;
 	private Controller control;
 	
-	public InputHandler(Controller control) {
+	public InputHandler(Jashanoid game, Controller control) {
+		this.game = game;
 		this.control = control;
 	}
 	
@@ -22,13 +25,14 @@ public class InputHandler extends InputAdapter{
 			return true;
 		}
 		
-		if(keycode == Keys.SPACE){
-			control.shootJustPressed(true);
-		}
-		
-		
-		if(keycode == Keys.N){
-			control.developJustPressed(true);
+		if(game.getScreen() == game.getGameScreen()){
+			if(keycode == Keys.SPACE){
+				control.shootJustPressed(true);
+			}		
+			
+			if(keycode == Keys.N){
+				control.developJustPressed(true);
+			}
 		}
 		
 		return false;		

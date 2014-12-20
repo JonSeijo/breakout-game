@@ -11,12 +11,14 @@ public class Jashanoid extends Game {
 	private ShapeRenderer shaper;
 	private JashanoidScreen gameScreen;
 	private TextureLoader textureLoader;
+	private SoundLoader soundLoader;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		shaper = new ShapeRenderer();
-		textureLoader = new TextureLoader();		
+		textureLoader = new TextureLoader();
+		soundLoader = new SoundLoader();
 		gameScreen = new JashanoidScreen(this);		
 		this.setScreen(new MainMenuScreen(this));
 	}
@@ -30,6 +32,7 @@ public class Jashanoid extends Game {
 	public void dispose(){
 		super.dispose();
 		textureLoader.dispose();
+		soundLoader.dispose();
 		shaper.dispose();
 		batch.dispose();
 	}

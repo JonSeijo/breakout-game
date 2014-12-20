@@ -1,6 +1,7 @@
 package menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -20,6 +21,9 @@ public class MainMenuScreen extends ScreenAdapter{
 	private MenuButton playButton, quitButton, optionsButton;
 	private MenuButton[] menuButtons;
 	private Cursor cursor;
+	
+	private boolean animationStarted;
+	private float animationTime;
 	
 	public MainMenuScreen(Jashanoid game) {
 		this.game = game;
@@ -70,8 +74,9 @@ public class MainMenuScreen extends ScreenAdapter{
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
 			int index = cursor.getIndex();
 			
-			if(menuButtons[index] == playButton)
-				game.setScreen(game.getGameScreen());
+			if(menuButtons[index] == playButton){
+				startOutAnimation();				
+			}
 			
 			if(menuButtons[index] == optionsButton){
 				
@@ -79,10 +84,34 @@ public class MainMenuScreen extends ScreenAdapter{
 			
 			if(menuButtons[index] == quitButton)
 				Gdx.app.exit();	
-		}			
+		}
+		
+		if(animationStarted){
+			animationTime += delta;
+			if(animationTime >= 0.6f)
+				game.setScreen(game.getGameScreen());
+			
+		}
 			
 		stage.act();
 		stage.draw();	
+	}
+	
+	private void startOutAnimation(){
+		for(Actor actors : stage.getActors()){
+			SequenceAction seq = new SequenceAction();
+			seq.addAction(Actions.fadeOut(0));
+			seq.addAction(Actions.moveBy(-50, 0, 0.1f));
+			seq.addAction(Actions.moveBy(600, 0, 0.4f));
+			
+			ParallelAction par = new ParallelAction();
+			par.addAction(seq);
+			par.addAction(Actions.fadeIn(0.4f));
+			
+			actors.addAction(par);
+			
+			animationStarted = true;
+		}	
 	}
 	
 	
