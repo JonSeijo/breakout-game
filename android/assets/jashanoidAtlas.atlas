@@ -6,189 +6,196 @@ filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 204, 36
+  xy: 729, 177
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 729, 179
+  xy: 674, 155
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 316, 106
+  xy: 560, 151
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 560, 153
+  xy: 672, 173
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 672, 175
+  xy: 762, 203
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus
   rotate: false
-  xy: 762, 205
+  xy: 874, 225
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus
   rotate: false
-  xy: 862, 227
+  xy: 204, 10
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 bonus
   rotate: false
-  xy: 102, 2
+  xy: 404, 52
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 bonus
   rotate: false
-  xy: 256, 84
+  xy: 560, 129
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 4
 bonus
   rotate: false
-  xy: 373, 106
+  xy: 617, 151
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 5
 bonus
   rotate: false
-  xy: 560, 131
+  xy: 819, 203
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 6
 bonus
   rotate: false
-  xy: 617, 153
+  xy: 931, 225
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 7
 brick
   rotate: false
-  xy: 819, 205
+  xy: 461, 52
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 919, 227
+  xy: 617, 129
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 256, 62
+  xy: 876, 203
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 313, 84
+  xy: 304, 30
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 430, 106
+  xy: 361, 30
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 12
 brick
   rotate: false
-  xy: 617, 131
+  xy: 418, 30
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
 button_options
   rotate: false
-  xy: 2, 76
+  xy: 560, 195
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_play
   rotate: false
-  xy: 560, 197
+  xy: 2, 2
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_quit
   rotate: false
-  xy: 2, 24
+  xy: 304, 74
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
+cursor
+  rotate: false
+  xy: 2, 54
+  size: 300, 70
+  orig: 300, 70
+  offset: 0, 0
+  index: 2
 gameOver
   rotate: false
-  xy: 2, 128
+  xy: 2, 126
   size: 556, 119
   orig: 556, 119
   offset: 0, 0
   index: -1
 menu_cursor
   rotate: false
-  xy: 204, 54
+  xy: 506, 74
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 palete
   rotate: false
-  xy: 204, 106
+  xy: 560, 173
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 platform
   rotate: false
-  xy: 560, 175
+  xy: 762, 225
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: 3
 platform
   rotate: false
-  xy: 762, 227
+  xy: 204, 32
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 4
 platform
   rotate: false
-  xy: 2, 2
+  xy: 304, 52
   size: 98, 20
   orig: 98, 20
   offset: 0, 0

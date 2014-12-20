@@ -33,12 +33,13 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		menuButtons = new MenuButton[] {playButton, optionsButton, quitButton};
 		
-		cursor = new Cursor(playButton.getX() - 70, playButton.getY(), 3, 100);
+		cursor = new Cursor(playButton.getX() - 90, playButton.getY() - 10, 3, 100);
 		
+		stage.addActor(cursor);	
 		stage.addActor(playButton);
 		stage.addActor(optionsButton);
-		stage.addActor(quitButton);		
-		stage.addActor(cursor);	
+		stage.addActor(quitButton);	
+
 		
 		for(Actor actors : stage.getActors()){
 			SequenceAction seq = new SequenceAction();
@@ -49,7 +50,6 @@ public class MainMenuScreen extends ScreenAdapter{
 			ParallelAction par = new ParallelAction();
 			par.addAction(seq);
 			par.addAction(Actions.fadeIn(0.4f));
-
 			
 			actors.addAction(par);
 		}
@@ -79,11 +79,8 @@ public class MainMenuScreen extends ScreenAdapter{
 			
 			if(menuButtons[index] == quitButton)
 				Gdx.app.exit();	
+		}			
 			
-		}
-		
-
-				
 		stage.act();
 		stage.draw();	
 	}

@@ -11,7 +11,7 @@ public class Cursor extends ActorJashanoid{
 	private float initialX, initialY;
 	
 	public Cursor(float x, float y, int maxButons, int buttonHeight) {
-		super(TextureLoader.cursor);
+		super(TextureLoader.cursor_2);
 		initialX = x;
 		initialY = y;
 		setPosition(initialX, initialY);

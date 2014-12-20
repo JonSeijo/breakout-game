@@ -12,7 +12,7 @@ public class TextureLoader{
 	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06, bonus_07;
 	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
-	public static TextureRegion game_over, cursor;
+	public static TextureRegion game_over, cursor, cursor_2;
 	public static TextureRegion button_play, button_quit, button_options;
 	
 	public TextureLoader(){
@@ -47,6 +47,7 @@ public class TextureLoader{
 		block3 = load("block3");	
 		
 		cursor = load("menu_cursor");
+		cursor_2 = load("cursor", 2);
 		
 		button_play = load("button_play");
 		button_quit = load("button_quit");
