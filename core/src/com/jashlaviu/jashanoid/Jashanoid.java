@@ -1,10 +1,10 @@
 package com.jashlaviu.jashanoid;
 
-import menu.MainMenuScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.jashlaviu.jashanoid.menu.MainMenuScreen;
 
 public class Jashanoid extends Game {
 	private SpriteBatch batch;

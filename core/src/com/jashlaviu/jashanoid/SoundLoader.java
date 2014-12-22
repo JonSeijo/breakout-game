@@ -13,7 +13,7 @@ public class SoundLoader {
 	public static float soundVolume = 1f;
 	public static Sound ball_bounds, ball_brick_normal, ball_brick_hard;
 	public static Sound platform_ball;
-	public static Sound level, life, slow, three, glue, expand;	
+	public static Sound level, life, slow, three, glue, expand, menu;	
 
 	public SoundLoader() {		
 		allSoundsList = new ArrayList<Sound>();
@@ -31,6 +31,8 @@ public class SoundLoader {
 		three = load("bertrof_three");
 		glue = load("bertrof_glue");
 		expand = load("bertrof_expand");
+		
+		menu = load("bertrof_menu");
 		
 	}
 	
