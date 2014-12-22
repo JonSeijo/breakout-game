@@ -19,7 +19,6 @@ public class Jashanoid extends Game {
 		shaper = new ShapeRenderer();
 		textureLoader = new TextureLoader();
 		soundLoader = new SoundLoader();
-		gameScreen = new JashanoidScreen(this);		
 		this.setScreen(new MainMenuScreen(this));
 	}
 
@@ -35,6 +34,10 @@ public class Jashanoid extends Game {
 		soundLoader.dispose();
 		shaper.dispose();
 		batch.dispose();
+	}
+	
+	public void newGame(){
+		gameScreen = new JashanoidScreen(this);
 	}
 	
 	public JashanoidScreen getGameScreen(){

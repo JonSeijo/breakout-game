@@ -88,8 +88,10 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		if(animationStarted){
 			animationTime += delta;
-			if(animationTime >= 0.6f)
+			if(animationTime >= 0.6f){
+				game.newGame();
 				game.setScreen(game.getGameScreen());
+			}
 			
 		}
 			

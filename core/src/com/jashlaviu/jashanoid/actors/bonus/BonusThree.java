@@ -2,6 +2,7 @@ package com.jashlaviu.jashanoid.actors.bonus;
 
 import com.badlogic.gdx.math.Vector2;
 import com.jashlaviu.jashanoid.JashanoidScreen;
+import com.jashlaviu.jashanoid.SoundLoader;
 import com.jashlaviu.jashanoid.TextureLoader;
 import com.jashlaviu.jashanoid.actors.Ball;
 
@@ -14,6 +15,8 @@ public class BonusThree extends Bonus{
 	@Override
 	public void apply() {
 		super.apply();
+		
+		SoundLoader.three.play(gameScreen.getSoundVolume());
 
 		Ball oldBall = gameScreen.getBall();
 		

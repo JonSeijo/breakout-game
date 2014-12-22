@@ -1,6 +1,7 @@
 package com.jashlaviu.jashanoid.actors.bonus;
 
 import com.jashlaviu.jashanoid.JashanoidScreen;
+import com.jashlaviu.jashanoid.SoundLoader;
 import com.jashlaviu.jashanoid.TextureLoader;
 
 public class BonusExpand extends Bonus {
@@ -12,6 +13,7 @@ public class BonusExpand extends Bonus {
 	@Override
 	public void apply() {
 		super.apply();
+		SoundLoader.expand.play(gameScreen.getSoundVolume());
 		gameScreen.getPlatform().expand();		
 	}
 

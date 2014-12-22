@@ -11,16 +11,27 @@ public class SoundLoader {
 	private ArrayList<Sound> allSoundsList;
 	
 	public static float soundVolume = 1f;
-	public static Sound ball_bounds, ball_brick_normal, platform_bonus, platform_ball;
-	
+	public static Sound ball_bounds, ball_brick_normal, ball_brick_hard;
+	public static Sound platform_ball;
+	public static Sound level, life, slow, three, glue, expand;	
 
 	public SoundLoader() {		
 		allSoundsList = new ArrayList<Sound>();
 		
-		ball_bounds = load("ball_bounds");
-		ball_brick_normal = load("ball_brick");
-		platform_ball = load("platform_ball");
-		platform_bonus = load("platform_bonus");
+		ball_bounds = load("bertrof2");
+		
+		ball_brick_normal = load("bertrof4");
+		ball_brick_hard = load("bertrof3");
+		
+		platform_ball = load("bertrof6");
+		
+		level = load("bertrof_level");
+		life = load("bertrof_life");
+		slow = load("bertrof_slow");
+		three = load("bertrof_three");
+		glue = load("bertrof_glue");
+		expand = load("bertrof_expand");
+		
 	}
 	
 	public void dispose(){

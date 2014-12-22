@@ -102,8 +102,9 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	
-	public void levelUp() {
+	public void levelUp() {		
 		level++;
+		SoundLoader.level.play(soundVolume);
 		
 		for(Brick brick : bricks)
 			brick.remove();
@@ -158,7 +159,6 @@ public class JashanoidScreen extends ScreenAdapter{
 			}
 			
 			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){		
-				SoundLoader.platform_bonus.play(soundVolume);
 				disableBonuses();
 				bonus.apply();
 				bonus.remove();
@@ -209,15 +209,17 @@ public class JashanoidScreen extends ScreenAdapter{
 				
 				
 				if(brickHit){
-					SoundLoader.ball_brick_normal.play(soundVolume);
+			
 					ball.moreSpeed();
-					if(brick.isVulnerable()){	
+					if(brick.isVulnerable()){
+						SoundLoader.ball_brick_normal.play(soundVolume);
 						if(balls.size() < 2){   //Only create bonus when there is one ball.
 							randomBonus(brick);
 						}	
 						brickIter.remove(); //Removes from the array (for logic updates).
 						removeBrickStage(brick);	//Removes from stage, with prior animation.						
 					}else {
+						SoundLoader.ball_brick_hard.play(soundVolume);
 						brick.makeVulnerable(); //If is indestructible, it is handled inside
 					}
 					
@@ -243,7 +245,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
-		int ran = MathUtils.random(1, 6);
+		int ran = MathUtils.random(6, 6);
 				
 		if(ran == 1)
 			return new BonusLevel(screen, x, y);
@@ -293,6 +295,7 @@ public class JashanoidScreen extends ScreenAdapter{
 				if(ballBounds.y >= platform.getCollisionBounds().y + platform.getHeight()/2){  //If hits from top
 					platform.setPlayAnimation(true);				
 					if(needGlue()){
+						SoundLoader.glue.play(soundVolume);
 						takeOffPoint.set(new Vector2(ball.getPosition()));					
 						ball.setDirection(platform.getBounceDirection(ball.getPosition()));					
 						platform.setGlue(true);
@@ -385,6 +388,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	public void slowBalls(){
+		SoundLoader.slow.play(soundVolume);
 		for(Ball ball : balls){
 			ball.setSpeed(ball.getSpeed() * 0.60f);  //40% slow
 		}
@@ -405,6 +409,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	public void addLife(){
+		SoundLoader.life.play(soundVolume);
 		lives++;
 	}
 	
@@ -449,6 +454,10 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	public ArrayList<Bonus> getBonuses() {
 		return bonuses;
+	}
+	
+	public float getSoundVolume(){
+		return soundVolume;
 	}
 }
 
