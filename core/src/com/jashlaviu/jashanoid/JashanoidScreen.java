@@ -231,7 +231,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 35){		// 35% chance of a new bonus	
+			if(MathUtils.random(100) < 25){		// 25% chance of a new bonus	
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
@@ -245,7 +245,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
-		int ran = MathUtils.random(6, 6);
+		int ran = MathUtils.random(1, 6);
 				
 		if(ran == 1)
 			return new BonusLevel(screen, x, y);

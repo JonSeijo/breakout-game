@@ -57,8 +57,8 @@ public class Platform extends ActorJashanoid {
 		//Collision point is relative to the platform
 		float collisionPoint = point.x + 8 - getX();  
 		
-		float minAngle = 150;
-		float maxAngle = 30;
+		float minAngle = 152;
+		float maxAngle = 28;
 		
 		float angleSpan = maxAngle - minAngle;
 		
