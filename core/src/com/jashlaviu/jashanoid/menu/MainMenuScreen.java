@@ -86,7 +86,6 @@ public class MainMenuScreen extends ScreenAdapter{
 			}				
 			
 			if(menuButtons[index] == quitButton){
-				SoundLoader.menu.play(SoundLoader.soundVolume);
 				Gdx.app.exit();	
 			}
 		}

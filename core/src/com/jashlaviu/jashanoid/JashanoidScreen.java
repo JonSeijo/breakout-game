@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
@@ -18,7 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.actors.Ball;
 import com.jashlaviu.jashanoid.actors.Platform;
-import com.jashlaviu.jashanoid.actors.bonus.*;
+import com.jashlaviu.jashanoid.actors.bonus.Bonus;
+import com.jashlaviu.jashanoid.actors.bonus.BonusExpand;
+import com.jashlaviu.jashanoid.actors.bonus.BonusGlue;
+import com.jashlaviu.jashanoid.actors.bonus.BonusLevel;
+import com.jashlaviu.jashanoid.actors.bonus.BonusLife;
+import com.jashlaviu.jashanoid.actors.bonus.BonusSlow;
 import com.jashlaviu.jashanoid.actors.bonus.BonusThree;
 import com.jashlaviu.jashanoid.actors.bricks.Brick;
 import com.jashlaviu.jashanoid.inputhandler.Controller;
@@ -44,6 +50,8 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Vector2 takeOffPoint;
 	
 	private float soundVolume;
+	
+	private Brick lastBrick;
 	
 	private int lives;
 	private int level;
@@ -110,6 +118,10 @@ public class JashanoidScreen extends ScreenAdapter{
 			brick.remove();
 		bricks.clear();
 		
+		for(Bonus bonus : bonuses)
+			bonus.remove();
+		bonuses.clear();
+		
 		levelCreator.setLevel(level);
 		for(Brick brick : bricks)
 			stage.addActor(brick);		
@@ -121,14 +133,18 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private void updateGameOver(){
-		boolean noMoreBricks = true;
+		
+		boolean noMoreBricks = true;		
 		
 		for(Brick brick : bricks)
 			if(!brick.isIndestructible())
 				noMoreBricks = false;		
+			
 		
-		if(noMoreBricks)
-			levelUp();		
+		if(noMoreBricks){
+			lastBrick.remove();
+			levelUp();	
+		}
 		
 		if(lives <= 0)
 			gameOver();
@@ -217,7 +233,8 @@ public class JashanoidScreen extends ScreenAdapter{
 							randomBonus(brick);
 						}	
 						brickIter.remove(); //Removes from the array (for logic updates).
-						removeBrickStage(brick);	//Removes from stage, with prior animation.						
+						removeBrickStage(brick);	//Removes from stage, with prior animation.		
+						lastBrick = brick;
 					}else {
 						SoundLoader.ball_brick_hard.play(soundVolume);
 						brick.makeVulnerable(); //If is indestructible, it is handled inside
@@ -231,8 +248,9 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 25){		// 25% chance of a new bonus	
-				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());
+			if(MathUtils.random(100) < 15){		// 15% chance of a new bonus	
+				// create a random new bonus is the destroyed brick position
+				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());  
 				bonuses.add(nBonus);
 				stage.addActor(nBonus);
 			}
