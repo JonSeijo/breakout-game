@@ -1,0 +1,11 @@
+Jashanoid
+developed by Jashlaviu
+
+Twitter: @jashlaviu
+Email: jashlaviu@gmail.com
+
+
+SOUND
+
+ALL the sound effects present in this game are modified/edited/cut pieces of:
+"Game Sound Intro To Game.wav" by Bertrof, found in http://www.freesound.org/people/Bertrof/sounds/131659/ -- CC License: Attribution
