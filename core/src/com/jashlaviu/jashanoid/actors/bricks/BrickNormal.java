@@ -7,6 +7,8 @@ public class BrickNormal extends Brick {
 	public BrickNormal(TextureRegion region, float posX, float posY) {
 		super(region, posX, posY);
 		vulnerable = true;
+		
+		type = "normal";
 	}
 
 }

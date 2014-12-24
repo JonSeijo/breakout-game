@@ -11,8 +11,8 @@ public class BrickHard extends Brick{
 		super(TextureLoader.brick_11, posX, posY);
 		
 		vulnerableRegion = TextureLoader.brick_12;
-		
 		vulnerable = false;
+		type = "hard";
 	}
 	
 	@Override

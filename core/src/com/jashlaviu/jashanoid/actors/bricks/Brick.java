@@ -5,10 +5,11 @@ import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
 public class Brick extends ActorJashanoid {
 	
-	boolean vulnerable;
-	boolean indestructible;
+	protected String type;
+	protected boolean vulnerable;
+	protected boolean indestructible;
 	
-	int maxHits, currentHits;
+	protected int maxHits, currentHits;
 	
 	public Brick(TextureRegion loaderTexture, float posX, float posY) {
 		super(loaderTexture);
@@ -30,6 +31,10 @@ public class Brick extends ActorJashanoid {
 	
 	public boolean isIndestructible(){
 		return indestructible;
+	}
+	
+	public String getType(){
+		return type;
 	}
 	
 	

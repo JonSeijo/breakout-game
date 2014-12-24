@@ -9,6 +9,8 @@ public class BrickRock extends Brick {
 		vulnerable = false;
 		indestructible = true;
 		
+		type = "rock";
+		
 	}
 
 }

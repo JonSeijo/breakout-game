@@ -52,6 +52,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	private float soundVolume;
 	
 	private Brick lastBrick;
+	private Score score;
 	
 	private int lives, level;
 	
@@ -68,6 +69,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		levelCreator = new LevelCreator(bricks);
 		gui = new Gui(this);
+		score = new Score(this);
 		
 		platform = new Platform();		
 		takeOffPoint = getDefaultTakeOff();
@@ -141,6 +143,8 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	public void levelUp() {		
 		level++;
+		score.addPoints(Score.LEVEL);
+		
 		SoundLoader.level.play(soundVolume);
 		
 		for(Brick brick : bricks)
@@ -205,6 +209,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			
 			// If bonus collides with the platform (player picked the bonus)
 			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){		
+				score.addPoints(Score.BONUS);
 				disableBonuses();   // disable the active bonuses. Only one active at a time.
 				bonus.apply();		
 				bonus.remove();		
@@ -254,18 +259,22 @@ public class JashanoidScreen extends ScreenAdapter{
 			
 				
 				
-				if(brickHit){
-			
+				if(brickHit){			
 					ball.moreSpeed();
-					if(brick.isVulnerable()){
+					if(brick.isVulnerable()){				
 						SoundLoader.ball_brick_normal.play(soundVolume);
+						
+						if(brick.getType().equals("normal")) score.addPoints(Score.BRICK_NORMAL);
+						if(brick.getType().equals("hard")) score.addPoints(Score.BRICK_HARD);					
+						
 						if(balls.size() < 2){   //Only create bonus when there is one ball.
 							randomBonus(brick);
 						}	
 						brickIter.remove(); //Removes from the array (for logic updates).
 						removeBrickStage(brick);	//Removes from stage, with prior animation.		
 						lastBrick = brick;
-					}else {
+						
+					}else {						
 						SoundLoader.ball_brick_hard.play(soundVolume);
 						brick.makeVulnerable(); //If is indestructible, it is handled inside
 					}
