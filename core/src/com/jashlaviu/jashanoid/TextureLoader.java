@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 public class TextureLoader{
 	
 	public TextureAtlas atlas;
-	public static TextureRegion platform, ball, block1, block2, block3;
+	public static TextureRegion platform, ball, back_blue, back_gui, back_green, back_red, back_violet, back_yellow;
 	public static TextureRegion bonus_expand, bonus_glue, bonus_level, bonus_life, bonus_slow, bonus_three;
 	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
@@ -17,6 +17,13 @@ public class TextureLoader{
 	
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
+		
+		back_gui = load("back", 4);
+		back_blue = load("back_blue");
+		back_green = load("back_green");
+		back_red = load("back_red");
+		back_violet = load("back_violet");
+		back_yellow = load("back_yellow");
 		
 		ball = load("ball1");
 		ball_02 = load("ball2");
@@ -39,12 +46,8 @@ public class TextureLoader{
 		platform_04 = load("platform", 4);
 		platform_05 = load("platform", 5);
 		
-		game_over = load("gameOver");
-		
-		block1 = load("block1");
-		block2 = load("block2");
-		block3 = load("block3");	
-		
+		game_over = load("gameOver");		
+			
 		cursor = load("menu_cursor");
 		cursor_2 = load("cursor", 2);
 		

@@ -1,201 +1,257 @@
 
 jashanoidAtlas.png
-size: 1024,256
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+back
+  rotate: false
+  xy: 2, 142
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: 3
+back
+  rotate: false
+  xy: 2, 24
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: 4
+back
+  rotate: false
+  xy: 204, 260
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: 1
+back_blue
+  rotate: false
+  xy: 762, 387
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: -1
+back_green
+  rotate: false
+  xy: 885, 387
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: -1
+back_red
+  rotate: false
+  xy: 125, 142
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: -1
+back_violet
+  rotate: false
+  xy: 125, 24
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: -1
+back_yellow
+  rotate: false
+  xy: 304, 214
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: -1
 ball1
   rotate: false
-  xy: 988, 229
+  xy: 988, 369
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 1006, 229
+  xy: 1006, 369
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 874, 225
+  xy: 427, 258
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 762, 181
+  xy: 427, 236
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 204, 10
+  xy: 427, 214
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus_expand
   rotate: false
-  xy: 404, 52
+  xy: 760, 365
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_glue
   rotate: false
-  xy: 874, 203
+  xy: 817, 365
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_level
   rotate: false
-  xy: 931, 225
+  xy: 874, 365
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_life
   rotate: false
-  xy: 762, 159
+  xy: 931, 365
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_slow
   rotate: false
-  xy: 819, 181
+  xy: 479, 310
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_three
   rotate: false
-  xy: 461, 52
+  xy: 479, 288
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 931, 203
+  xy: 484, 266
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 819, 159
+  xy: 484, 244
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 876, 181
+  xy: 484, 222
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 876, 159
+  xy: 484, 200
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 304, 30
+  xy: 226, 2
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 12
 brick
   rotate: false
-  xy: 361, 30
+  xy: 541, 357
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
 button_options
   rotate: false
-  xy: 560, 195
+  xy: 560, 453
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_play
   rotate: false
-  xy: 2, 2
+  xy: 2, 260
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_quit
   rotate: false
-  xy: 304, 74
+  xy: 304, 332
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_sound
   rotate: false
-  xy: 560, 143
+  xy: 560, 401
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 cursor
   rotate: false
-  xy: 2, 54
+  xy: 2, 312
   size: 300, 70
   orig: 300, 70
   offset: 0, 0
   index: 2
 gameOver
   rotate: false
-  xy: 2, 126
+  xy: 2, 384
   size: 556, 119
   orig: 556, 119
   offset: 0, 0
   index: -1
 menu_cursor
   rotate: false
-  xy: 506, 74
+  xy: 427, 280
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 palete
   rotate: false
-  xy: 762, 225
+  xy: 2, 2
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 platform
   rotate: false
-  xy: 762, 203
+  xy: 114, 2
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: 3
 platform
   rotate: false
-  xy: 204, 32
+  xy: 560, 379
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 4
 platform
   rotate: false
-  xy: 304, 52
+  xy: 660, 379
   size: 98, 20
   orig: 98, 20
   offset: 0, 0

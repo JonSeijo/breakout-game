@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.jashlaviu.jashanoid.Bounds;
 import com.jashlaviu.jashanoid.Jashanoid;
 import com.jashlaviu.jashanoid.SoundLoader;
 import com.jashlaviu.jashanoid.TextureLoader;
@@ -64,9 +65,15 @@ public class MainMenuScreen extends ScreenAdapter{
 	
 	@Override
 	public void render(float delta) {		
-		Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		game.getBatch().begin();
+		for(int y = 0; y < Bounds.GAME_Y_UP; y += 116)
+			for(int x = 0; x < Bounds.SCORE_X_RIGHT; x += 121)
+				game.getBatch().draw(TextureLoader.back_gui, x, y);			
+	
+		game.getBatch().end();
 
+		
 		if(Gdx.input.isKeyJustPressed(Keys.DOWN))
 			cursor.moveDown();		
 		

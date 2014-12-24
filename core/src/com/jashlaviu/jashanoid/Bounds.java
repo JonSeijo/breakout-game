@@ -1,8 +1,6 @@
 package com.jashlaviu.jashanoid;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
 public class Bounds {	
@@ -21,19 +19,21 @@ public class Bounds {
 	}
 	
 	public void draw(ShapeRenderer shaper){
-		shaper.begin(ShapeType.Line);
+	/*	shaper.begin(ShapeType.Line);
 		
 		shaper.line(GAME_X_LEFT, GAME_Y_DOWN, GAME_X_LEFT, GAME_Y_UP, Color.BLACK, Color.BLACK);
 		shaper.line(GAME_X_LEFT, GAME_Y_DOWN, GAME_X_RIGHT, GAME_Y_DOWN, Color.BLACK, Color.BLACK);
 		shaper.line(GAME_X_LEFT, GAME_Y_UP, GAME_X_RIGHT, GAME_Y_UP, Color.BLACK, Color.BLACK);
 		shaper.line(GAME_X_RIGHT, GAME_Y_DOWN, GAME_X_RIGHT, GAME_Y_UP, Color.BLACK, Color.BLACK);
 		
+		System.out.println(GAME_Y_UP- GAME_Y_DOWN);
+		
 		shaper.line(SCORE_X_LEFT, SCORE_Y_DOWN, SCORE_X_LEFT, SCORE_Y_UP, Color.BLUE, Color.BLUE);
 		shaper.line(SCORE_X_LEFT, SCORE_Y_DOWN, SCORE_X_RIGHT, SCORE_Y_DOWN, Color.BLUE, Color.BLUE);
 		shaper.line(SCORE_X_LEFT, SCORE_Y_UP, SCORE_X_RIGHT, SCORE_Y_UP, Color.BLUE, Color.BLUE);
 		shaper.line(SCORE_X_RIGHT, SCORE_Y_DOWN, SCORE_X_RIGHT, SCORE_Y_UP, Color.BLUE, Color.BLUE);		
-		
-		shaper.end();
+	
+		shaper.end();*/
 	}
 	
 	public boolean collideLeft(ActorJashanoid actor){

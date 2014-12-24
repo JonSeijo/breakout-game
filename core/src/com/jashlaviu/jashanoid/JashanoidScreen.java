@@ -7,11 +7,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
@@ -96,6 +96,8 @@ public class JashanoidScreen extends ScreenAdapter{
 		Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		drawBackground();
+		
 		bounds.draw(shaper);		
 		stage.draw();
 		
@@ -107,6 +109,35 @@ public class JashanoidScreen extends ScreenAdapter{
 		batch.begin();
 		gui.render(batch);
 		batch.end();
+	}
+	
+	public void drawBackground(){		
+		batch.begin();		
+			
+		for(int y = 0; y < Bounds.GAME_Y_UP; y += 116){
+			for(int x = 0; x < Bounds.SCORE_X_RIGHT; x += 121){
+				batch.draw(TextureLoader.back_gui, x, y);
+			}
+		}
+		
+		for(int y = Bounds.GAME_Y_DOWN; y < Bounds.GAME_Y_UP; y += 116){
+			for(int x = Bounds.GAME_X_LEFT; x < Bounds.GAME_X_RIGHT; x += 121){
+				batch.draw(getLevelTexture(), x, y);
+			}
+		}
+		
+		batch.end();
+	}
+	
+	public TextureRegion getLevelTexture(){
+		if(level == 1) return TextureLoader.back_blue;		
+		if(level == 2) return TextureLoader.back_green;
+		if(level == 3) return TextureLoader.back_red;
+		if(level == 4) return TextureLoader.back_violet;
+		if(level == 5) return TextureLoader.back_yellow;
+		
+		else
+			return TextureLoader.back_blue;
 	}
 	
 	
