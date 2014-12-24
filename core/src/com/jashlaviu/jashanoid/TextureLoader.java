@@ -9,7 +9,7 @@ public class TextureLoader{
 	
 	public TextureAtlas atlas;
 	public static TextureRegion platform, ball, block1, block2, block3;
-	public static TextureRegion bonus_01, bonus_02, bonus_03, bonus_04, bonus_05, bonus_06, bonus_07;
+	public static TextureRegion bonus_expand, bonus_glue, bonus_level, bonus_life, bonus_slow, bonus_three;
 	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
 	public static TextureRegion game_over, cursor, cursor_2;
@@ -29,13 +29,12 @@ public class TextureLoader{
 		
 		brick_21 = load("brick", 21);		
 		
-		bonus_01 = load("bonus", 1);
-		bonus_02 = load("bonus", 2);
-		bonus_03 = load("bonus", 3);
-		bonus_04 = load("bonus", 4);
-		bonus_05 = load("bonus", 5);
-		bonus_06 = load("bonus", 6);
-		bonus_07 = load("bonus", 7);
+		bonus_expand = load("bonus_expand", 1);
+		bonus_glue = load("bonus_glue", 1);
+		bonus_level = load("bonus_level", 1);
+		bonus_life = load("bonus_life", 1);
+		bonus_slow = load("bonus_slow", 1);
+		bonus_three = load("bonus_three", 1);
 		
 		platform_04 = load("platform", 4);
 		platform_05 = load("platform", 5);

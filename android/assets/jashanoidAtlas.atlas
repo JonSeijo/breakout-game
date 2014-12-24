@@ -6,89 +6,75 @@ filter: Nearest,Nearest
 repeat: none
 ball1
   rotate: false
-  xy: 729, 177
+  xy: 988, 229
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 674, 155
+  xy: 1006, 229
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 560, 151
+  xy: 874, 225
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 672, 173
+  xy: 762, 181
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 762, 203
-  size: 55, 20
-  orig: 55, 20
-  offset: 0, 0
-  index: -1
-bonus
-  rotate: false
-  xy: 874, 225
-  size: 55, 20
-  orig: 55, 20
-  offset: 0, 0
-  index: 1
-bonus
-  rotate: false
   xy: 204, 10
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 2
-bonus
+  index: -1
+bonus_expand
   rotate: false
   xy: 404, 52
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 3
-bonus
+  index: 1
+bonus_glue
   rotate: false
-  xy: 560, 129
+  xy: 874, 203
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 4
-bonus
-  rotate: false
-  xy: 617, 151
-  size: 55, 20
-  orig: 55, 20
-  offset: 0, 0
-  index: 5
-bonus
-  rotate: false
-  xy: 819, 203
-  size: 55, 20
-  orig: 55, 20
-  offset: 0, 0
-  index: 6
-bonus
+  index: 1
+bonus_level
   rotate: false
   xy: 931, 225
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 7
-brick
+  index: 1
+bonus_life
+  rotate: false
+  xy: 762, 159
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 1
+bonus_slow
+  rotate: false
+  xy: 819, 181
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 1
+bonus_three
   rotate: false
   xy: 461, 52
   size: 55, 20
@@ -97,35 +83,42 @@ brick
   index: 1
 brick
   rotate: false
-  xy: 617, 129
+  xy: 931, 203
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 1
+brick
+  rotate: false
+  xy: 819, 159
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 876, 203
+  xy: 876, 181
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 304, 30
+  xy: 876, 159
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 361, 30
+  xy: 304, 30
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 12
 brick
   rotate: false
-  xy: 418, 30
+  xy: 361, 30
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
@@ -147,6 +140,13 @@ button_play
 button_quit
   rotate: false
   xy: 304, 74
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
+button_sound
+  rotate: false
+  xy: 560, 143
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
@@ -174,14 +174,14 @@ menu_cursor
   index: -1
 palete
   rotate: false
-  xy: 560, 173
+  xy: 762, 225
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 platform
   rotate: false
-  xy: 762, 225
+  xy: 762, 203
   size: 110, 20
   orig: 110, 20
   offset: 0, 0

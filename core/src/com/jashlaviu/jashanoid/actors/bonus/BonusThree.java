@@ -9,7 +9,7 @@ import com.jashlaviu.jashanoid.actors.Ball;
 public class BonusThree extends Bonus{
 
 	public BonusThree(JashanoidScreen gameScreen, float posX, float posY) {
-		super(gameScreen, TextureLoader.bonus_07, posX, posY);
+		super(gameScreen, TextureLoader.bonus_three, posX, posY);
 	}
 	
 	@Override

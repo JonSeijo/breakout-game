@@ -6,7 +6,7 @@ import com.jashlaviu.jashanoid.TextureLoader;
 public class BonusLife extends Bonus {
 
 	public BonusLife(JashanoidScreen gameScreen, float posX, float posY) {
-		super(gameScreen, TextureLoader.bonus_02, posX, posY);
+		super(gameScreen, TextureLoader.bonus_life, posX, posY);
 		
 	}
 	

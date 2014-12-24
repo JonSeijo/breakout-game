@@ -166,19 +166,20 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private void updateBonus(){		
-		if(!bonuses.isEmpty()){
+		if(!bonuses.isEmpty()){		//if there is a bonus falling
 			Bonus bonus = bonuses.get(0);
 			
-			if(bonus.getY() <= 0){
+			if(bonus.getY() <= 0){	// If bonus boes beyond the screen
 				bonuses.get(0).remove();
 				bonuses.clear();
 			}
 			
+			// If bonus collides with the platform (player picked the bonus)
 			if(bonus.getCollisionBounds().overlaps(platform.getCollisionBounds())){		
-				disableBonuses();
-				bonus.apply();
-				bonus.remove();
-				bonuses.clear();
+				disableBonuses();   // disable the active bonuses. Only one active at a time.
+				bonus.apply();		
+				bonus.remove();		
+				bonuses.clear();	
 			}
 		}		
 		
@@ -263,26 +264,30 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
-		int ran = MathUtils.random(1, 6);
+		int ran = MathUtils.random(1, 100);
 				
-		if(ran == 1)
-			return new BonusLevel(screen, x, y);
-		
-		if(ran == 2)
-			return new BonusLife(screen, x, y);
+		if(ran <= 70){
+			int ran2 = MathUtils.random(1, 4);
+			if(ran2 == 1)
+				return new BonusSlow(screen, x, y);
 			
-		if(ran == 3)
-			return new BonusSlow(screen, x, y);
-		
-		if(ran == 4)
-			return new BonusThree(screen, x, y);
-		
-		if(ran == 5)
-			return new BonusGlue(screen, x, y);
-		
-		if(ran == 6)
-			return new BonusExpand(screen, x, y);
-		
+			if(ran2 == 2)
+				return new BonusThree(screen, x, y);
+			
+			if(ran2 == 3)
+				return new BonusGlue(screen, x, y);
+			
+			if(ran2 == 4)
+				return new BonusExpand(screen, x, y);
+			
+		}else{
+			int ran2 = MathUtils.random(1, 2);
+			if(ran2 == 1)
+				return new BonusLevel(screen, x, y);
+			
+			if(ran2 == 2)
+				return new BonusLife(screen, x, y);
+		}
 		
 		return null;		
 	}

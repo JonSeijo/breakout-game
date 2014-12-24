@@ -6,7 +6,7 @@ import com.jashlaviu.jashanoid.TextureLoader;
 public class BonusSlow extends Bonus{
 
 	public BonusSlow(JashanoidScreen gameScreen, float posX, float posY) {
-		super(gameScreen, TextureLoader.bonus_03, posX, posY);
+		super(gameScreen, TextureLoader.bonus_slow, posX, posY);
 	}
 	
 	@Override
