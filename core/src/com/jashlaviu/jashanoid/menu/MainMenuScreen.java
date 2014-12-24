@@ -64,21 +64,27 @@ public class MainMenuScreen extends ScreenAdapter{
 	}
 	
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		game.getBatch().begin();
-		for(int y = 0; y < Bounds.GAME_Y_UP; y += 116)
-			for(int x = 0; x < Bounds.SCORE_X_RIGHT; x += 121)
+		for(int y = 0; y < stage.getHeight(); y += 116)
+			for(int x = 0; x < stage.getWidth(); x += 121)
 				game.getBatch().draw(TextureLoader.back_gui, x, y);			
 	
 		game.getBatch().end();
 
 		
-		if(Gdx.input.isKeyJustPressed(Keys.DOWN))
+		if(Gdx.input.isKeyJustPressed(Keys.DOWN)){
+			SoundLoader.platform_ball.play(SoundLoader.soundVolume);
 			cursor.moveDown();		
+		}
 		
-		if(Gdx.input.isKeyJustPressed(Keys.UP))
+		if(Gdx.input.isKeyJustPressed(Keys.UP)){
+			SoundLoader.platform_ball.play(SoundLoader.soundVolume);
 			cursor.moveUp();
+		}
 		
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
 			int index = cursor.getIndex();

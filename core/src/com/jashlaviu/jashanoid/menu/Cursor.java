@@ -26,7 +26,6 @@ public class Cursor extends ActorJashanoid{
 			index = 0;	
 		
 		setY(initialY - (buttonHeight * index));	
-		System.out.println(index);
 	}
 	
 	public void moveUp(){
@@ -35,7 +34,6 @@ public class Cursor extends ActorJashanoid{
 			index = maxButtons -1;
 		
 		setY(initialY - (buttonHeight * index));
-		System.out.println(index);
 	}
 	
 	public int getIndex(){

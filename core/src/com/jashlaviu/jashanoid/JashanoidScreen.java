@@ -93,7 +93,8 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
+		// Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		drawBackground();
