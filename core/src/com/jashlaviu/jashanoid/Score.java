@@ -19,16 +19,19 @@ public class Score {
 	
 	public void addPoints(int points){
 		this.points += points;
-		if(points >= pointsToLife){
+		if(this.points >= pointsToLife){
 			gameScreen.addLife();
 			pointsToLife += pointsToLifeGap;
 		}
 		
-		System.out.println(this.points);
 	}
 	
 	public int getPoints(){
 		return points;
+	}
+	
+	public int getPointsToLife(){
+		return pointsToLife;
 	}
 	
 	

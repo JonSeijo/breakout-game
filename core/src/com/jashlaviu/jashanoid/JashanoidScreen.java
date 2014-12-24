@@ -68,8 +68,8 @@ public class JashanoidScreen extends ScreenAdapter{
 		bonuses = new ArrayList<Bonus>();
 		
 		levelCreator = new LevelCreator(bricks);
-		gui = new Gui(this);
 		score = new Score(this);
+		gui = new Gui(this);
 		
 		platform = new Platform();		
 		takeOffPoint = getDefaultTakeOff();
@@ -482,6 +482,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	@Override
 	public void dispose() {
 		stage.dispose();
+		gui.dispose();
 	}
 	
 	@Override
@@ -516,6 +517,15 @@ public class JashanoidScreen extends ScreenAdapter{
 	public float getSoundVolume(){
 		return soundVolume;
 	}
+	
+	public int getLevel(){
+		return level;
+	}
+	
+	public Score getScore(){
+		return score;
+	}
+	
 }
 
 
