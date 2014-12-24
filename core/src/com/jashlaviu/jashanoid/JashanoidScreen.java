@@ -53,9 +53,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private Brick lastBrick;
 	
-	private int lives;
-	private int level;
-	private float relativePos;
+	private int lives, level;
 	
 	private boolean needsGlue;
 	
@@ -72,8 +70,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		gui = new Gui(this);
 		
 		platform = new Platform();		
-		takeOffPoint = getDefaultTakeOff();		
-		relativePos = takeOffPoint.x - platform.getX();
+		takeOffPoint = getDefaultTakeOff();
 		
 		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), 
 				Gdx.graphics.getHeight()), game.getBatch());		
@@ -432,10 +429,6 @@ public class JashanoidScreen extends ScreenAdapter{
 		platform.setGlue(true);
 		addBall(getDefaultTakeOff(), platform.getBounceDirection(getDefaultTakeOff()));
 		takeOffPoint = getDefaultTakeOff();
-	}
-	
-	public float getRelativePos(){
-		return relativePos;
 	}
 	
 	private void gameOver(){

@@ -1,7 +1,5 @@
 package com.jashlaviu.jashanoid.menu;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jashlaviu.jashanoid.TextureLoader;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
