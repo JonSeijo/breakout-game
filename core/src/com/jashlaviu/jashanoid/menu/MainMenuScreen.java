@@ -19,9 +19,13 @@ public class MainMenuScreen extends ScreenAdapter{
 
 	private Jashanoid game;
 	private Stage stage;
-	private MenuButton playButton, quitButton, optionsButton;
+	private MenuButton playButton, quitButton, soundButton, yesButton, noButton;
 	private MenuButton[] menuButtons;
 	private Cursor cursor;
+	
+	private boolean isSound = true;
+	private boolean showingOptions = false;
+	
 	
 	private boolean animationStarted;
 	private float animationTime;
@@ -29,20 +33,21 @@ public class MainMenuScreen extends ScreenAdapter{
 	public MainMenuScreen(Jashanoid game) {
 		this.game = game;
 		
-		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), 
-				Gdx.graphics.getHeight()), game.getBatch());
+		stage = new Stage(game.getViewport(), game.getBatch());
 		
-		playButton = new MenuButton(TextureLoader.button_play, -200, 400);
-		optionsButton = new MenuButton(TextureLoader.button_options, -200, 300);
-		quitButton = new MenuButton(TextureLoader.button_quit, -200, 200);
+		playButton = new MenuButton(TextureLoader.button_play, -200, 300);
+		soundButton = new MenuButton(TextureLoader.button_sound, -200, 200);
+		quitButton = new MenuButton(TextureLoader.button_quit, -200, 100);
+		yesButton = new MenuButton(TextureLoader.button_yes, 530, 205);
+		noButton = new MenuButton(TextureLoader.button_no, 530, 205);
 		
-		menuButtons = new MenuButton[] {playButton, optionsButton, quitButton};
+		menuButtons = new MenuButton[] {playButton, soundButton, quitButton};
 		
 		cursor = new Cursor(playButton.getX() - 90, playButton.getY() - 10, 3, 100);
 		
 		stage.addActor(cursor);	
 		stage.addActor(playButton);
-		stage.addActor(optionsButton);
+		stage.addActor(soundButton);
 		stage.addActor(quitButton);	
 
 		
@@ -76,11 +81,13 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		if(Gdx.input.isKeyJustPressed(Keys.DOWN)){
 			SoundLoader.platform_ball.play(SoundLoader.soundVolume);
+			setShowingOptions(false);
 			cursor.moveDown();		
 		}
 		
 		if(Gdx.input.isKeyJustPressed(Keys.UP)){
 			SoundLoader.platform_ball.play(SoundLoader.soundVolume);
+			setShowingOptions(false);
 			cursor.moveUp();
 		}
 		
@@ -92,12 +99,19 @@ public class MainMenuScreen extends ScreenAdapter{
 				startOutAnimation();				
 			}
 			
-			if(menuButtons[index] == optionsButton){
-				SoundLoader.menu.play(SoundLoader.soundVolume);
+			if(menuButtons[index] == soundButton){
+				handleSoundOptions();				
 			}				
 			
 			if(menuButtons[index] == quitButton){
 				Gdx.app.exit();	
+			}
+		}
+		
+		if(Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.LEFT)){
+			int index = cursor.getIndex();
+			if(menuButtons[index] == soundButton){				
+				handleSoundOptions();
 			}
 		}
 		
@@ -106,13 +120,49 @@ public class MainMenuScreen extends ScreenAdapter{
 			if(animationTime >= 0.6f){
 				game.newGame();
 				game.setScreen(game.getGameScreen());
-			}
-			
+			}			
 		}
 			
 		stage.act();
 		stage.draw();	
 	}
+	
+	private void setShowingOptions(boolean bool){
+		showingOptions = bool;
+		if(!showingOptions){
+			if(isSound) yesButton.remove();
+			else noButton.remove();
+		}
+		
+	}
+	
+	private void handleSoundOptions(){
+		if(showingOptions){		
+			if(isSound){
+				yesButton.remove();
+				stage.addActor(noButton);
+				isSound = false;
+				SoundLoader.soundVolume = 0;
+			}
+			else{				
+				noButton.remove();
+				stage.addActor(yesButton);
+				isSound = true;
+				SoundLoader.soundVolume = 1f;
+				SoundLoader.menu.play(SoundLoader.soundVolume);
+			}
+		}
+		if(!showingOptions){
+			setShowingOptions(true);
+			if(isSound) {
+				SoundLoader.menu.play(SoundLoader.soundVolume);
+				stage.addActor(yesButton);
+			}
+			else stage.addActor(noButton);
+		
+		}
+	}
+
 	
 	private void startOutAnimation(){
 		for(Actor actors : stage.getActors()){
@@ -134,7 +184,8 @@ public class MainMenuScreen extends ScreenAdapter{
 	
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height);
+		game.updateViewport(width, height);
+		stage.getViewport().update(game.getViewport().getScreenWidth(), game.getViewport().getScreenHeight());
 	}
 	
 	@Override

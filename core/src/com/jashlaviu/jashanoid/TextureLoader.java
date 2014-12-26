@@ -13,7 +13,7 @@ public class TextureLoader{
 	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
 	public static TextureRegion game_over, cursor, cursor_2;
-	public static TextureRegion button_play, button_quit, button_options;
+	public static TextureRegion button_play, button_quit, button_options, button_sound, button_yes, button_no;
 	
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
@@ -53,7 +53,9 @@ public class TextureLoader{
 		
 		button_play = load("button_play");
 		button_quit = load("button_quit");
-		button_options = load("button_options");
+		button_sound = load("button_sound");
+		button_yes = load("button_yes");
+		button_no = load("button_no");
 		
 		
 		

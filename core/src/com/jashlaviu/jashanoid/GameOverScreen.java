@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.jashlaviu.jashanoid.menu.MainMenuScreen;
 
 public class GameOverScreen extends ScreenAdapter{
 	
@@ -35,8 +36,7 @@ public class GameOverScreen extends ScreenAdapter{
 		batch.end();
 		
 		if(Gdx.input.isKeyJustPressed(Keys.R)){
-			game.newGame();
-			game.setScreen(game.getGameScreen());
+			game.setScreen(new MainMenuScreen(game));
 		}
 		
 	}

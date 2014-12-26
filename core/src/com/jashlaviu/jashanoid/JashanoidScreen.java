@@ -74,8 +74,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		platform = new Platform();		
 		takeOffPoint = getDefaultTakeOff();
 		
-		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), 
-				Gdx.graphics.getHeight()), game.getBatch());		
+		stage = new Stage(game.getViewport(), game.getBatch());		
 		
 		stage.addActor(platform);
 		
@@ -133,8 +132,8 @@ public class JashanoidScreen extends ScreenAdapter{
 		if(level == 1) return TextureLoader.back_blue;		
 		if(level == 2) return TextureLoader.back_green;
 		if(level == 3) return TextureLoader.back_red;
-		if(level == 4) return TextureLoader.back_violet;
-		if(level == 5) return TextureLoader.back_yellow;
+		if(level == 4) return TextureLoader.back_yellow;
+		if(level == 5) return TextureLoader.back_violet;
 		
 		else
 			return TextureLoader.back_blue;
@@ -475,8 +474,14 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	@Override
+	public void show() {
+		stage.setViewport(game.getViewport());
+	}
+	
+	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height);
+		game.updateViewport(width, height);
+		stage.getViewport().update(game.getViewport().getScreenWidth(), game.getViewport().getScreenHeight());
 	}	
 	
 	@Override
