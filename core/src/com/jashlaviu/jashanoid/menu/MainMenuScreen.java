@@ -10,15 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.Jashanoid;
 import com.jashlaviu.jashanoid.SoundLoader;
 import com.jashlaviu.jashanoid.TextureLoader;
+import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
 public class MainMenuScreen extends ScreenAdapter{
 
 	private Jashanoid game;
 	private Stage stage;
+	private ActorJashanoid jashanoidName;
 	private MenuButton playButton, quitButton, soundButton, yesButton, noButton;
 	private MenuButton[] menuButtons;
 	private Cursor cursor;
@@ -35,20 +36,26 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		stage = new Stage(game.getViewport(), game.getBatch());
 		
-		playButton = new MenuButton(TextureLoader.button_play, -200, 300);
-		soundButton = new MenuButton(TextureLoader.button_sound, -200, 200);
+		int heightGap = 80;
+		
+		playButton = new MenuButton(TextureLoader.button_play, -200, 100 + heightGap*2);
+		soundButton = new MenuButton(TextureLoader.button_sound, -200, 100 + heightGap);
 		quitButton = new MenuButton(TextureLoader.button_quit, -200, 100);
-		yesButton = new MenuButton(TextureLoader.button_yes, 530, 205);
-		noButton = new MenuButton(TextureLoader.button_no, 530, 205);
+		yesButton = new MenuButton(TextureLoader.button_yes, 530, soundButton.getY()+5);
+		noButton = new MenuButton(TextureLoader.button_no, 530, soundButton.getY()+5);
+		
+		jashanoidName = new ActorJashanoid(TextureLoader.jashanoid);
+		jashanoidName.setPosition(-350, 400);
 		
 		menuButtons = new MenuButton[] {playButton, soundButton, quitButton};
 		
-		cursor = new Cursor(playButton.getX() - 90, playButton.getY() - 10, 3, 100);
+		cursor = new Cursor(playButton.getX() - 90, playButton.getY() - 10, 3, heightGap);
 		
 		stage.addActor(cursor);	
 		stage.addActor(playButton);
 		stage.addActor(soundButton);
 		stage.addActor(quitButton);	
+		stage.addActor(jashanoidName);
 
 		
 		for(Actor actors : stage.getActors()){
