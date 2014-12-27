@@ -10,7 +10,7 @@ public class TextureLoader{
 	public TextureAtlas atlas;
 	public static TextureRegion platform, ball, back_blue, back_gui, back_green, back_red, back_violet, back_yellow;
 	public static TextureRegion bonus_expand, bonus_glue, bonus_level, bonus_life, bonus_slow, bonus_three;
-	public static TextureRegion brick_01, brick_02, brick_03, brick_11, brick_12, brick_21, ball_02;
+	public static TextureRegion brick_01, brick_02, brick_03, brick_04, brick_05, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
 	public static TextureRegion jashanoid, game_over, cursor, cursor_2;
 	public static TextureRegion button_play, button_quit, button_options, button_sound, button_yes, button_no;
@@ -27,9 +27,12 @@ public class TextureLoader{
 		
 		ball = load("ball1");
 		ball_02 = load("ball2");
+		
 		brick_01 = load("brick", 1);
 		brick_02 = load("brick", 2);
 		brick_03 = load("brick", 3);
+		brick_04 = load("brick", 4);
+		brick_05 = load("brick", 5);
 		
 		brick_11 = load("brick", 11);
 		brick_12 = load("brick", 12);

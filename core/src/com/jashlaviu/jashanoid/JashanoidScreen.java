@@ -129,11 +129,11 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	public TextureRegion getLevelTexture(){
-		if(level == 1) return TextureLoader.back_blue;		
-		if(level == 2) return TextureLoader.back_green;
-		if(level == 3) return TextureLoader.back_red;
-		if(level == 4) return TextureLoader.back_yellow;
-		if(level == 5) return TextureLoader.back_violet;
+		if(level == 1 || level == 6) return TextureLoader.back_blue;		
+		if(level == 2 || level == 7) return TextureLoader.back_green;
+		if(level == 3 || level == 8) return TextureLoader.back_red;
+		if(level == 4 || level == 9) return TextureLoader.back_yellow;
+		if(level == 5 || level == 10) return TextureLoader.back_violet;
 		
 		else
 			return TextureLoader.back_blue;
@@ -286,7 +286,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 20){		// 20% chance of a new bonus	
+			if(MathUtils.random(100) < 16){		// 16% chance of a new bonus	
 				// create a random new bonus is the destroyed brick position
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());  
 				bonuses.add(nBonus);
@@ -303,7 +303,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
 		int ran = MathUtils.random(1, 100);
 				
-		if(ran <= 60){
+		if(ran <= 70){
 			int ran2 = MathUtils.random(1, 4);
 			if(ran2 == 1)
 				return new BonusSlow(screen, x, y);

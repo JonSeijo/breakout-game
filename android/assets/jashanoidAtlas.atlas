@@ -164,17 +164,31 @@ brick
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 11
+  index: 4
 brick
   rotate: false
   xy: 819, 310
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
-  index: 12
+  index: 5
 brick
   rotate: false
   xy: 819, 288
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 11
+brick
+  rotate: false
+  xy: 787, 266
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: 12
+brick
+  rotate: false
+  xy: 739, 244
   size: 55, 20
   orig: 55, 20
   offset: 0, 0

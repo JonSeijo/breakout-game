@@ -53,9 +53,7 @@ public class Ball extends ActorJashanoid {
 	
 	public void moreSpeed(){
 		if(speed < 650)
-			speed += 2;
-		System.out.println(speed);
-		
+			speed += 2;		
 	}
 	
 	public Vector2 getDirection(){
