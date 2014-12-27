@@ -22,6 +22,7 @@ public class Score {
 		pointsToLife = pointsToLifeGap;		
 		
 		prefs = Gdx.app.getPreferences("jashlaviu.jashanoid.preferences.score");
+		hiScore = prefs.getInteger("hiscore");
 	}
 	
 	public void addPoints(int points){

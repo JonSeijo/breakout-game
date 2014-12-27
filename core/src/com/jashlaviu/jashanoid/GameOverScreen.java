@@ -14,7 +14,6 @@ import com.jashlaviu.jashanoid.menu.MainMenuScreen;
 public class GameOverScreen extends ScreenAdapter{
 	
 	private Jashanoid game;
-	private TextureRegion regionGameOver;
 	private SpriteBatch batch;
 	private Stage stage;
 	
@@ -22,14 +21,14 @@ public class GameOverScreen extends ScreenAdapter{
 	private BitmapFont fontSmall, fontBig;
 	
 	public GameOverScreen(Jashanoid game) {
-		this.game = game;
-		regionGameOver = TextureLoader.game_over;
+		this.game = game;		
 		this.batch = game.getBatch();
 		
 		fontSmall = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular26.fnt"));
 		fontBig = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular120.fnt"));
 		
-		score = game.getGameScreen().getScore();		
+		score = game.getGameScreen().getScore();	
+		
 		if(score.getPoints() > score.getHiScore()){
 			score.setHiScore(score.getPoints());
 		}
