@@ -286,7 +286,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	private void randomBonus(Brick brick){
 		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 15){		// 15% chance of a new bonus	
+			if(MathUtils.random(100) < 20){		// 20% chance of a new bonus	
 				// create a random new bonus is the destroyed brick position
 				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());  
 				bonuses.add(nBonus);
@@ -303,7 +303,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
 		int ran = MathUtils.random(1, 100);
 				
-		if(ran <= 70){
+		if(ran <= 60){
 			int ran2 = MathUtils.random(1, 4);
 			if(ran2 == 1)
 				return new BonusSlow(screen, x, y);
@@ -411,6 +411,7 @@ public class JashanoidScreen extends ScreenAdapter{
 				ball.remove();		//Removes actor from the stage
 
 				if(balls.isEmpty()){
+					SoundLoader.lostLive.play(soundVolume);
 					lives--;
 					needReset = true;
 				}
@@ -465,7 +466,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	public void addLife(){
-		SoundLoader.life.play(soundVolume);
+		SoundLoader.life.play(soundVolume/2f);
 		lives++;
 	}
 	

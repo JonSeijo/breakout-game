@@ -16,7 +16,7 @@ public class BonusThree extends Bonus{
 	public void apply() {
 		super.apply();
 		
-		SoundLoader.three.play(gameScreen.getSoundVolume());
+		SoundLoader.three.play(gameScreen.getSoundVolume()/2f);
 
 		Ball oldBall = gameScreen.getBall();
 		

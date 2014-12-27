@@ -43,8 +43,8 @@ public class TextureLoader{
 		bonus_slow = load("bonus_slow", 1);
 		bonus_three = load("bonus_three", 1);
 		
-		platform_04 = load("platform", 4);
-		platform_05 = load("platform", 5);
+		platform_04 = load("platform", 6);
+		platform_05 = load("platform", 7);
 		
 		game_over = load("gameOver");	
 		jashanoid = load("jashanoid");
@@ -52,9 +52,9 @@ public class TextureLoader{
 		cursor = load("menu_cursor");
 		cursor_2 = load("cursor", 2);
 		
-		button_play = load("button_play");
-		button_quit = load("button_quit");
-		button_sound = load("button_sound");
+		button_play = load("button_play2");
+		button_quit = load("button_quit2");
+		button_sound = load("button_sound2");
 		button_yes = load("button_yes");
 		button_no = load("button_no");
 		

@@ -98,7 +98,7 @@ public class MainMenuScreen extends ScreenAdapter{
 			cursor.moveUp();
 		}
 		
-		if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
+		if(Gdx.input.isKeyJustPressed(Keys.ENTER) || Gdx.input.isKeyJustPressed(Keys.SPACE)){
 			int index = cursor.getIndex();
 			
 			if(menuButtons[index] == playButton){
