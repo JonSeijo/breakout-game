@@ -3,6 +3,7 @@ package com.jashlaviu.jashanoid;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -10,9 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class PauseScreen extends ScreenAdapter{
 	
 	private Jashanoid game;
+	private JashanoidScreen gameScreen;
 	private SpriteBatch batch;
 	private BitmapFont fontBig;
 	private Stage stage;
+	
+	private Gui gui;
 	
 	/**
 	 * A new screen without background, lets you see the previous screen (the level)
@@ -20,8 +24,11 @@ public class PauseScreen extends ScreenAdapter{
 	 * creating a pause until the user decides to return to the previus screen
 	 * @param game
 	 */
-	public PauseScreen(Jashanoid game) {
+	public PauseScreen(Jashanoid game, JashanoidScreen gameScreen) {
 		this.game = game;
+		this.gameScreen = gameScreen;
+		this.gui = gameScreen.getGui();
+		
 		this.batch = game.getBatch();
 		fontBig = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular120.fnt"));
 		
@@ -29,7 +36,13 @@ public class PauseScreen extends ScreenAdapter{
 	}
 		
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		gameScreen.renderBackground();
+		gui.render(batch);		
+		
 		batch.begin();
 		fontBig.draw(batch, "PAUSED", 130, 350);
 		batch.end();		

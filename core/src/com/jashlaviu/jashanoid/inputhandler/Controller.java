@@ -58,7 +58,7 @@ public class Controller {
 	}
 	
 	public void pause(){
-		game.setScreen(new PauseScreen(game));
+		game.setScreen(new PauseScreen(game, gameScreen));
 	}
 	
 	public void unpause(){

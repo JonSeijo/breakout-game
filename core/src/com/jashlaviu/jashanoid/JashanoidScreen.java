@@ -110,7 +110,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		// PAUSE, details inside.
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER) || Gdx.input.isKeyJustPressed(Keys.ESCAPE))
-			game.setScreen(new PauseScreen(game)); 
+			game.setScreen(new PauseScreen(game, this)); 
 		
 	}
 	
@@ -541,6 +541,10 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	public Score getScore(){
 		return score;
+	}
+	
+	public Gui getGui(){
+		return gui;
 	}
 	
 }
