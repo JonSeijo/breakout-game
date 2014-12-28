@@ -56,6 +56,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Score score;
 	
 	private int lives, level;
+	private final int MAXLEVEL;
 	
 	private boolean needsGlue;
 	
@@ -86,7 +87,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		soundVolume = SoundLoader.soundVolume;
 		
 		lives = 3;
-		level = 0;
+		MAXLEVEL = 10;
 		levelUp();
 	}
 
@@ -147,28 +148,31 @@ public class JashanoidScreen extends ScreenAdapter{
 	}
 	
 	
-	public void levelUp() {		
-		level++;
-		score.addPoints(Score.LEVEL);
-		
-		SoundLoader.level.play(soundVolume);
-		
-		for(Brick brick : bricks)
-			brick.remove();
-		bricks.clear();
-		
-		for(Bonus bonus : bonuses)
-			bonus.remove();
-		bonuses.clear();
-		
-		levelCreator.setLevel(level);
-		for(Brick brick : bricks)
-			stage.addActor(brick);		
-		
-		for(Ball ball : balls) ball.remove();	//Remove balls from stage 	
-		balls.clear();		//Deletes balls in array
-		
-		resetGame();		
+	public void levelUp() {
+		if(level < MAXLEVEL){
+			level++;
+			score.addPoints(Score.LEVEL);		
+			SoundLoader.level.play(soundVolume);		
+			
+			for(Brick brick : bricks)
+				brick.remove();
+			bricks.clear();
+			
+			for(Bonus bonus : bonuses)
+				bonus.remove();
+			bonuses.clear();
+			
+			levelCreator.setLevel(level);
+			for(Brick brick : bricks)
+				stage.addActor(brick);		
+			
+			for(Ball ball : balls) ball.remove();	//Remove balls from stage 	
+			balls.clear();		//Deletes balls in array
+			
+			resetGame();		
+		}else{
+			game.setScreen(new WinScreen(game));
+		}
 	}
 	
 	private void updateGameOver(){
