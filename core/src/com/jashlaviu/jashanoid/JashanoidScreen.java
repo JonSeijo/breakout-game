@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -91,11 +92,10 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	@Override
 	public void render(float delta) {
-		// Gdx.gl.glClearColor(1/255f, 80/255f, 150/255f, 1);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		drawBackground();
+		renderBackground(); 
 		
 		bounds.draw(shaper);		
 		stage.draw();
@@ -103,14 +103,21 @@ public class JashanoidScreen extends ScreenAdapter{
 		controller.update(delta);
 		stage.act();
 		updateLogic(delta);
-		updateGameOver();
+		updateGameOver();		
+
+		gui.render(batch);  //Draw the score, lives	and level.	
 		
-		batch.begin();
-		gui.render(batch);
-		batch.end();
+		// PAUSE, details inside.
+		if(Gdx.input.isKeyJustPressed(Keys.ENTER) || Gdx.input.isKeyJustPressed(Keys.ESCAPE))
+			game.setScreen(new PauseScreen(game)); 
+		
 	}
 	
-	public void drawBackground(){		
+	/**
+	 * Draws the correct backgroud for each 
+	 * level specified in getLevelTexture()
+	 */
+	public void renderBackground(){		
 		batch.begin();		
 			
 		for(int y = 0; y < Bounds.GAME_Y_UP; y += 116){
@@ -318,12 +325,12 @@ public class JashanoidScreen extends ScreenAdapter{
 				return new BonusExpand(screen, x, y);
 			
 		}else{
-			int ran2 = MathUtils.random(1, 2);
-			if(ran2 == 1)
-				return new BonusLevel(screen, x, y);
+			int ran2 = MathUtils.random(1, 3);
+			if(ran2 == 1 || ran2 == 2)
+				return new BonusLife(screen, x, y);
 			
 			if(ran2 == 2)
-				return new BonusLife(screen, x, y);
+				return new BonusLevel(screen, x, y);
 		}
 		
 		return null;		

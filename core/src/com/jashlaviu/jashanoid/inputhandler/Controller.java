@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.jashlaviu.jashanoid.Bounds;
 import com.jashlaviu.jashanoid.Jashanoid;
 import com.jashlaviu.jashanoid.JashanoidScreen;
+import com.jashlaviu.jashanoid.PauseScreen;
 import com.jashlaviu.jashanoid.actors.Platform;
 
 public class Controller {
@@ -54,6 +55,14 @@ public class Controller {
 		}
 		
 		
+	}
+	
+	public void pause(){
+		game.setScreen(new PauseScreen(game));
+	}
+	
+	public void unpause(){
+		game.setScreen(game.getGameScreen());
 	}
 	
 	public void developJustPressed(boolean bool){

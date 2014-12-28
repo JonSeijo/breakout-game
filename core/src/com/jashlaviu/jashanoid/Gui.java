@@ -25,6 +25,8 @@ public class Gui {
 		
 		int leftMargin = 60;
 		
+		batch.begin();
+		
 		font.draw(batch, "Score", Bounds.SCORE_X_LEFT + 60, 580);
 		font.draw(batch, ""+score.getPoints(), Bounds.SCORE_X_LEFT + leftMargin, 550);
 		
@@ -37,6 +39,9 @@ public class Gui {
 		for(int i = 1; i < gameScreen.getLives(); i++){
 			batch.draw(livesRegion, Bounds.GAME_X_RIGHT + 45, 400 - i * 30);
 		}
+		
+		
+		batch.end();
 	}
 	
 	public void dispose(){
