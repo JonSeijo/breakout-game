@@ -52,6 +52,23 @@ public class PauseScreen extends ScreenAdapter{
 			game.setScreen(game.getGameScreen());
 		}
 		
+		
+		// Cheat:  if game is paused, L + E + V key combination goes to next level.
+		if(Gdx.input.isKeyPressed(Keys.L) && 
+				Gdx.input.isKeyPressed(Keys.E) && 
+				Gdx.input.isKeyPressed(Keys.V)){
+			game.setScreen(game.getGameScreen());
+			gameScreen.levelUp();	
+		}
+		
+		// Cheat:  if game is paused, L + I + F key combination give extra life.
+		if(Gdx.input.isKeyPressed(Keys.L) && 
+				Gdx.input.isKeyPressed(Keys.I) && 
+				Gdx.input.isKeyPressed(Keys.F)){
+			game.setScreen(game.getGameScreen());
+			gameScreen.addLife();	
+		}
+		
 	}
 	
 	

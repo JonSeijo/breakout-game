@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 import com.jashlaviu.jashanoid.menu.MainMenuScreen;
 
 public class WinScreen extends ScreenAdapter{
@@ -16,6 +17,9 @@ public class WinScreen extends ScreenAdapter{
 	private BitmapFont fontBig, fontSmall;
 	private Stage stage;
 	private Score score;
+	private ActorJashanoid jashlaviuDev;
+	
+	private boolean drawSelector;
 	
 	public WinScreen(Jashanoid game) {
 		this.game = game;
@@ -24,10 +28,13 @@ public class WinScreen extends ScreenAdapter{
 		score = game.getGameScreen().getScore();
 		
 		fontBig = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular120.fnt"));		
-		fontSmall = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular26.fnt"));		
+		fontSmall = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular26.fnt"));	
+		
+		jashlaviuDev = new ActorJashanoid(TextureLoader.jashlaviu);
+		jashlaviuDev.setPosition(600, 10);
 		
 		stage = new Stage(game.getViewport(), batch);	
-		
+		stage.addActor(jashlaviuDev);		
 	}	
 	
 	@Override
@@ -41,28 +48,44 @@ public class WinScreen extends ScreenAdapter{
 			for(int x = 0; x < stage.getWidth(); x += 121)
 				batch.draw(TextureLoader.back_gui, x, y);	
 		
-		fontBig.draw(batch, "VICTORY", 160, 550);	
+		if(drawSelector){
+			game.getBatch().draw(TextureLoader.jashlaviu_selector, jashlaviuDev.getX()-2, jashlaviuDev.getY()-2);
+		}
 		
+		fontBig.draw(batch, "VICTORY", 160, 550);			
 		
 		fontSmall.draw(batch, "YOUR SCORE", 150, 420);
 		fontSmall.draw(batch, "" + score.getPoints(), 170, 380);		
 		fontSmall.draw(batch, "YOUR MAX SCORE", 450, 420);		
 		fontSmall.draw(batch, "" + score.getHiScore(), 500, 380);		
 		
-		batch.draw(TextureLoader.trophy, 300, 200);
+		batch.draw(TextureLoader.trophy, 35, 470);
+		batch.draw(TextureLoader.trophy, 655, 470);
 		
-		fontSmall.draw(batch, "Thanks for playing!", 100, 100);
-		fontSmall.draw(batch, "New levels in future updates!", 50, 50);		
+		fontSmall.draw(batch, "Thanks for playing!", 260, 250);
+		fontSmall.draw(batch, "New levels in future updates!", 200, 200);	
 		
-		fontSmall.draw(batch, "Main Menu", 610, 100);
-		fontSmall.draw(batch, "Press [ESC]", 600, 50);
-		
+		fontSmall.draw(batch, "Press [ESC] load Main Menu", 20, 35);		
+	
 		
 		batch.end();		
 		
 		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)){
 			game.setScreen(new MainMenuScreen(game));
 		}
+		
+		if(jashlaviuDev.getCollisionBounds().contains(Gdx.input.getX(), 
+				game.getViewport().getScreenHeight() - Gdx.input.getY())){
+			
+			drawSelector = true;			
+			if(Gdx.input.justTouched())		
+				Gdx.net.openURI("https://twitter.com/jashlaviu");			
+			
+		}else drawSelector = false;
+		
+		stage.act();
+		stage.draw();
+		
 	}
 	
 	public void hide(){

@@ -43,9 +43,10 @@ public class GameOverScreen extends ScreenAdapter{
 		
 		batch.begin();
 		
-		for(int y = 0; y < stage.getHeight(); y += 116)
+		/*for(int y = 0; y < stage.getHeight(); y += 116)
 			for(int x = 0; x < stage.getWidth(); x += 121)
 				batch.draw(TextureLoader.back_gui, x, y);		
+		*/		
 		
 		fontBig.draw(batch, "GAME OVER", 90, 500);
 		

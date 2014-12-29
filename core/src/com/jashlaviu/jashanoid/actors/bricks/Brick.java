@@ -22,11 +22,13 @@ public class Brick extends ActorJashanoid {
 	}
 	
 	public void makeVulnerable(){
+		//only make vulnerable if it isnt indestructible.
 		if(!isIndestructible()){
 			currentHits++;
 			if(currentHits >= maxHits)
 				vulnerable = true;
 		}
+		
 	}
 	
 	public boolean isIndestructible(){

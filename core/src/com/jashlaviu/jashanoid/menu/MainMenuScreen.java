@@ -134,14 +134,12 @@ public class MainMenuScreen extends ScreenAdapter{
 		if(jashlaviuDev.getCollisionBounds().contains(Gdx.input.getX(), 
 				game.getViewport().getScreenHeight() - Gdx.input.getY())){
 			
-			drawSelector = true;
-			
-			if(Gdx.input.justTouched()){			
+			drawSelector = true;			
+			if(Gdx.input.justTouched())		
 				Gdx.net.openURI("https://twitter.com/jashlaviu");			
-			}
-		}else{
-			drawSelector = false;
-		}
+			
+		}else drawSelector = false;
+		
 		
 		if(animationStarted){
 			animationTime += delta;

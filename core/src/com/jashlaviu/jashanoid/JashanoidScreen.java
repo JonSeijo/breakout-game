@@ -360,9 +360,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		for(Ball ball : balls){
 			Rectangle ballBounds = ball.getCollisionBounds();
 			
-			if(ballBounds.overlaps(platform.getCollisionBounds())){
-				
-	
+			if(ballBounds.overlaps(platform.getCollisionBounds())){	
 
 				if(ballBounds.y >= platform.getCollisionBounds().y + platform.getHeight()/2){  //If hits from top
 					platform.setPlayAnimation(true);				
