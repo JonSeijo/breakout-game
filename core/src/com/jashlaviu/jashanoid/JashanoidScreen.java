@@ -333,11 +333,12 @@ public class JashanoidScreen extends ScreenAdapter{
 			if(ran2 == 1 || ran2 == 2)
 				return new BonusLife(screen, x, y);
 			
-			if(ran2 == 2)
+			if(ran2 == 3)
 				return new BonusLevel(screen, x, y);
 		}
 		
-		return null;		
+		return null;
+			
 	}
 	
 

@@ -13,273 +13,287 @@ back
   index: 3
 back
   rotate: false
-  xy: 204, 202
+  xy: 164, 198
   size: 121, 116
   orig: 121, 116
   offset: 0, 0
   index: 4
 back
   rotate: false
-  xy: 506, 340
+  xy: 752, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: 1
 back_blue
   rotate: false
-  xy: 327, 222
+  xy: 164, 80
   size: 121, 116
   orig: 121, 116
   offset: 0, 0
   index: -1
 back_green
   rotate: false
-  xy: 125, 46
+  xy: 287, 62
   size: 121, 116
   orig: 121, 116
   offset: 0, 0
   index: -1
 back_red
   rotate: false
-  xy: 450, 222
+  xy: 410, 62
   size: 121, 116
   orig: 121, 116
   offset: 0, 0
   index: -1
 back_violet
   rotate: false
-  xy: 573, 288
+  xy: 506, 244
   size: 121, 116
   orig: 121, 116
   offset: 0, 0
   index: -1
 back_yellow
   rotate: false
-  xy: 696, 288
+  xy: 629, 244
   size: 121, 116
   orig: 121, 116
   offset: 0, 0
   index: -1
 ball1
   rotate: false
-  xy: 304, 322
+  xy: 125, 146
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ball2
   rotate: false
-  xy: 914, 428
+  xy: 867, 362
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 block1
   rotate: false
-  xy: 673, 266
+  xy: 810, 358
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block2
   rotate: false
-  xy: 102, 2
+  xy: 804, 336
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 block3
   rotate: false
-  xy: 625, 244
+  xy: 804, 314
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: -1
 bonus_expand
   rotate: false
-  xy: 730, 266
+  xy: 804, 292
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_glue
   rotate: false
-  xy: 682, 244
+  xy: 804, 270
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_level
   rotate: false
-  xy: 327, 200
+  xy: 910, 376
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_life
   rotate: false
-  xy: 384, 200
+  xy: 967, 376
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_slow
   rotate: false
-  xy: 441, 200
+  xy: 752, 240
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 bonus_three
   rotate: false
-  xy: 498, 200
+  xy: 809, 248
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 159, 2
+  xy: 809, 226
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 1
 brick
   rotate: false
-  xy: 625, 222
+  xy: 489, 222
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 2
 brick
   rotate: false
-  xy: 682, 222
+  xy: 546, 222
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 3
 brick
   rotate: false
-  xy: 819, 332
+  xy: 489, 200
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 4
 brick
   rotate: false
-  xy: 819, 310
+  xy: 603, 222
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 5
 brick
   rotate: false
-  xy: 819, 288
+  xy: 546, 200
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 11
 brick
   rotate: false
-  xy: 787, 266
+  xy: 660, 222
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 12
 brick
   rotate: false
-  xy: 739, 244
+  xy: 603, 200
   size: 55, 20
   orig: 55, 20
   offset: 0, 0
   index: 21
 button_credits2
   rotate: false
-  xy: 510, 458
+  xy: 510, 454
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_no
   rotate: false
-  xy: 914, 446
+  xy: 914, 398
   size: 50, 40
   orig: 50, 40
   offset: 0, 0
   index: -1
 button_options
   rotate: false
-  xy: 2, 268
+  xy: 304, 336
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_play
   rotate: false
-  xy: 304, 340
+  xy: 510, 402
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_play2
   rotate: false
-  xy: 510, 406
+  xy: 712, 454
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_quit
   rotate: false
-  xy: 712, 458
+  xy: 712, 402
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_quit2
   rotate: false
-  xy: 2, 216
+  xy: 304, 284
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_sound
   rotate: false
-  xy: 712, 406
+  xy: 287, 232
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_sound2
   rotate: false
-  xy: 2, 164
+  xy: 287, 180
   size: 200, 50
   orig: 200, 50
   offset: 0, 0
   index: -1
 button_yes
   rotate: false
-  xy: 573, 224
+  xy: 966, 398
   size: 50, 40
   orig: 50, 40
   offset: 0, 0
   index: -1
 cursor
   rotate: false
-  xy: 2, 320
+  xy: 2, 316
   size: 300, 70
   orig: 300, 70
   offset: 0, 0
   index: 2
 jashanoid
   rotate: false
-  xy: 2, 392
+  xy: 2, 388
   size: 506, 116
   orig: 506, 116
   offset: 0, 0
   index: -1
+jashlaviu_mini
+  rotate: false
+  xy: 662, 366
+  size: 146, 34
+  orig: 146, 34
+  offset: 0, 0
+  index: -1
+jashlaviu_selector
+  rotate: false
+  xy: 510, 362
+  size: 150, 38
+  orig: 150, 38
+  offset: 0, 0
+  index: -1
 menu_cursor
   rotate: false
-  xy: 819, 354
+  xy: 752, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
@@ -293,36 +307,43 @@ palete
   index: -1
 platform
   rotate: false
-  xy: 204, 180
+  xy: 2, 2
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: 3
 platform
   rotate: false
-  xy: 914, 488
+  xy: 914, 484
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 4
 platform
   rotate: false
-  xy: 573, 266
+  xy: 810, 380
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 5
 platform
   rotate: false
-  xy: 2, 2
+  xy: 914, 462
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 6
 platform
   rotate: false
-  xy: 114, 24
+  xy: 914, 440
   size: 98, 20
   orig: 98, 20
   offset: 0, 0
   index: 7
+trophy
+  rotate: false
+  xy: 2, 164
+  size: 160, 150
+  orig: 160, 150
+  offset: 0, 0
+  index: -1

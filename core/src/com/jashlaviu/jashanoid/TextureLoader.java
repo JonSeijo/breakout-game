@@ -12,7 +12,7 @@ public class TextureLoader{
 	public static TextureRegion bonus_expand, bonus_glue, bonus_level, bonus_life, bonus_slow, bonus_three;
 	public static TextureRegion brick_01, brick_02, brick_03, brick_04, brick_05, brick_11, brick_12, brick_21, ball_02;
 	public static TextureRegion hearth, platform_02, platform_03, platform_04, platform_05;
-	public static TextureRegion jashanoid, game_over, cursor, cursor_2;
+	public static TextureRegion jashanoid, game_over, cursor, cursor_2, trophy, jashlaviu, jashlaviu_selector;
 	public static TextureRegion button_play, button_quit, button_options, button_sound, button_yes, button_no;
 	
 	public TextureLoader(){
@@ -61,7 +61,9 @@ public class TextureLoader{
 		button_yes = load("button_yes");
 		button_no = load("button_no");
 		
-		
+		trophy = load("trophy");
+		jashlaviu = load("jashlaviu_mini");
+		jashlaviu_selector = load("jashlaviu_selector");
 		
 	}
 	

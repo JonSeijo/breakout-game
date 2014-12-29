@@ -2,6 +2,7 @@ package com.jashlaviu.jashanoid.menu;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -19,14 +20,14 @@ public class MainMenuScreen extends ScreenAdapter{
 
 	private Jashanoid game;
 	private Stage stage;
-	private ActorJashanoid jashanoidName;
+	private ActorJashanoid jashanoidName, jashlaviuDev;
 	private MenuButton playButton, quitButton, soundButton, yesButton, noButton;
 	private MenuButton[] menuButtons;
 	private Cursor cursor;
 	
 	private boolean isSound = true;
 	private boolean showingOptions = false;
-	
+	private boolean drawSelector;
 	
 	private boolean animationStarted;
 	private float animationTime;
@@ -47,6 +48,9 @@ public class MainMenuScreen extends ScreenAdapter{
 		jashanoidName = new ActorJashanoid(TextureLoader.jashanoid);
 		jashanoidName.setPosition(-350, 400);
 		
+		jashlaviuDev = new ActorJashanoid(TextureLoader.jashlaviu);
+		jashlaviuDev.setPosition(-490, 10);
+		
 		menuButtons = new MenuButton[] {playButton, soundButton, quitButton};
 		
 		cursor = new Cursor(playButton.getX() - 90, playButton.getY() - 10, 3, heightGap);
@@ -56,6 +60,7 @@ public class MainMenuScreen extends ScreenAdapter{
 		stage.addActor(soundButton);
 		stage.addActor(quitButton);	
 		stage.addActor(jashanoidName);
+		stage.addActor(jashlaviuDev);
 
 		
 		for(Actor actors : stage.getActors()){
@@ -83,6 +88,10 @@ public class MainMenuScreen extends ScreenAdapter{
 			for(int x = 0; x < stage.getWidth(); x += 121)
 				game.getBatch().draw(TextureLoader.back_gui, x, y);			
 	
+		if(drawSelector){
+			game.getBatch().draw(TextureLoader.jashlaviu_selector, jashlaviuDev.getX()-2, jashlaviuDev.getY()-2);
+		}
+		
 		game.getBatch().end();
 
 		
@@ -120,6 +129,18 @@ public class MainMenuScreen extends ScreenAdapter{
 			if(menuButtons[index] == soundButton){				
 				handleSoundOptions();
 			}
+		}
+		
+		if(jashlaviuDev.getCollisionBounds().contains(Gdx.input.getX(), 
+				game.getViewport().getScreenHeight() - Gdx.input.getY())){
+			
+			drawSelector = true;
+			
+			if(Gdx.input.justTouched()){			
+				Gdx.net.openURI("https://twitter.com/jashlaviu");			
+			}
+		}else{
+			drawSelector = false;
 		}
 		
 		if(animationStarted){
