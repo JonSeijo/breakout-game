@@ -3,7 +3,6 @@ package com.jashlaviu.jashanoid;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 
 public class TextureLoader{
 	
@@ -15,6 +14,13 @@ public class TextureLoader{
 	public static TextureRegion jashanoid, game_over, cursor, cursor_2, trophy, jashlaviu, jashlaviu_selector;
 	public static TextureRegion button_play, button_quit, button_options, button_sound, button_yes, button_no;
 	
+	/**
+	 * This class loads and stores every texture in the game, using a Texture Atlas
+	 * The regions are public and static for easy acces through every class in the game.
+	 * Using regions and Texture Atlas means there is only one .png loaded (the atlas)
+	 * The dispose is called in main class Jashanoid
+	 * 
+	 */
 	public TextureLoader(){
 		atlas = new TextureAtlas(Gdx.files.internal("jashanoidAtlas.atlas"));
 		
@@ -65,21 +71,6 @@ public class TextureLoader{
 		jashlaviu = load("jashlaviu_mini");
 		jashlaviu_selector = load("jashlaviu_selector");
 		
-	}
-	
-	public static TextureRegion getRandomNormal(){
-		int rand = MathUtils.random(1, 3);
-		if(rand == 1)
-			return brick_01;
-				
-		if(rand == 2)
-			return brick_02;
-		
-		if(rand == 3)
-			return brick_03;
-		
-		
-		return null;
 	}
 	
 	public static TextureRegion getBall(){

@@ -4,11 +4,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.jashlaviu.jashanoid.JashanoidScreen;
 import com.jashlaviu.jashanoid.TextureLoader;
 
+/**
+ * Made to destroy bricks. It always moves in a direction.
+ * @author jonseijo
+ */
 public class Ball extends ActorJashanoid { 
 	
 	private JashanoidScreen screen;
 
 	private float speed;
+	private final float MAXSPEED;	
+	private boolean isMaxSpeed;
+	
 	private Vector2 direction;
 	
 	public Ball(JashanoidScreen screen, float posX, float posY, float dirX, float dirY) {
@@ -16,10 +23,11 @@ public class Ball extends ActorJashanoid {
 		setPosition(posX, posY);
 		updateCollisionBounds();
 		
-		this.screen = screen;
-		
+		this.screen = screen;		
 		direction = new Vector2(dirX, dirY);
+		
 		speed = 400;
+		MAXSPEED = 650 ;
 	}
 	
 	public Ball(JashanoidScreen screen, Vector2 pos, Vector2 dir){
@@ -29,15 +37,21 @@ public class Ball extends ActorJashanoid {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-
+		
+		// If the platform has "glue", don't move.
 		if(screen.getPlatform().hasGlue()){
 			setPosition(screen.getTakeOff().x, screen.getPlatform().getTop());	
-		}		
-		else moveInDirection(delta);		
+		}
+		else  //Move in its direction all the time. Direction is changed externally when needed.
+			moveInDirection(delta);		
 		
 		updateCollisionBounds();	
 	}
 	
+	/**
+	 * Uses delta time to move, to keep a constant movement between every FPS change.
+	 * @param delta
+	 */
 	public void moveInDirection(float delta){
 		moveBy(direction.x * speed * delta, direction.y * speed * delta);
 	}
@@ -51,9 +65,16 @@ public class Ball extends ActorJashanoid {
 		this.setDirection(direction.x, direction.y);
 	}
 	
+	/**
+	 * Add a small amount to speed unless unless the maxspeed is reached.
+	 */
 	public void moreSpeed(){
-		if(speed < 650)
-			speed += 2;		
+		if(speed < MAXSPEED){
+			speed += 2;	
+			isMaxSpeed = false;
+		}else
+			isMaxSpeed = true;
+	
 	}
 	
 	public Vector2 getDirection(){
@@ -66,6 +87,10 @@ public class Ball extends ActorJashanoid {
 	
 	public float getSpeed(){
 		return speed;
+	}
+	
+	public boolean isMaxSpeed(){
+		return isMaxSpeed;
 	}
 
 }

@@ -3,6 +3,12 @@ package com.jashlaviu.jashanoid.actors.bricks;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
+/**
+ * Parent class of every type of brick.
+ * Each brick child has its own TextureRegion and variables.
+ * @author jonseijo
+ *
+ */
 public class Brick extends ActorJashanoid {
 	
 	protected String type;

@@ -7,6 +7,11 @@ import com.jashlaviu.jashanoid.JashanoidScreen;
 import com.jashlaviu.jashanoid.PauseScreen;
 import com.jashlaviu.jashanoid.actors.Platform;
 
+/**
+ * Translates directed pressed input in game logic.
+ * @author jonseijo
+ *
+ */
 public class Controller {
 		
 	private Jashanoid game;
@@ -26,31 +31,39 @@ public class Controller {
 	
 	public void update(float delta){		
 		if(platformMovingRight){
+			//If the key 'order' is to move right, don't move right if collides.
 			if(platform.getRight() < Bounds.GAME_X_RIGHT){
 				platform.addAction(Actions.moveBy(platform.getSpeed() * delta, 0));
 				gameScreen.getTakeOff().x += platform.getSpeed() * delta;
 			}else{
+				// Move the platform to the right
 				platform.setPosition(Bounds.GAME_X_RIGHT - platform.getWidth(), platform.getY());
 			}
 			
 		}	
 		
 		if(platformMovingLeft){
+			//If the key 'order' is to move left, don't move left if collides.
 			if(platform.getX() > Bounds.GAME_X_LEFT){
 				platform.addAction(Actions.moveBy(-platform.getSpeed() * delta, 0));
 				gameScreen.getTakeOff().x -= platform.getSpeed() * delta;
 			}else{
+				// Move the platform to the left
 				platform.setPosition(Bounds.GAME_X_LEFT, platform.getY());
 			}
 		}	
-		
+
+		//Unglue
 		if(shootJustPressed){
 			shootJustPressed = false;
 			platform.setGlue(false);
 		}
 		
+		//Used for debugging
 		if(developJustPressed){
 			developJustPressed = false;
+			
+			
 		}
 		
 		

@@ -25,6 +25,7 @@ public class InputHandler extends InputAdapter{
 			return true;
 		}
 		
+		//These keys are active only when the game screen is on.
 		if(game.getScreen() == game.getGameScreen()){
 			if(keycode == Keys.SPACE){
 				control.shootJustPressed(true);

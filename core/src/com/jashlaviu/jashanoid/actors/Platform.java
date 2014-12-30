@@ -4,6 +4,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.jashlaviu.jashanoid.TextureLoader;
 
+/**
+ * The platform is used to hit the ball.
+ * It calculates the angle of the ball's direction.
+ * @author jonseijo
+ *
+ */
 public class Platform extends ActorJashanoid {
 	
 	private TextureRegion regionNormal, regionDown;
@@ -35,6 +41,7 @@ public class Platform extends ActorJashanoid {
 	public void act(float delta) {
 		super.act(delta);
 		
+		// up-down animation
 		if(playAnimation){		
 			animationCurrentTime += delta;
 			if(animationCurrentTime >= animationTime){
@@ -57,13 +64,11 @@ public class Platform extends ActorJashanoid {
 		//Collision point is relative to the platform
 		float collisionPoint = point.x + 8 - getX();  
 		
-		float minAngle = 152;
+		float minAngle = 152;   //min from left.
 		float maxAngle = 28;
 		
-		float angleSpan = maxAngle - minAngle;
-		
-		float scaledValue = collisionPoint / getWidth();		
-		float angle = minAngle + (scaledValue * angleSpan);
+		float angleSpan = maxAngle - minAngle;			
+		float angle = minAngle + (collisionPoint / getWidth() * angleSpan);
 		
 		Vector2 bounceDirection = new Vector2(1, 1);
 		bounceDirection.setAngle(angle);
@@ -72,6 +77,9 @@ public class Platform extends ActorJashanoid {
 		return bounceDirection;
 	}
 	
+	/**
+	 * Resets platform to a defaul position and sets glue.
+	 */
 	public void reset(){
 		this.setPosition(DEFAULT_X, DEFAULT_Y);	
 		setBounds(getX(), getY(), getDefaultWidth(), getHeight());
@@ -80,16 +88,25 @@ public class Platform extends ActorJashanoid {
 		setGlue(true);
 	}
 	
+	/*
+	 * Expands width * 1.5
+	 */
 	public void expand(){
 		setBounds(getX()-getWidth()/4, getY(), getWidth() * 1.5f, getHeight());
 		collisionBounds.setWidth(getWidth());
 	}
 	
+	/**
+	 * Returns to default width
+	 */
 	public void colapse(){
 		setBounds(getX(), getY(), getDefaultWidth(), getHeight());
 		collisionBounds.setWidth(getDefaultWidth());
 	}
 	
+	/**
+	 * Change between up-image and down-image
+	 */
 	public void toggleRegion(){
 		if(getRegion() == regionNormal)
 			setRegion(regionDown);

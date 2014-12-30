@@ -15,6 +15,13 @@ import com.jashlaviu.jashanoid.SoundLoader;
 import com.jashlaviu.jashanoid.TextureLoader;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
+/**
+ * Shows the main menu screen for the game.
+ * This is my first time trying to implement a Main Menu. IT WORKS!, 
+ * but the code is a mess, sorry.
+ * @author jonseijo
+ *
+ */
 public class MainMenuScreen extends ScreenAdapter{
 
 	private Jashanoid game;
@@ -41,6 +48,8 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		int heightGap = 80;
 		
+		//Button creation. They are WAY OFF to the left, because they will be animating 
+		//towards the center when the game starts
 		playButton = new MenuButton(TextureLoader.button_play, -200, 100 + heightGap*2);
 		soundButton = new MenuButton(TextureLoader.button_sound, -200, 100 + heightGap);
 		quitButton = new MenuButton(TextureLoader.button_quit, -200, 100);
@@ -55,6 +64,7 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		menuButtons = new MenuButton[] {playButton, soundButton, quitButton};
 		
+		//Create cursor in postion of button n°1 
 		cursor = new Cursor(playButton.getX() - 90, playButton.getY() - 10, 3, heightGap);
 		
 		stage.addActor(cursor);	
@@ -64,7 +74,7 @@ public class MainMenuScreen extends ScreenAdapter{
 		stage.addActor(jashanoidName);
 		stage.addActor(jashlaviuDev);
 
-		
+		//Make the move animation to the center. 
 		for(Actor actors : stage.getActors()){
 			SequenceAction seq = new SequenceAction();
 			seq.addAction(Actions.fadeOut(0));
@@ -86,10 +96,13 @@ public class MainMenuScreen extends ScreenAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		game.getBatch().begin();
+		
+		//Draw backgroud.
 		for(int y = 0; y < stage.getHeight(); y += 116)
 			for(int x = 0; x < stage.getWidth(); x += 121)
 				game.getBatch().draw(TextureLoader.back_gui, x, y);			
-	
+		
+		//Draw selector to the JashLaviu button if needed.
 		if(drawSelector){
 			game.getBatch().draw(TextureLoader.jashlaviu_selector, jashlaviuDev.getX()-2, jashlaviuDev.getY()-2);
 		}
@@ -99,36 +112,39 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		game.getBatch().end();
 
-		
+		//Move down the cursor
 		if(Gdx.input.isKeyJustPressed(Keys.DOWN)){
 			SoundLoader.platform_ball.play(SoundLoader.soundVolume);
 			setShowingOptions(false);
 			cursor.moveDown();		
 		}
 		
+		//Move up the cursor
 		if(Gdx.input.isKeyJustPressed(Keys.UP)){
 			SoundLoader.platform_ball.play(SoundLoader.soundVolume);
 			setShowingOptions(false);
 			cursor.moveUp();
 		}
 		
+		//Press the button the cursor is currently on
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER) || Gdx.input.isKeyJustPressed(Keys.SPACE)){
 			int index = cursor.getIndex();
 			
 			if(menuButtons[index] == playButton){
 				SoundLoader.menu.play(SoundLoader.soundVolume);
-				startOutAnimation();				
+				startOutAnimation();	//Play an outAnimation before stating			
 			}
 			
 			if(menuButtons[index] == soundButton){
-				handleSoundOptions();				
+				handleSoundOptions();	//Toggles the YES-NO options			
 			}				
 			
 			if(menuButtons[index] == quitButton){
-				Gdx.app.exit();	
+				Gdx.app.exit();	//Exit the app.
 			}
 		}
 		
+		//The YES-NO option in sound can alse be toggled by arrows, if cursor is on "sound" 
 		if(Gdx.input.isKeyJustPressed(Keys.RIGHT) || Gdx.input.isKeyJustPressed(Keys.LEFT)){
 			int index = cursor.getIndex();
 			if(menuButtons[index] == soundButton){				
@@ -136,6 +152,7 @@ public class MainMenuScreen extends ScreenAdapter{
 			}
 		}
 		
+		//If click on JashLaviu logo, go to the twitter page ;) 
 		if(jashlaviuDev.getCollisionBounds().contains(Gdx.input.getX(), 
 				game.getViewport().getScreenHeight() - Gdx.input.getY())){
 			
@@ -145,7 +162,7 @@ public class MainMenuScreen extends ScreenAdapter{
 			
 		}else drawSelector = false;
 		
-		
+		//Start a new game when the fade-out animation ends.
 		if(animationStarted){
 			animationTime += delta;
 			if(animationTime >= 0.6f){
@@ -158,6 +175,7 @@ public class MainMenuScreen extends ScreenAdapter{
 		stage.draw();	
 	}
 	
+
 	private void setShowingOptions(boolean bool){
 		showingOptions = bool;
 		if(!showingOptions){
@@ -167,6 +185,9 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 	}
 	
+	/**
+	 * Toggles between yes and no, adding and removing buttons.
+	 */
 	private void handleSoundOptions(){
 		if(showingOptions){		
 			if(isSound){
@@ -193,8 +214,10 @@ public class MainMenuScreen extends ScreenAdapter{
 		
 		}
 	}
-
 	
+	/**
+	 * Start the out animation before starting a new game.
+	 */
 	private void startOutAnimation(){
 		for(Actor actors : stage.getActors()){
 			SequenceAction seq = new SequenceAction();

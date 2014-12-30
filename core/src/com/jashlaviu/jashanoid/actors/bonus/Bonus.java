@@ -4,6 +4,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jashlaviu.jashanoid.JashanoidScreen;
 import com.jashlaviu.jashanoid.actors.ActorJashanoid;
 
+/**
+ * Parent of the different bonus types. All bonuses moves down.
+ * Each bonus child has its own TextureRegion and implements its "apply()"
+ * @author jonseijo
+ *
+ */
 public class Bonus extends ActorJashanoid {
 	
 	protected JashanoidScreen gameScreen;
@@ -14,8 +20,7 @@ public class Bonus extends ActorJashanoid {
 		setPosition(posX, posY);		
 		this.gameScreen = gameScreen;
 		
-		speed = 100;
-		
+		speed = 100;		
 	}
 	
 	public void apply(){

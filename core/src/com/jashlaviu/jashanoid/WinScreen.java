@@ -44,14 +44,17 @@ public class WinScreen extends ScreenAdapter{
 		
 		batch.begin();
 		
+		//Draw background
 		for(int y = 0; y < stage.getHeight(); y += 116)
 			for(int x = 0; x < stage.getWidth(); x += 121)
 				batch.draw(TextureLoader.back_gui, x, y);	
 		
+		//Selector of JashLaviu logo
 		if(drawSelector){
 			game.getBatch().draw(TextureLoader.jashlaviu_selector, jashlaviuDev.getX()-2, jashlaviuDev.getY()-2);
 		}
 		
+		//Draw text and scores
 		fontBig.draw(batch, "VICTORY", 160, 550);			
 		
 		fontSmall.draw(batch, "YOUR SCORE", 150, 420);
@@ -66,14 +69,15 @@ public class WinScreen extends ScreenAdapter{
 		fontSmall.draw(batch, "New levels in future updates!", 200, 200);	
 		
 		fontSmall.draw(batch, "Press [ESC] load Main Menu", 20, 35);		
-	
 		
 		batch.end();		
 		
+		//ESCAPE to return to main menu
 		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)){
 			game.setScreen(new MainMenuScreen(game));
 		}
 		
+		//If click on JashLaviu logo, go to the twitter page ;) 
 		if(jashlaviuDev.getCollisionBounds().contains(Gdx.input.getX(), 
 				game.getViewport().getScreenHeight() - Gdx.input.getY())){
 			
@@ -84,8 +88,7 @@ public class WinScreen extends ScreenAdapter{
 		}else drawSelector = false;
 		
 		stage.act();
-		stage.draw();
-		
+		stage.draw();		
 	}
 	
 	public void hide(){

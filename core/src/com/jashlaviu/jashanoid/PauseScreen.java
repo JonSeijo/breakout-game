@@ -19,7 +19,7 @@ public class PauseScreen extends ScreenAdapter{
 	private Gui gui;
 	
 	/**
-	 * A new screen without background, lets you see the previous screen (the level)
+	 * A new screen with the level backgrund and the gui.
 	 * In this new screen, there aren't any updates or game logic, so it freezes,
 	 * creating a pause until the user decides to return to the previus screen
 	 * @param game
@@ -44,16 +44,18 @@ public class PauseScreen extends ScreenAdapter{
 		gui.render(batch);		
 		
 		batch.begin();
+		// Draws a big "paused" message
 		fontBig.draw(batch, "PAUSED", 130, 350);
 		batch.end();		
 		
+		//Quit pause and return to gameScreen
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER) || 
 				Gdx.input.isKeyJustPressed(Keys.ESCAPE)){
 			game.setScreen(game.getGameScreen());
 		}
 		
 		
-		// Cheat:  if game is paused, L + E + V key combination goes to next level.
+		//CHEAT:  if game is paused, L + E + V key combination goes to next level.
 		if(Gdx.input.isKeyPressed(Keys.L) && 
 				Gdx.input.isKeyPressed(Keys.E) && 
 				Gdx.input.isKeyPressed(Keys.V)){
@@ -61,18 +63,13 @@ public class PauseScreen extends ScreenAdapter{
 			gameScreen.levelUp();	
 		}
 		
-		// Cheat:  if game is paused, L + I + F key combination give extra life.
+		//CHEAT:  if game is paused, L + I + F key combination give extra life.
 		if(Gdx.input.isKeyPressed(Keys.L) && 
 				Gdx.input.isKeyPressed(Keys.I) && 
 				Gdx.input.isKeyPressed(Keys.F)){
 			game.setScreen(game.getGameScreen());
 			gameScreen.addLife();	
 		}
-		
-	}
-	
-	
-	public void show() {
 		
 	}
 	

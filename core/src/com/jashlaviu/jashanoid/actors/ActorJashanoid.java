@@ -7,6 +7,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+/**
+ * GRANDPARENT of every actor in the game. It's an extension to actor.
+ * The useful things includes a rect that act like collision bounds (easily modifiable),
+ * an extended draw method for easy actor modification (rotation, color change...)
+ * @author jonseijo
+ *
+ */
 public class ActorJashanoid extends Actor{
 	
 	protected TextureRegion region;
