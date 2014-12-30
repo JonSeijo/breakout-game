@@ -1,7 +1,5 @@
 package com.jashlaviu.jashanoid;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
@@ -16,8 +14,6 @@ import com.badlogic.gdx.audio.Sound;
  * Check credits.txt ! 
  */
 public class SoundLoader {
-	
-	private ArrayList<Sound> allSoundsList;
 	
 	public static float soundVolume = 1f;
 	public static Sound ball_bounds, ball_brick_normal, ball_brick_hard;
@@ -66,7 +62,6 @@ public class SoundLoader {
 	 */
 	private Sound load(String path){		
 		Sound sound = Gdx.audio.newSound(Gdx.files.internal("sound/" + path + ".wav"));
-		allSoundsList.add(sound);
 		return sound;
 	}
 
