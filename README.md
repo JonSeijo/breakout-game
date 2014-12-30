@@ -39,15 +39,21 @@ and produces:
 
 ####Level creation instructions
 
+**IMPORTANT NOTE: ** _If you add more levels, you NEED to modify the "MAXLEVELS" variable in JashanoidScreen._
+
+The level textfiles are stored in: /android/assets/levels/
+
 You can create a new level by creating a new .txt called "level_N.txt". (N = number of level). Use the following characters:
 
+```
 '1' = normal blue brick
 '2' = normal red brick
 '3' = normal green brick
 '4' = normal purple brick
-'5' = normal orange brick		
+'5' = normal orange brick	
 '*' = hard brick
 '+' = indestructible brick
+```
 
 A new line in file, means a new line of bricks.
 The width limit is: 11 bricks. If you use more than 11, it won't work as intended.
