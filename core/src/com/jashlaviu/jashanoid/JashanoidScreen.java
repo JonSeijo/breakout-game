@@ -327,7 +327,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	 * Chance of creating a random bonus
 	 */
 	private void randomBonus(Brick brick){		
-		if(MathUtils.random(100) < 16){		// 16% chance of a new bonus	
+		if(MathUtils.random(100) < 15){		// 15% chance of a new bonus	
 			// create a random new bonus is the destroyed brick position
 			Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());  
 			bonuses.add(nBonus);
@@ -349,7 +349,7 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
 		int ran = MathUtils.random(1, 100);
 				
-		if(ran <= 70){
+		if(ran <= 65){
 			int ran2 = MathUtils.random(1, 4);
 			if(ran2 == 1)
 				return new BonusSlow(screen, x, y);
