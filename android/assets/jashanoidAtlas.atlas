@@ -270,6 +270,13 @@ cursor
   orig: 300, 70
   offset: 0, 0
   index: 2
+icon_window
+  rotate: false
+  xy: 225, 12
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 jashanoid
   rotate: false
   xy: 2, 392
