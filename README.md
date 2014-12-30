@@ -58,6 +58,7 @@ You can create a new level by creating a new .txt called "level_N.txt". (N = num
 A new line in file, means a new line of bricks.
 The width limit is: 11 bricks. If you use more than 11, it won't work as intended.
 
+The background color is handled by  "getLevelTexture()" in JashanoidScreen ( core/src/com/jashlaviu/jashanoid/JashanoidScreen )
 
 I hope you enjoy it, have fun!
 
