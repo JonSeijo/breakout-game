@@ -17,20 +17,23 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.actors.Ball;
 import com.jashlaviu.jashanoid.actors.Platform;
-import com.jashlaviu.jashanoid.actors.bonus.Bonus;
-import com.jashlaviu.jashanoid.actors.bonus.BonusExpand;
-import com.jashlaviu.jashanoid.actors.bonus.BonusGlue;
-import com.jashlaviu.jashanoid.actors.bonus.BonusLevel;
-import com.jashlaviu.jashanoid.actors.bonus.BonusLife;
-import com.jashlaviu.jashanoid.actors.bonus.BonusSlow;
-import com.jashlaviu.jashanoid.actors.bonus.BonusThree;
+import com.jashlaviu.jashanoid.actors.bonus.*;
 import com.jashlaviu.jashanoid.actors.bricks.Brick;
 import com.jashlaviu.jashanoid.inputhandler.Controller;
 import com.jashlaviu.jashanoid.inputhandler.InputHandler;
 
+/**
+ * Main part of the game. Central point.
+ * Updates every object, handles collisions, creates bonuses,
+ * has all the necesary logic so the game can waor.
+ * 
+ * NOTE: It's a mess, it needs a rework.
+ * 
+ * @author jonseijo
+ *
+ */
 public class JashanoidScreen extends ScreenAdapter{	
 	private Jashanoid game;
 	private SpriteBatch batch;
@@ -40,21 +43,28 @@ public class JashanoidScreen extends ScreenAdapter{
 	private Gui gui;
 	
 	private Platform platform;
-	private ArrayList<Ball> balls;
-	private ArrayList<Brick> bricks;
+	
+	// The ball is stored in an array for handling the three-balls bonus
+	private ArrayList<Ball> balls; 
+	private ArrayList<Brick> bricks;	
+	
+	 // When first was implemented, there could be multiple bonuses at the same time.
+	 // It was reworked later.	 
 	private ArrayList<Bonus> bonuses;
 	
 	private InputHandler inputHandler;
+	private Controller controller;	
 	private LevelCreator levelCreator;
-	private Controller controller;
 	
-	private Vector2 takeOffPoint;
-	
-	private float soundVolume;
+	/**
+	 * Point the ball is when is 'glued' to the platform
+	 */
+	private Vector2 takeOffPoint;	
 	
 	private Brick lastBrick;
 	private Score score;
 	
+	private float soundVolume;
 	private int lives, level;
 	private final int MAXLEVEL;
 	
@@ -62,9 +72,10 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	public JashanoidScreen(Jashanoid game) {
 		this.game = game;
-		shaper = game.getShaper();
+		shaper = game.getShaper(); 
 		batch = game.getBatch();
 		bounds = new Bounds();
+		
 		balls = new ArrayList<Ball>();
 		bricks = new ArrayList<Brick>();
 		bonuses = new ArrayList<Bonus>();
@@ -77,8 +88,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		takeOffPoint = getDefaultTakeOff();
 		
 		stage = new Stage(game.getViewport(), game.getBatch());		
-		
-		stage.addActor(platform);
+		stage.addActor(platform); // The bricks are added in the level creation step.
 		
 		controller = new Controller(game, this);			
 		inputHandler = new InputHandler(game, controller);	
@@ -86,12 +96,15 @@ public class JashanoidScreen extends ScreenAdapter{
 		
 		soundVolume = SoundLoader.soundVolume;
 		
-		lives = 3;
+		lives = 4;
 		MAXLEVEL = 10;
 		levelUp();
 	}
 
-	@Override
+	/**
+	 * Updates and draws actors in the stage,
+	 * and checks every collision in the game
+	 */
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -99,11 +112,12 @@ public class JashanoidScreen extends ScreenAdapter{
 		renderBackground(); 
 		
 		bounds.draw(shaper);		
-		stage.draw();
+		stage.draw(); //Draws every actor on the stage (platform, balls, bricks)
 		
-		controller.update(delta);
+		controller.update(delta);  //Check for input movement and then updates the actors
 		stage.act();
-		updateLogic(delta);
+		
+		updateLogic(); 	  //Handles collision and bonus creation.
 		updateGameOver();		
 
 		gui.render(batch);  //Draw the score, lives	and level.	
@@ -116,17 +130,20 @@ public class JashanoidScreen extends ScreenAdapter{
 	
 	/**
 	 * Draws the correct backgroud for each 
-	 * level specified in getLevelTexture()
+	 * level specified in getLevelTexture().
+	 * Numbers are exact.
 	 */
 	public void renderBackground(){		
-		batch.begin();		
-			
+		batch.begin();				
+		
+		//Draw the brown texture in all the screen
 		for(int y = 0; y < Bounds.GAME_Y_UP; y += 116){
 			for(int x = 0; x < Bounds.SCORE_X_RIGHT; x += 121){
 				batch.draw(TextureLoader.back_gui, x, y);
 			}
 		}
 		
+		//Draw the level texture inside the bounds
 		for(int y = Bounds.GAME_Y_DOWN; y < Bounds.GAME_Y_UP; y += 116){
 			for(int x = Bounds.GAME_X_LEFT; x < Bounds.GAME_X_RIGHT; x += 121){
 				batch.draw(getLevelTexture(), x, y);
@@ -136,6 +153,9 @@ public class JashanoidScreen extends ScreenAdapter{
 		batch.end();
 	}
 	
+	/**
+	 * Returns the textureregion wanted for each level 
+	 */
 	public TextureRegion getLevelTexture(){
 		if(level == 1 || level == 6) return TextureLoader.back_blue;		
 		if(level == 2 || level == 7) return TextureLoader.back_green;
@@ -147,36 +167,44 @@ public class JashanoidScreen extends ScreenAdapter{
 			return TextureLoader.back_blue;
 	}
 	
-	
+	/**
+	 * Creates new level. If MAXLEVEL was beaten, 
+	 * changes to the win screen
+	 */
 	public void levelUp() {
 		if(level < MAXLEVEL){
 			level++;
 			score.addPoints(Score.LEVEL);		
 			SoundLoader.level.play(soundVolume);		
 			
-			for(Brick brick : bricks)
-				brick.remove();
-			bricks.clear();
+			//Remove the bricks that could still be in the level (indestructibles, passing level for a bonus)
+			for(Brick brick : bricks) 
+				brick.remove();     //Remove actor from stage
+			bricks.clear();			//Remove brick from array			
 			
-			for(Bonus bonus : bonuses)
+			for(Bonus bonus : bonuses) 
 				bonus.remove();
 			bonuses.clear();
 			
-			levelCreator.setLevel(level);
+			levelCreator.setLevel(level);   //The corresponding bricks are stored in the "bricks" array here.
 			for(Brick brick : bricks)
 				stage.addActor(brick);		
 			
 			for(Ball ball : balls) ball.remove();	//Remove balls from stage 	
-			balls.clear();		//Deletes balls in array
+			balls.clear();							//Deletes balls in array
 			
 			resetGame();		
-		}else{
+		
+		}else  // If level is the maxlevel, player wins.
 			game.setScreen(new WinScreen(game));
-		}
+		
 	}
 	
-	private void updateGameOver(){
-		
+	
+	/**
+	 * Checks if level was beaten, and if all lives are lost,
+	 */
+	private void updateGameOver(){		
 		boolean noMoreBricks = true;		
 		
 		for(Brick brick : bricks)
@@ -185,7 +213,7 @@ public class JashanoidScreen extends ScreenAdapter{
 			
 		
 		if(noMoreBricks){
-			lastBrick.remove();
+			lastBrick.remove();  //Remove because it is making the fading out animation.
 			levelUp();	
 		}
 		
@@ -193,21 +221,21 @@ public class JashanoidScreen extends ScreenAdapter{
 			gameOver();
 	}
 	
-	private void updateLogic(float delta){		
-		//Platform collisions with left and right bounds.
+	/**
+	 * Checks EVERY collision in the game, and handles bonus creation.	 * 
+	 */
+	private void updateLogic(){	
+		// Every function is commented with details inside each one. 
 		updateCollisionsPlatformBounds();
-		
-		//Handles ball collisions with bounds.
-		//If collide with down bounds, resets game.
-		updateCollisionsBallBounds();	
-		
-		updateCollisionsBallBricks(delta);
-		
-		updateCollisionsBallPlatform();
-		
+		updateCollisionsBallBounds();			
+		updateCollisionsBallBricks();
+		updateCollisionsBallPlatform();	
 		updateBonus();
 	}
 	
+	/**
+	 * 	Checks the bonus collection and apllies
+	 */
 	private void updateBonus(){		
 		if(!bonuses.isEmpty()){		//if there is a bonus falling
 			Bonus bonus = bonuses.get(0);
@@ -230,13 +258,17 @@ public class JashanoidScreen extends ScreenAdapter{
 
 	}
 
-	private void updateCollisionsBallBricks(float delta) {
-		for(Ball ball : balls){							
-			Iterator<Brick> brickIter = bricks.iterator();
+	/**
+	 * Checks if ball collides with bricks, and handles the direction of the bounce.
+	 */
+	private void updateCollisionsBallBricks() {
+		for(Ball ball : balls){		//There could be three balls					
+			Iterator<Brick> brickIter = bricks.iterator();  //Iterate this way to remove the brick from the array if needed.
 			while(brickIter.hasNext()){	
 				boolean brickHit = false;
+				
 				Brick brick = brickIter.next();	
-				Rectangle brickBounds = brick.getCollisionBounds();
+				Rectangle brickBounds = brick.getCollisionBounds();  //Collision bounds are not necesary from the size of the texture.
 				
 				// if brick collides with  middle Ball top
 				if(brickBounds.contains(ball.getCenterX(), ball.getTop())){
@@ -250,8 +282,7 @@ public class JashanoidScreen extends ScreenAdapter{
 					ball.setPosition(ball.getX(), brickBounds.getY() + brickBounds.getHeight());
 					ball.setDirection(ball.getDirection().x, -ball.getDirection().y);
 					brickHit = true;
-				}
-				
+				}				
 				
 				// if brick collides with  middle Ball right
 				if(brickBounds.contains(ball.getRight(), ball.getCenterY())){
@@ -265,9 +296,7 @@ public class JashanoidScreen extends ScreenAdapter{
 					ball.setPosition(brickBounds.getX() + brickBounds.getWidth(), ball.getY());
 					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
 					brickHit = true;
-				}
-			
-				
+				}				
 				
 				if(brickHit){			
 					ball.moreSpeed();
@@ -277,9 +306,9 @@ public class JashanoidScreen extends ScreenAdapter{
 						if(brick.getType().equals("normal")) score.addPoints(Score.BRICK_NORMAL);
 						if(brick.getType().equals("hard")) score.addPoints(Score.BRICK_HARD);					
 						
-						if(balls.size() < 2){   //Only create bonus when there is one ball.
-							randomBonus(brick);
-						}	
+						if(balls.size() == 1 && bonuses.isEmpty()){   //Only create bonus when there is one ball and no other bonuses
+							randomBonus(brick); //(aka: not the three balls bonus active) 
+						}
 						brickIter.remove(); //Removes from the array (for logic updates).
 						removeBrickStage(brick);	//Removes from stage, with prior animation.		
 						lastBrick = brick;
@@ -294,23 +323,29 @@ public class JashanoidScreen extends ScreenAdapter{
 		}		
 	}
 
-	
-	private void randomBonus(Brick brick){
-		if(bonuses.isEmpty()){
-			if(MathUtils.random(100) < 16){		// 16% chance of a new bonus	
-				// create a random new bonus is the destroyed brick position
-				Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());  
-				bonuses.add(nBonus);
-				stage.addActor(nBonus);
-			}
-		}
+	/**
+	 * Chance of creating a random bonus
+	 */
+	private void randomBonus(Brick brick){		
+		if(MathUtils.random(100) < 16){		// 16% chance of a new bonus	
+			// create a random new bonus is the destroyed brick position
+			Bonus nBonus = getRandomBonus(this, brick.getX(), brick.getY());  
+			bonuses.add(nBonus);
+			stage.addActor(nBonus);
+		}	
 	}
 	
+	/**
+	 * Disable existing bonues.  
+	 */
 	public void disableBonuses(){
 		setNeedGlue(false);
 		platform.colapse();		
 	}
 	
+	/**
+	 * Returns a random bonus. Percents are from trial and error.
+	 */
 	private Bonus getRandomBonus(JashanoidScreen screen, float x, float y){
 		int ran = MathUtils.random(1, 100);
 				
@@ -341,7 +376,9 @@ public class JashanoidScreen extends ScreenAdapter{
 			
 	}
 	
-
+	/**
+	 * Makes the brick rotate, fade out and removes it from stage
+	 */
 	private void removeBrickStage(Brick brick){
 		SequenceAction seq = new SequenceAction();
 		ParallelAction parallel = new ParallelAction();
@@ -356,36 +393,39 @@ public class JashanoidScreen extends ScreenAdapter{
 		brick.addAction(parallel);
 	}
 
+	/**
+	 * 	Checks if ball collides with platform, and handles the direction of the bounce.
+	 */
 	private void updateCollisionsBallPlatform(){
-		for(Ball ball : balls){
+		for(Ball ball : balls){   //There could be 3 balls at the same time
 			Rectangle ballBounds = ball.getCollisionBounds();
 			
 			if(ballBounds.overlaps(platform.getCollisionBounds())){	
 
 				if(ballBounds.y >= platform.getCollisionBounds().y + platform.getHeight()/2){  //If hits from top
 					platform.setPlayAnimation(true);				
-					if(needGlue()){
+					if(needGlue()){    //If ball needs to stick in the palete
 						SoundLoader.glue.play(soundVolume);
 						takeOffPoint.set(new Vector2(ball.getPosition()));					
 						ball.setDirection(platform.getBounceDirection(ball.getPosition()));					
-						platform.setGlue(true);
-						//setNeedGlue(false);
-					}else{
+						platform.setGlue(true);						
+					}else{		//Normal hit
 						SoundLoader.platform_ball.play(soundVolume);
 						ball.setDirection(platform.getBounceDirection(ball.getPosition()));
 						ball.moreSpeed();
 					}
 					
-				}else{
+				}else{  //Collides with a side
 					ball.setDirection(-ball.getDirection().x, ball.getDirection().y);
-				}
-				
-				
+				}			
 			}
-		}
-		
+		}		
 	}
 	
+	/**
+	 * Handles ball collisions with bounds.
+	 * If collide with down bounds, resets game (live lost).
+	 */
 	private void updateCollisionsBallBounds() {
 		boolean needReset = false;	
 		
@@ -416,7 +456,7 @@ public class JashanoidScreen extends ScreenAdapter{
 				SoundLoader.ball_bounds.play(soundVolume);
 			}
 			
-			if(bounds.collideDown(ball)){
+			if(bounds.collideDown(ball)){  		//The ball is lost
 				ballIter.remove();  //Removes from the array
 				ball.remove();		//Removes actor from the stage
 
@@ -427,21 +467,28 @@ public class JashanoidScreen extends ScreenAdapter{
 				}
 			}
 		}		
-		if(needReset) resetGame();
+		//It is outside because I can't operate to arrays while looping
+		if(needReset) 
+			resetGame();
 	}
-
+	
+	/**
+	 * Checks if platform collisions with left and right bounds. 
+	 * Keeps the platform inside bounds
+	 */
 	private void updateCollisionsPlatformBounds() {
 		if(bounds.collideLeft(platform)){
 			platform.setPosition(Bounds.GAME_X_LEFT, platform.getY());
-
-		}
-			
+		}			
 		else if(bounds.collideRight(platform)){
 			platform.setPosition(Bounds.GAME_X_RIGHT - 
 					platform.getCollisionBounds().getWidth(), platform.getY());
 		}
 	}
 	
+	/**
+	 * Resets platform, ball and disables bonuses.
+	 */
 	public void resetGame(){
 		disableBonuses();
 		platform.reset();
@@ -450,10 +497,16 @@ public class JashanoidScreen extends ScreenAdapter{
 		takeOffPoint = getDefaultTakeOff();
 	}
 	
+	/**
+	 * Change to the game over screen
+	 */
 	private void gameOver(){
 		game.setScreen(new GameOverScreen(game));
 	}
 	
+	/**
+	 * Slow each ball by 40%
+	 */
 	public void slowBalls(){
 		SoundLoader.slow.play(soundVolume);
 		for(Ball ball : balls){
@@ -461,6 +514,9 @@ public class JashanoidScreen extends ScreenAdapter{
 		}
 	}
 	
+	/**
+	 * Add a new ball with the given position and direction
+	 */
 	public void addBall(Vector2 position, Vector2 direction){
 		Ball ball = new Ball(this, position, direction);
 		balls.add(ball);
@@ -500,12 +556,7 @@ public class JashanoidScreen extends ScreenAdapter{
 		stage.dispose();
 		gui.dispose();
 	}
-	
-	@Override
-	public void hide() {
-		
-	}
-	
+
 	public ArrayList<Ball> getBalls(){
 		return balls;
 	}
@@ -514,10 +565,16 @@ public class JashanoidScreen extends ScreenAdapter{
 		return platform;
 	}
 	
+	/**
+	 * Returns the default point of the ball in the platform
+	 */
 	public Vector2 getDefaultTakeOff(){
-		return new Vector2(platform.getDefaultX() + platform.getWidth()/2 + 20, platform.getTop());
+		return new Vector2(platform.getDefaultX() + platform.getWidth()/2 + 15, platform.getTop());
 	}
 	
+	/**
+	 * Returns current take off point
+	 */
 	public Vector2 getTakeOff(){
 		return takeOffPoint;
 	}

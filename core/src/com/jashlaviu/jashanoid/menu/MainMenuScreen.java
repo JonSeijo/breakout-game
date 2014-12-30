@@ -1,11 +1,10 @@
 package com.jashlaviu.jashanoid.menu;
 
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -24,6 +23,7 @@ public class MainMenuScreen extends ScreenAdapter{
 	private MenuButton playButton, quitButton, soundButton, yesButton, noButton;
 	private MenuButton[] menuButtons;
 	private Cursor cursor;
+	private BitmapFont fontSmall;
 	
 	private boolean isSound = true;
 	private boolean showingOptions = false;
@@ -34,6 +34,8 @@ public class MainMenuScreen extends ScreenAdapter{
 	
 	public MainMenuScreen(Jashanoid game) {
 		this.game = game;
+		
+		fontSmall = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular22.fnt"));	
 		
 		stage = new Stage(game.getViewport(), game.getBatch());
 		
@@ -91,6 +93,9 @@ public class MainMenuScreen extends ScreenAdapter{
 		if(drawSelector){
 			game.getBatch().draw(TextureLoader.jashlaviu_selector, jashlaviuDev.getX()-2, jashlaviuDev.getY()-2);
 		}
+		
+		// Version
+		fontSmall.draw(game.getBatch(), "1.0", 750, 35);	
 		
 		game.getBatch().end();
 

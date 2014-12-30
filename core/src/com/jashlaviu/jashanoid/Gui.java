@@ -21,12 +21,15 @@ public class Gui {
 		font = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular22.fnt"));		
 	}
 	
+	/**
+	 * 	Draw gui elements (points, lives, level number), aligned to Bounds.score	 * 
+	 */
 	public void render(SpriteBatch batch){
 		
 		int leftMargin = 60;
 		
-		batch.begin();
-		
+		batch.begin();		
+	
 		font.draw(batch, "Score", Bounds.SCORE_X_LEFT + 60, 580);
 		font.draw(batch, ""+score.getPoints(), Bounds.SCORE_X_LEFT + leftMargin, 550);
 		
@@ -37,7 +40,7 @@ public class Gui {
 		font.draw(batch, ""+gameScreen.getLevel(), Bounds.SCORE_X_LEFT + 80, 90);
 		
 		for(int i = 1; i < gameScreen.getLives(); i++){
-			batch.draw(livesRegion, Bounds.GAME_X_RIGHT + 45, 400 - i * 30);
+			batch.draw(livesRegion, Bounds.SCORE_X_LEFT + 45, 400 - i * 30);
 		}
 		
 		

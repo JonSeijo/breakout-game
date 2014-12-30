@@ -5,21 +5,24 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.jashlaviu.jashanoid.actors.bricks.*;
 
+/**
+ * Creates the correct bricks in their position and stores the in the "bricks" array,
+ * the level is created by reading .txt files in assets/levels.
+ * The txt must have a max of 11 blocks width, or it wont fit.
+ * @author jonseijo
+ *
+ */
 public class LevelCreator {
 	
+	// The sizes must NOT change. proportions are thinked with these values.
 	private final int BRICK_WIDTH = 55;
 	private final int BRICK_HEIGHT = 20;
 	
 	private final char charBlue, charRed, charGreen, charPurple, charOrange;
-	private final char charHard;
-	private final char charRock;
-	
-	@SuppressWarnings("unused")
-	private final char charSpace;
-	
+	private final char charHard, charRock;
+		
 	private ArrayList<Brick> bricks;
 	private String levelChars;
 	
@@ -32,7 +35,6 @@ public class LevelCreator {
 		charPurple = '4';
 		charOrange = '5';
 		
-		charSpace = '_';
 		charHard = '*';
 		charRock = '+';
 	}

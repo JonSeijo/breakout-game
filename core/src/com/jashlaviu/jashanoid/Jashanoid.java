@@ -24,7 +24,8 @@ public class Jashanoid extends Game {
 		viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		textureLoader = new TextureLoader();
 		soundLoader = new SoundLoader();
-		this.setScreen(new MainMenuScreen(this));
+		
+		this.setScreen(new MainMenuScreen(this));  //Start with a main menu.
 	}
 
 	@Override
@@ -41,14 +42,25 @@ public class Jashanoid extends Game {
 		batch.dispose();
 	}
 	
+	/**
+	 * Creates a new JashanoidScreen,
+	 * the new one becames the current one.
+	 */
 	public void newGame(){
 		gameScreen = new JashanoidScreen(this);
 	}
 	
+	/**
+	 * Returns the current JashanoidScreen.
+	 * There is always an active one.	 * 
+	 */
 	public JashanoidScreen getGameScreen(){
 		return gameScreen;
 	}
 	
+	/**
+	 * Gets the SpriteBatch to use in all the game
+	 */
 	public SpriteBatch getBatch(){
 		return batch;
 	}

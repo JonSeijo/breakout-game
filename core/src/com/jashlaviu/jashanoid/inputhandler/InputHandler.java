@@ -3,8 +3,6 @@ package com.jashlaviu.jashanoid.inputhandler;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.jashlaviu.jashanoid.Jashanoid;
-import com.jashlaviu.jashanoid.JashanoidScreen;
-import com.jashlaviu.jashanoid.PauseScreen;
 
 public class InputHandler extends InputAdapter{
 

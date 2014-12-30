@@ -51,7 +51,6 @@ public class Controller {
 		
 		if(developJustPressed){
 			developJustPressed = false;
-			//gameScreen.levelUp();
 		}
 		
 		

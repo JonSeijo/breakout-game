@@ -6,17 +6,14 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jashlaviu.jashanoid.menu.MainMenuScreen;
 
 public class GameOverScreen extends ScreenAdapter{
 	
 	private Jashanoid game;
 	private SpriteBatch batch;
-	private Stage stage;
-	
+	private Stage stage;	
 	private Score score;	
 	private BitmapFont fontSmall, fontBig;
 	
@@ -27,10 +24,12 @@ public class GameOverScreen extends ScreenAdapter{
 		fontSmall = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular26.fnt"));
 		fontBig = new BitmapFont(Gdx.files.internal("fonts/ShareTechMono-Regular120.fnt"));
 		
-		score = game.getGameScreen().getScore();	
+		//get Score object
+		score = game.getGameScreen().getScore(); 
 		
+		//Set new hi-score if new score is bigger.
 		if(score.getPoints() > score.getHiScore()){
-			score.setHiScore(score.getPoints());
+			score.setHiScore(score.getPoints());    
 		}
 		
 		stage = new Stage(game.getViewport(), batch);		
@@ -64,14 +63,12 @@ public class GameOverScreen extends ScreenAdapter{
 			game.setScreen(new MainMenuScreen(game));
 		}
 		
+		// CTRL + H = resets hi-score.
 		if(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)){
 			if(Gdx.input.isKeyJustPressed(Keys.H)){
 				score.resetHiScore();				
 			}
-		}
-		
-		
-		
+		}		
 	}
 	
 	@Override
@@ -88,6 +85,8 @@ public class GameOverScreen extends ScreenAdapter{
 	@Override
 	public void dispose() {
 		stage.dispose();
+		fontBig.dispose();
+		fontSmall.dispose();
 	}
 
 }
